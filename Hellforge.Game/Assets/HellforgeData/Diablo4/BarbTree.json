@@ -1,0 +1,202 @@
+﻿{
+  "SkillTrees": [
+    {
+      "Class": "Barbarian",
+      "Width": 923,
+      "Height": 1037,
+      "Nodes": [
+        // left route
+        {
+          "Id": 0,
+          "Type": "Route",
+          "Level": 0,
+          "X": 167,
+          "Y": 181
+        },
+        {
+          "Id": 1,
+          "Type": "Route",
+          "Level": 5,
+          "X": 314,
+          "Y": 331
+        },
+        {
+          "Id": 2,
+          "Type": "Route",
+          "Level": 10,
+          "X": 166,
+          "Y": 479
+        },
+        {
+          "Id": 3,
+          "Type": "Route",
+          "Level": 15,
+          "X": 314,
+          "Y": 628
+        },
+        {
+          "Id": 4,
+          "Type": "Route",
+          "Level": 20,
+          "X": 314,
+          "Y": 803
+        },
+        // right route
+        {
+          "Id": 5,
+          "Type": "Route",
+          "Level": 0,
+          "X": 756,
+          "Y": 181
+        },
+        {
+          "Id": 6,
+          "Type": "Route",
+          "Level": 5,
+          "X": 608,
+          "Y": 326
+        },
+        {
+          "Id": 7,
+          "Type": "Route",
+          "Level": 10,
+          "X": 754,
+          "Y": 475
+        },
+        {
+          "Id": 8,
+          "Type": "Route",
+          "Level": 15,
+          "X": 605,
+          "Y": 624
+        },
+        {
+          "Id": 9,
+          "Type": "Route",
+          "Level": 20,
+          "X": 606,
+          "Y": 798
+        },
+        // left affixes
+        {
+          "Id": 10,
+          "Type": "Affix",
+          "Affix": "Swiftness",
+          "MaxTier": 5,
+          "X": 100,
+          "Y": 115
+        },
+        {
+          "Id": 11,
+          "Type": "Affix",
+          "Affix": "EndlessFury",
+          "MaxTier": 5,
+          "X": 235,
+          "Y": 115
+        },
+        {
+          "Id": 12,
+          "Type": "Affix",
+          "Affix": "DefyPain",
+          "MaxTier": 5,
+          "X": 219,
+          "Y": 328
+        },
+        {
+          "Id": 13,
+          "Type": "Affix",
+          "Affix": "FierceBrawler",
+          "MaxTier": 5,
+          "X": 379,
+          "Y": 261
+        },
+        {
+          "Id": 14,
+          "Type": "Affix",
+          "Affix": "BloodThirst",
+          "MaxTier": 5,
+          "X": 98,
+          "Y": 415
+        },
+        {
+          "Id": 15,
+          "Type": "Affix",
+          "Affix": "QuickImpulses",
+          "MaxTier": 5,
+          "X": 276,
+          "Y": 479
+        },
+        {
+          "Id": 16,
+          "Type": "Affix",
+          "Affix": "SlayingStrike",
+          "MaxTier": 5,
+          "X": 98,
+          "Y": 548
+        },
+        {
+          "Id": 17,
+          "Type": "Affix",
+          "Affix": "CutToTheBone",
+          "MaxTier": 5,
+          "X": 203,
+          "Y": 628
+        },
+        {
+          "Id": 18,
+          "Type": "Affix",
+          "Affix": "BattleFrenzy",
+          "MaxTier": 5,
+          "X": 387,
+          "Y": 557
+        },
+        {
+          "Id": 19,
+          "Type": "Affix",
+          "Affix": "Momentum",
+          "MaxTier": 5,
+          "X": 387,
+          "Y": 703
+        },
+        {
+          "Id": 20,
+          "Type": "Affix",
+          "Affix": "GushingWounds",
+          "MaxTier": 1,
+          "X": 245,
+          "Y": 879
+        },
+        {
+          "Id": 21,
+          "Type": "Affix",
+          "Affix": "UnstoppableForce",
+          "MaxTier": 1,
+          "X": 385,
+          "Y": 879
+        }
+      ],
+      "Edges": [
+        {
+          "Source": 0,
+          "Targets": [ 10, 11 ]
+        },
+        {
+          "Source": 1,
+          "Targets": [ 12, 13 ]
+        },
+        {
+          "Source": 2,
+          "Targets": [ 14, 15, 16 ]
+        },
+        {
+          "Source": 3,
+          "Targets": [ 17, 18, 19 ]
+        },
+        {
+          "Source": 4,
+          "Targets": [ 20, 21 ]
+        }
+      ]
+    }
+  ]
+}

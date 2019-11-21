@@ -1,0 +1,104 @@
+﻿{
+  "Attributes": [
+    "Strength",
+    "CriticalStrikeChance"
+  ],
+  "Conditions": [
+    {
+      "Name": "WhileUsingOneHandedWeapons",
+      "Type": "Persister",
+      "Condition": "IsUsingOneHander($entity, $talent)"
+    },
+    {
+      "Name": "WhileTalentIsActive",
+      "Type": "Persister",
+      "Condition": "IsTalentActive($entity, $talent)"
+    },
+    {
+      "Name": "WhileBuffIsActive",
+      "Type": "Persister",
+      "Condition": "IsBuffActive($entity, $buff)"
+    },
+    {
+      "Name": "WithinMeleeRange",
+      "Type": "TargetFilter",
+      "Condition": "WithinMeleeRange($entity, $target)"
+    },
+    {
+      "Name": "FromElites",
+      "Type": "DefenseFilter",
+      "Condition": "IsElite($attacker)"
+    },
+    {
+      "Name": "IsLightningTalent",
+      "Type": "TalentFilter",
+      "Condition": "IsTalentArchetype($talent, `Lightning`)"
+    }
+  ],
+  "Affixes": [
+    {
+      "Name": "AddedStrength",
+      "Type": "AttributeModifier",
+      "Stat": "Strength",
+      "Slot": "Prefix",
+      "Data": [
+        {
+          "Tier": 0,
+          "Name": "Grunt's",
+          "Minimum": 4,
+          "Maximum": 14
+        },
+        {
+          "Tier": 1,
+          "Name": "Brute's",
+          "Minimum": 15,
+          "Maximum": 30
+        }
+      ],
+      "Description": "#roll to Strength."
+    },
+    {
+      "Name": "AddedStrengthWhileUsingOneHandedWeapons",
+      "Inherits": "AddedStrength",
+      "Conditions": [ "WhileUsingOneHandedWeapons" ],
+      "Description": "#roll to strength while using one-handed weapons."
+    },
+    {
+      "Name": "AddedStrengthOnHit",
+      "Inherits": "AddedStrength",
+      "Activators": [ "OnHit" ],
+      "Description": "#roll to strength on hit"
+    },
+    {
+      "Name": "BleedOnHit",
+      "Type": "Logic",
+      "Invoke": "ApplyBleed($target, #minimum, #duration)",
+      "Data": [
+        {
+          "Tier": 0,
+          "Minimum": 20,
+          "Duration": 6
+        }
+      ],
+      "Activators": [ "OnHit" ],
+      "Description": "Apply bleed on hit for #minimum% of damage dealt over #duration seconds"
+    },
+    {
+      "Name": "CallOfTheWild",
+      "Type": "Logic",
+      "Invoke": "ApplyVulnerable($target, #minimum)",
+      "Data": [
+        {
+          "Tier": 0,
+          "Minimum": 20
+        },
+        {
+          "Tier": 1,
+          "Minimum": 25
+        }
+      ],
+      "Activators": [ "RavenPassiveAttack" ],
+      "Description": "Hits made by raven passive attacks inflict Invulernable for #minimum% of the damage dealt."
+    }
+  ]
+}

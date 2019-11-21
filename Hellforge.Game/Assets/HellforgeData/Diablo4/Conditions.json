@@ -1,0 +1,54 @@
+{
+  "Conditions": [
+    {
+      "Name": "WhileUsingOneHandedWeapons",
+      "Type": "Persister",
+      "Condition": "IsUsingOneHander($entity, $talent)"
+    },
+    {
+      "Name": "IsBerserking",
+      "Type": "Persister",
+      "Condition": "HasBuff(`Berkserk`)"
+    },
+    {
+      "Name": "WhileMoving",
+      "Type": "Persister",
+      "Condition": "IsMoving($entity)"
+    },
+    {
+      "Name": "Below30PercentLife",
+      "Type": "TargetFilter",
+      "Condition": "IsBelow30Percent($target)"
+    },
+    {
+      "Name": "EnemyIsBleeding",
+      "Type": "TargetFilter",
+      "Condition": "IsEnemyBleeding($target)"
+    },
+    {
+      "Name": "WhileTalentIsActive",
+      "Type": "Persister",
+      "Condition": "IsTalentActive(target, $talent)"
+    },
+    {
+      "Name": "WhileBuffIsActive",
+      "Type": "Persister",
+      "Condition": "IsBuffActive(target, $buff)"
+    },
+    {
+      "Name": "WithinMeleeRange",
+      "Type": "TargetFilter",
+      "Condition": "WithinMeleeRange(target, $target)"
+    },
+    {
+      "Name": "FromElites",
+      "Type": "DefenseFilter",
+      "Condition": "IsElite($attacker)"
+    },
+    {
+      "Name": "IsLightningTalent",
+      "Type": "TalentFilter",
+      "Condition": "IsTalentArchetype($talent, `Lightning`)"
+    }
+  ]
+}

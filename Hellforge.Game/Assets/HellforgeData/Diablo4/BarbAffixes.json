@@ -1,0 +1,373 @@
+{
+  "Affixes": [
+    {
+      "Name": "Swiftness",
+      "Type": "AttributeModifier",
+      "Attribute": "MovementSpeed",
+      "Data": [
+        {
+          "Tier": 0,
+          "Amount": 3
+        },
+        {
+          "Tier": 1,
+          "Amount": 10
+        },
+        {
+          "Tier": 2,
+          "Amount": 20
+        },
+        {
+          "Tier": 3,
+          "Amount": 50
+        },
+        {
+          "Tier": 4,
+          "Amount": 100
+        }
+      ],
+      "Description": "Movement speed is increased by #amount%"
+    },
+    {
+      "Name": "EndlessFury",
+      "Type": "AttributeModifier",
+      "Attribute": "ResourceGeneration",
+      "Data": [
+        {
+          "Tier": 0,
+          "Amount": 2
+        },
+        {
+          "Tier": 1,
+          "Amount": 4
+        },
+        {
+          "Tier": 2,
+          "Amount": 6
+        },
+        {
+          "Tier": 3,
+          "Amount": 8
+        },
+        {
+          "Tier": 4,
+          "Amount": 10
+        }
+      ],
+      "Description": "Fury generation is increased by #amount%"
+    },
+    {
+      "Name": "FierceBrawler",
+      "Conditions": [ "WhileUsingOneHandedWeapons" ],
+      "Join": [ "FierceBrawler_1", "FierceBrawler_2" ]
+    },
+    {
+      "Name": "FierceBrawler_1",
+      "Conditions": [ "WhileUsingOneHandedWeapons" ],
+      "Type": "AttributeModifier",
+      "Attribute": "AttackSpeed",
+      "Data": [
+        {
+          "Tier": 0,
+          "Amount": 2
+        },
+        {
+          "Tier": 1,
+          "Amount": 4
+        },
+        {
+          "Tier": 2,
+          "Amount": 6
+        },
+        {
+          "Tier": 3,
+          "Amount": 8
+        },
+        {
+          "Tier": 4,
+          "Amount": 10
+        }
+      ],
+      "Description": "Attack speed is increased by #amount% while using one-handed weapons."
+    },
+    {
+      "Name": "FierceBrawler_2",
+      "Conditions": [ "WhileUsingTwoHandedWeapons" ],
+      "Type": "AttributeModifier",
+      "Attribute": "CriticalStrikeDamage",
+      "Data": [
+        {
+          "Tier": 0,
+          "Amount": 6
+        },
+        {
+          "Tier": 1,
+          "Amount": 12
+        },
+        {
+          "Tier": 2,
+          "Amount": 18
+        },
+        {
+          "Tier": 3,
+          "Amount": 24
+        },
+        {
+          "Tier": 4,
+          "Amount": 30
+        }
+      ],
+      "Description": "Critical strike damage increased by #amount% while using two-handed weapons."
+    },
+    {
+      "Name": "DefyPain",
+      "Activators": [ "AfterEvade" ],
+      "Type": "AttributeModifier",
+      "Attribute": "DamageReduction",
+      "Data": [
+        {
+          "Tier": 0,
+          "Amount": 4,
+          "Duration": 1
+        },
+        {
+          "Tier": 1,
+          "Amount": 6,
+          "Duration": 1
+        },
+        {
+          "Tier": 2,
+          "Amount": 8,
+          "Duration": 1
+        },
+        {
+          "Tier": 3,
+          "Amount": 10,
+          "Duration": 1
+        },
+        {
+          "Tier": 4,
+          "Amount": 12,
+          "Duration": 1
+        }
+      ],
+      "Description": "When you evade, gain #amount% damage reduction for #duration second."
+    },
+    {
+      "Name": "BloodThirst",
+      "Activators": [ "OnCriticalStrike" ],
+      "Type": "Logic",
+      "Invoke": "BleedForCritDamage(#amount, #duration)",
+      "Data": [
+        {
+          "Tier": 0,
+          "Amount": 4,
+          "Duration": 5
+        },
+        {
+          "Tier": 1,
+          "Amount": 8,
+          "Duration": 5
+        },
+        {
+          "Tier": 2,
+          "Amount": 12,
+          "Duration": 5
+        },
+        {
+          "Tier": 3,
+          "Amount": 16,
+          "Duration": 5
+        },
+        {
+          "Tier": 4,
+          "Amount": 20,
+          "Duration": 5
+        }
+      ],
+      "Description": "Enemies bleed for #amount% of your critical strike damage over 5 seconds"
+    },
+    {
+      "Name": "QuickImpulses",
+      "Conditions": [ "WhileMoving" ],
+      "Type": "AttributeModifier",
+      "Attribute": "DamageReduction",
+      "Data": [
+        {
+          "Tier": 0,
+          "Amount": 4
+        },
+        {
+          "Tier": 1,
+          "Amount": 6
+        },
+        {
+          "Tier": 2,
+          "Amount": 8
+        },
+        {
+          "Tier": 3,
+          "Amount": 10
+        },
+        {
+          "Tier": 4,
+          "Amount": 12
+        }
+      ],
+      "Description": "While moving, your damage reduction is increased by #amount%."
+    },
+    {
+      "Name": "SlayingStrike",
+      "Type": "AttributeModifier",
+      "Attribute": "IncreasedDamage",
+      "Conditions": [ "Below30PercentLife" ],
+      "Activators": [ "OnHit" ],
+      "Data": [
+        {
+          "Tier": 0,
+          "Amount": 8
+        },
+        {
+          "Tier": 1,
+          "Amount": 10
+        },
+        {
+          "Tier": 2,
+          "Amount": 12
+        },
+        {
+          "Tier": 3,
+          "Amount": 14
+        },
+        {
+          "Tier": 4,
+          "Amount": 16
+        }
+      ],
+      "Description": "Damage is increased by #amount% against enemies below 30% life."
+    },
+    {
+      "Name": "CutToTheBone",
+      "Type": "Logic",
+      "Invoke": "IncreaseBleed($target, #amount)",
+      "Conditions": [ "EnemyIsBleeding" ],
+      "Activators": [ "OnEnemyStunned" ],
+      "Data": [
+        {
+          "Tier": 0,
+          "Amount": 4
+        },
+        {
+          "Tier": 1,
+          "Amount": 6
+        },
+        {
+          "Tier": 2,
+          "Amount": 8
+        },
+        {
+          "Tier": 3,
+          "Amount": 10
+        },
+        {
+          "Tier": 4,
+          "Amount": 12
+        }
+      ],
+      "Description": "Stunning an enemy increases bleeding on them by #amount% for 3 seconds."
+    },
+    {
+      "Name": "BattleFrenzy",
+      "Type": "Logic",
+      "Invoke": "GrantBerserk($activator, #duration)",
+      "Activators": [ "UsedBrawlingSkill" ],
+      "Data": [
+        {
+          "Tier": 0,
+          "Duration": 1
+        },
+        {
+          "Tier": 1,
+          "Duration": 2
+        },
+        {
+          "Tier": 2,
+          "Duration": 3
+        },
+        {
+          "Tier": 3,
+          "Duration": 4
+        },
+        {
+          "Tier": 4,
+          "Duration": 5
+        }
+      ],
+      "Description": "Using a Brawling skill grants Berserk for #duration second."
+    },
+    {
+      "Name": "Momentum",
+      "Type": "Logic",
+      "Invoke": "GenerateResource(#amount)",
+      "Activators": [ "OnHit" ],
+      "Data": [
+        {
+          "Tier": 0,
+          "Amount": 5
+        },
+        {
+          "Tier": 1,
+          "Amount": 7
+        },
+        {
+          "Tier": 2,
+          "Amount": 9
+        },
+        {
+          "Tier": 3,
+          "Amount": 11
+        },
+        {
+          "Tier": 4,
+          "Amount": 13
+        }
+      ],
+      "Description": "20% chance to generate #amount fury on hit."
+    },
+    {
+      "Name": "GushingWounds",
+      "Type": "AttributeModifier",
+      "Attribute": "MoreBleedingDamage",
+      "Data": [
+        {
+          "Tier": 0,
+          "Amount": 45
+        }
+      ],
+      "Description": "Bleeding effects deal #amount% more damage."
+    },
+    {
+      "Name": "UnstoppableForce",
+      "Type": "Logic",
+      "Invoke": "EnsureUnstoppableForce($entity, #amount)",
+      "Conditions": [ "IsBerserking" ],
+      "Data": [
+        {
+          "Tier": 0,
+          "Amount": 15
+        }
+      ],
+      "Description": "Berserking grants Unstoppable and #amount% increased damage."
+    }
+    //,
+    //{
+    //  "Name": "",
+    //  "Type": [ "" ],
+    //  "Attribute": [ "" ],
+    //  "Conditions": [ "" ],
+    //  "Activators": [ "" ],
+    //  "Data": [ "" ],
+    //  "Description": [ "" ]
+    //}
+  ]
+}
