@@ -1,0 +1,34 @@
+{
+  "ItemSlots": [
+    "Boots",
+    "Legs",
+    "Gloves",
+    "Chest",
+    "Helmet",
+    "Amulet",
+    "Ring",
+    "MainHand",
+    "OffHand",
+    "BothHands"
+  ],
+  "ItemBases": [
+    {
+      "Name": "Treads",
+      "Type": "Equipment",
+      "Slot": "Boots",
+      "ImplicitAffixes": [
+        {
+          "Name": "ImplicitBootsDefense",
+          "Tier": 0
+        },
+        {
+          "Name": "ImplicitBootsMovementSpeed",
+          "Tier": 0
+        }
+      ],
+      "InventorySize": "2x2",
+      "Icon": "Diablo4/Textures/Items/treads.png",
+      "Model": "Diablo4/Models/Items/treads.fbx"
+    }
+  ]
+}

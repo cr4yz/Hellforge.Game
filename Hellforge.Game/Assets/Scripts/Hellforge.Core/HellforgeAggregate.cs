@@ -192,6 +192,24 @@ public class AffixEntry
     }
 }
 
+public class ImplicitAffixEntry
+{
+    public string Name;
+    public int Tier;
+}
+
+public class ItemBaseEntry
+{
+    public string Name;
+    public string Type;
+    public string Slot;
+    public ImplicitAffixEntry[] ImplicitAffixes;
+    public int InventoryWidth;
+    public int InventoryHeight;
+    public string Icon;
+    public string Model;
+}
+
 public class GameDataObject
 {
     public string[] Classes;
@@ -199,4 +217,6 @@ public class GameDataObject
     public ConditionEntry[] Conditions;
     public AffixEntry[] Affixes;
     public TwigGraph[] SkillTrees;
+    public string[] ItemSlots;
+    public ItemBaseEntry[] ItemBases;
 }

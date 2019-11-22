@@ -1,5 +1,4 @@
-﻿using Hellforge.Core.Entities;
-
+﻿
 namespace Hellforge.Core.Affixes
 {
     public class AttributeModifier : AffixNode
@@ -12,7 +11,7 @@ namespace Hellforge.Core.Affixes
         {
             var amount = Affix.AffixData.Data[Affix.TierDataIndex].Amount;
 
-            if(amount == -1)
+            if(amount == 0)
             {
                 var minRoll = Affix.AffixData.Data[Affix.TierDataIndex].Minimum;
                 var maxRoll = Affix.AffixData.Data[Affix.TierDataIndex].Maximum;
@@ -25,20 +24,10 @@ namespace Hellforge.Core.Affixes
 
         public override void Enable()
         {
-            Add(Affix.Character);
-        }
-
-        public override void Disable()
-        {
-            Subtract(Affix.Character);
-        }
-
-        private void Add(Character character)
-        {
             Affix.Character.Attributes[_attribute] += _amount;
         }
 
-        private void Subtract(Character character)
+        public override void Disable()
         {
             Affix.Character.Attributes[_attribute] -= _amount;
         }

@@ -15,6 +15,8 @@ namespace Hellforge.Game.Twig
         [SerializeField]
         private TwigNodeRenderer _twigNodeTemplate;
 
+        private bool _rendered;
+
         private List<TwigNodeRenderer> _nodeRenderers = new List<TwigNodeRenderer>();
 
         private void Start()

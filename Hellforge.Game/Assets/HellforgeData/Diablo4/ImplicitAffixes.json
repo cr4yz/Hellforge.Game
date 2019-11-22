@@ -1,0 +1,30 @@
+{
+  "Affixes": [
+    {
+      "Name": "ImplicitBootsDefense",
+      "Type": "AttributeModifier",
+      "Attribute": "Defense",
+      "Data": [
+        {
+          "Tier": 0,
+          "Minimum": 8,
+          "Maximum": 16
+        }
+      ],
+      "Description": "#roll to Defense"
+    },
+    {
+      "Name": "ImplicitBootsMovementSpeed",
+      "Type": "AttributeModifier",
+      "Attribute": "MovementSpeed",
+      "Data": [
+        {
+          "Tier": 0,
+          "Minimum": 50,
+          "Maximum": 100
+        }
+      ],
+      "Description": "#roll% increased Movement Speed"
+    }
+  ]
+}

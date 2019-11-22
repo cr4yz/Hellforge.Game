@@ -3,6 +3,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Collections.Generic;
 using Hellforge.Core.Affixes;
+using Hellforge.Core.Items;
 
 namespace Hellforge.Core.Entities
 {
@@ -17,6 +18,7 @@ namespace Hellforge.Core.Entities
         public HellforgeAggregate Hellforge { get; private set; }
         public CharacterAllocations Allocations { get; private set; } = new CharacterAllocations();
         public List<Affix> Affixes { get; private set; } = new List<Affix>();
+        public List<Item> Items { get; private set; } = new List<Item>();
         public Dictionary<string, int> Attributes { get; } = new Dictionary<string, int>();
         private bool _initialized;
 
@@ -24,9 +26,10 @@ namespace Hellforge.Core.Entities
 
         public void Initialize(HellforgeAggregate hellforge, IHellforgeEntity entity)
         {
+            // todo :This init shit is dumb.. isnt' it
             if(_initialized)
             {
-                throw new Exception("Initializing character twice");
+                throw new Exception("Don't initialize character twice");
             }
 
             Hellforge = hellforge;
@@ -42,6 +45,16 @@ namespace Hellforge.Core.Entities
                 if(point.Type == AllocationType.Talent)
                 {
                     AddAffix(point.Identifier, point.Amount, 100);
+                }
+            }
+
+            foreach (var item in Items)
+            {
+                item.Initialize(this);
+
+                if (item.Equipped)
+                {
+                    item.Equip();
                 }
             }
 
@@ -82,19 +95,39 @@ namespace Hellforge.Core.Entities
         {
             var affix = Hellforge.GenerateAffix(this, affixName, tier, roll);
             Affixes.Add(affix);
-            Allocations.SetAllocation(AllocationType.Talent, affixName, tier);
 
             return affix;
         }
 
+        public void RemoveAffix(Affix affix)
+        {
+            if(!Affixes.Contains(affix))
+            {
+                return;
+            }
+            affix.Disable();
+            Affixes.Remove(affix);
+        }
+
         public Affix UpdateAffix(string affixName, int tier)
         {
+            var multiple = Affixes.Count(x => x.AffixData.Name == affixName);
+            if(multiple > 1)
+            {
+                throw new Exception("Don't use string identifier for common affixes sharing a name");
+            }
             RemoveAffix(affixName);
             return AddAffix(affixName, tier);
         }
 
         public void RemoveAffix(string affixName)
         {
+            var multiple = Affixes.Count(x => x.AffixData.Name == affixName);
+            if (multiple > 1)
+            {
+                throw new Exception("Don't use string identifier for common affixes sharing a name");
+            }
+
             var affix = GetAffix(affixName);
             if(affix == null)
             {
@@ -102,7 +135,6 @@ namespace Hellforge.Core.Entities
             }
             affix.Disable();
             Affixes.Remove(affix);
-            Allocations.RemoveAllocation(affixName);
         }
 
         public void Activate(string eventName)
@@ -120,6 +152,7 @@ namespace Hellforge.Core.Entities
             info.AddValue("Class", Class);
             info.AddValue("Level", Level);
             info.AddValue("Allocations", Allocations.Points);
+            info.AddValue("Items", Items);
         }
 
         public Character(SerializationInfo info, StreamingContext context)
@@ -139,6 +172,9 @@ namespace Hellforge.Core.Entities
                         break;
                     case "Allocations":
                         Allocations.Points = (List<Allocation>)entry.Value;
+                        break;
+                    case "Items":
+                        Items = (List<Item>)entry.Value;
                         break;
                 }
             }

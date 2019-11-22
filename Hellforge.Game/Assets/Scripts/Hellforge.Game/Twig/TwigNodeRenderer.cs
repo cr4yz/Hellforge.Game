@@ -26,14 +26,10 @@ namespace Hellforge.Game.Twig
 
         public TwigNode Node { get; private set; }
 
-        private void Awake()
+        public void Render(TwigNode node, Character character)
         {
             _nodeLabel.gameObject.SetActive(false);
             _rt = GetComponent<RectTransform>();
-        }
-
-        public void Render(TwigNode node, Character character)
-        {
             _rt.anchoredPosition = new Vector2(node.X, -node.Y);
             _character = character;
             Node = node;
@@ -69,7 +65,6 @@ namespace Hellforge.Game.Twig
 
             var tier = _character?.GetAffixTier(Node.Affix) ?? 0;
             var prevParnet = _nodeLabel.parent;
-            _nodeLabel.gameObject.SetActive(true);
             _nodeLabel.SetParent(transform, false);
             _nodeLabel.localScale = Vector3.one;
             _nodeLabel.anchoredPosition = Vector3.zero;
@@ -78,6 +73,7 @@ namespace Hellforge.Game.Twig
             SetTier(tier);
             _nodeLabel.SetParent(prevParnet, true);
             Invoke("RebuildNodeLabelLayout", 0.1f);
+            _nodeLabel.gameObject.SetActive(true);
         }
 
         public void RebuildNodeLabelLayout()
@@ -125,12 +121,14 @@ namespace Hellforge.Game.Twig
                 else if(newTier == 0)
                 {
                     _character.RemoveAffix(Node.Affix);
+                    _character.Allocations.RemoveAllocation(Node.Affix);
                     SetTier(0);
                 }
                 else
                 {
                     var newAffix = _character.UpdateAffix(Node.Affix, newTier);
                     SetTier(newTier);
+                    _character.Allocations.SetAllocation(AllocationType.Talent, Node.Affix, newTier);
                 }
 
                 OnPointerEnter();
