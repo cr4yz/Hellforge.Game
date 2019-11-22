@@ -1,4 +1,4 @@
-![Hellforge](https://c10.patreonusercontent.com/3/eyJ3IjoxOTIwfQ%3D%3D/patreon-media/p/campaign/3521331/5bc006aa847140188a520e907f5df21e/1.png?token-time=1574640000&token-hash=mZcad66shsnhkf7cPVtkmOVdkEy-YjgJNDg9V3Jx6PQ%3D "Hellforge")
+![Hellforge](https://crayz.tv/files/sharex/cover.png"Hellforge")
 
 [Website](https://hellforge.net "Website") 
 
