@@ -1,4 +1,4 @@
-![Hellforge](https://crayz.tv/files/sharex/cover.png"Hellforge")
+![Hellforge](cover.png)
 
 [Website](https://hellforge.net "Website") 
 
