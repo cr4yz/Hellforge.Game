@@ -1,0 +1,32 @@
+{
+  "Affixes": [
+    {
+      "Name": "ConditionTest_DefenseWhileMoving",
+      "Type": "AttributeModifier",
+      "Attribute": "Defense",
+      "Conditions": [ "WhileMoving" ],
+      "Data": [
+        {
+          "Tier": 0,
+          "Minimum": 100,
+          "Maximum": 1000
+        }
+      ],
+      "Description": "#roll to Defense while moving."
+    },
+    {
+      "Name": "ConditionTest_DefenseWhileUsingOneHander",
+      "Type": "AttributeModifier",
+      "Attribute": "Defense",
+      "Conditions": [ "WhileUsingOneHandedWeapons" ],
+      "Data": [
+        {
+          "Tier": 0,
+          "Minimum": 100,
+          "Maximum": 200
+        }
+      ],
+      "Description": "#roll to Defense while using one handed weapons."
+    }
+  ]
+}

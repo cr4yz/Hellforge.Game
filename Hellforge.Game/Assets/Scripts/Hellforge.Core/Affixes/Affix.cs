@@ -46,7 +46,7 @@ namespace Hellforge.Core.Affixes
 
         public void Activate()
         {
-            foreach(var node in Nodes)
+            foreach (var node in Nodes)
             {
                 node.Activate();
             }
@@ -54,6 +54,10 @@ namespace Hellforge.Core.Affixes
 
         public void Disable()
         {
+            if(_status == AffixStatus.Disabled)
+            {
+                return;
+            }
             foreach(var node in Nodes)
             {
                 node.Disable();

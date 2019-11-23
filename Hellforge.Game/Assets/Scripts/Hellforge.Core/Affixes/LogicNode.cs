@@ -8,13 +8,11 @@ namespace Hellforge.Core.Affixes
     {
 
         private readonly AffixEntry _data;
-        private readonly Lua _lua;
 
-        public LogicNode(Affix affix, Lua lua, AffixEntry affixData)
-            : base(affix)
+        public LogicNode(Affix affix, Func<Lua> getLuaContext, AffixEntry affixData)
+            : base(affix, getLuaContext)
         {
             _data = affixData;
-            _lua = lua;
         }
 
         public override void Activate()
@@ -56,7 +54,7 @@ namespace Hellforge.Core.Affixes
                     }
                 }
 
-                if (_lua[funcName] is LuaFunction func)
+                if (_getLuaContext()[funcName] is LuaFunction func)
                 {
                     func.Call(callParams.ToArray());
                 }

@@ -3,17 +3,17 @@
     {
       "Name": "WhileUsingOneHandedWeapons",
       "Type": "Persister",
-      "Condition": "IsUsingOneHander($entity, $talent)"
+      "Condition": "IsUsingOneHander($character)"
     },
     {
       "Name": "IsBerserking",
       "Type": "Persister",
-      "Condition": "HasBuff(`Berkserk`)"
+      "Condition": "HasBuff(Berkserk)"
     },
     {
       "Name": "WhileMoving",
       "Type": "Persister",
-      "Condition": "IsMoving($entity)"
+      "Condition": "IsMoving($character)"
     },
     {
       "Name": "Below30PercentLife",
@@ -28,17 +28,17 @@
     {
       "Name": "WhileTalentIsActive",
       "Type": "Persister",
-      "Condition": "IsTalentActive(target, $talent)"
+      "Condition": "IsTalentActive($target, $talent)"
     },
     {
       "Name": "WhileBuffIsActive",
       "Type": "Persister",
-      "Condition": "IsBuffActive(target, $buff)"
+      "Condition": "IsBuffActive($target, $buff)"
     },
     {
       "Name": "WithinMeleeRange",
       "Type": "TargetFilter",
-      "Condition": "WithinMeleeRange(target, $target)"
+      "Condition": "WithinMeleeRange($target, $target)"
     },
     {
       "Name": "FromElites",
@@ -48,7 +48,7 @@
     {
       "Name": "IsLightningTalent",
       "Type": "TalentFilter",
-      "Condition": "IsTalentArchetype($talent, `Lightning`)"
+      "Condition": "IsTalentArchetype($talent, Lightning)"
     }
   ]
 }

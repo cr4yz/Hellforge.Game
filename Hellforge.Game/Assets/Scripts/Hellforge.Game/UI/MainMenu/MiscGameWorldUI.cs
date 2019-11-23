@@ -14,6 +14,11 @@ namespace Hellforge.Game.UI
         {
             GameWorld.Instance.ExitWorld();
         }
+
+        public void RefreshScripts()
+        {
+            D4Data.Instance.Hellforge.ReloadData();
+        }
     }
 
 }

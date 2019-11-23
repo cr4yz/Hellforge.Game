@@ -24,6 +24,7 @@ namespace Hellforge.Game
 
             Hellforge = new HellforgeAggregate();
             Hellforge.LoadData(Application.dataPath + "/HellforgeData/Diablo4");
+            Hellforge.LuaContext.RegisterFunction("print", typeof(D4Data).GetMethod("Print"));
 
             RefreshCharacterList();
         }
@@ -49,6 +50,11 @@ namespace Hellforge.Game
             var path = CharacterFiles[characterName];
             CharacterFiles.Remove(characterName);
             File.Delete(path);
+        }
+
+        public static void Print(string message)
+        {
+            Debug.Log(message);
         }
 
     }

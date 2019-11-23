@@ -15,8 +15,21 @@ namespace Hellforge.Core
         public Lua LuaContext { get; private set; }
         public GameDataObject GameData { get; private set; }
 
+        private string _dataDirectory;
+
+        public void ReloadData()
+        {
+            if(_dataDirectory == null)
+            {
+                throw new Exception("No data has been loaded yet");
+            }
+            LoadData(_dataDirectory);
+        }
+
         public void LoadData(string dataDirectory)
         {
+            _dataDirectory = dataDirectory;
+
             LuaContext?.Dispose();
             LuaContext = new Lua();
             var dataSource = new JObject();
@@ -87,7 +100,7 @@ namespace Hellforge.Core
                     {
                         var condType = (ConditionType)Enum.Parse(typeof(ConditionType), condData.Type);
                         var condition = condData.Condition;
-                        affix.AddNode(new ScriptedCondition(affix, condType, LuaContext, condition));
+                        affix.AddNode(new ScriptedCondition(affix, condType, () => LuaContext, condition));
                         break;
                     }
                 }
@@ -101,7 +114,7 @@ namespace Hellforge.Core
                     affix.AddNode(new AttributeModifier(affix));
                     break;
                 case AffixType.Logic:
-                    affix.AddNode(new LogicNode(affix, LuaContext, affixData));
+                    affix.AddNode(new LogicNode(affix, () => LuaContext, affixData));
                     break;
             }
 

@@ -17,14 +17,12 @@ namespace Hellforge.Core.Affixes
     {
 
         public readonly ConditionType ConditionType;
-        public readonly Lua LuaContext;
         public readonly string Condition;
 
-        public ScriptedCondition(Affix affix, ConditionType type, Lua luaContext, string condition)
-            : base(affix)
+        public ScriptedCondition(Affix affix, ConditionType type, Func<Lua> getLuaContext, string condition)
+            : base(affix, getLuaContext)
         {
             ConditionType = type;
-            LuaContext = luaContext;
             Condition = condition;
         }
 
@@ -46,7 +44,7 @@ namespace Hellforge.Core.Affixes
                 callParams.Add(Affix.Character.Entity.GetContext(part));
             }
 
-            if (LuaContext[funcName] is LuaFunction func)
+            if (_getLuaContext()[funcName] is LuaFunction func)
             {
                 var result = func.Call(callParams.ToArray());
                 if (result != null)
