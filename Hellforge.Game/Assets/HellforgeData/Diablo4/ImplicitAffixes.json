@@ -9,6 +9,21 @@
           "Tier": 0,
           "Minimum": 8,
           "Maximum": 16
+        },
+        {
+          "Tier": 1,
+          "Minimum": 17,
+          "Maximum": 65
+        },
+        {
+          "Tier": 2,
+          "Minimum": 66,
+          "Maximum": 148
+        },
+        {
+          "Tier": 3,
+          "Minimum": 149,
+          "Maximum": 260
         }
       ],
       "Description": "#roll to Defense"
@@ -20,8 +35,23 @@
       "Data": [
         {
           "Tier": 0,
-          "Minimum": 50,
-          "Maximum": 100
+          "Minimum": 4,
+          "Maximum": 8
+        },
+        {
+          "Tier": 1,
+          "Minimum": 9,
+          "Maximum": 14
+        },
+        {
+          "Tier": 2,
+          "Minimum": 15,
+          "Maximum": 22
+        },
+        {
+          "Tier": 3,
+          "Minimum": 23,
+          "Maximum": 30
         }
       ],
       "Description": "#roll% increased Movement Speed"

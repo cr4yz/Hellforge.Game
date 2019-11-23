@@ -8,7 +8,7 @@ using Hellforge.Core.Entities;
 namespace Hellforge.Core.Items
 {
     [Serializable]
-    public struct ItemAffix
+    public class ItemAffix
     {
         public string Name;
         public int Tier;

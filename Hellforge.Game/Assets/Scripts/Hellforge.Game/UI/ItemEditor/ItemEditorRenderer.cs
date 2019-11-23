@@ -70,14 +70,7 @@ namespace Hellforge.Game.UI
         private void RenderAffix(Item item, ItemAffix affix)
         {
             var clone = GameObject.Instantiate(_itemAffixTemplate, _itemAffixTemplate.transform.parent);
-            clone.Render(affix.Name, affix.Tier, affix.Roll);
-            clone.DeleteButton.onClick.AddListener(() =>
-            {
-                GameObject.Destroy(clone.gameObject);
-                var idx = item.ExplicitAffixes.IndexOf(affix);
-                item.ExplicitAffixes.RemoveAt(idx);
-                _itemAffixRenderers.Remove(clone);
-            });
+            clone.Render(item, affix);
             clone.gameObject.SetActive(true);
             _itemAffixRenderers.Add(clone);
         }

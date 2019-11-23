@@ -22,9 +22,9 @@ namespace Hellforge.Core.Affixes
     {
         public List<AffixNode> Nodes = new List<AffixNode>();
         public readonly Character Character;
-        public readonly int Tier;
+        public int Tier { get; private set; }
+        public int Roll { get; private set; }
         public readonly int TierCount;
-        public readonly int Roll;
         public readonly AffixEntry AffixData;
         private AffixStatus _status;
         public int TierDataIndex => Math.Max(Tier - 1, 0);
@@ -58,6 +58,22 @@ namespace Hellforge.Core.Affixes
             {
                 node.Disable();
             }
+        }
+
+        public void SetTier(int value)
+        {
+            if(value < 0)
+            {
+                value = 0;
+            }
+            Tier = Math.Min(TierCount, value);
+            Disable();
+        }
+
+        public void SetRoll(int value)
+        {
+            Roll = value;
+            Disable();
         }
 
         public void Update()
