@@ -1,7 +1,5 @@
 function IsUsingOneHander(character)
-	for k,v in pairs(character.HellforgeCharacter.Items) do
-		print("thing: " .. v)
-	end
+	return false;
 end
 
 function IsMoving(character)
