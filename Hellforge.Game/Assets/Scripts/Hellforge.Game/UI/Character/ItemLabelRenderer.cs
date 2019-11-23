@@ -20,7 +20,6 @@ namespace Hellforge.Game.UI
             var data = item.Character.Hellforge.GameData.ItemBases.First(x => x.Name == item.BaseName);
             _nameText.text = data.Name;
             _slotText.text = data.Slot;
-            
 
             var affixText = string.Empty;
 

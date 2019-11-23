@@ -111,6 +111,7 @@ namespace Hellforge.Core.Items
             info.AddValue("BaseRoll", BaseRoll);
             info.AddValue("ItemLevel", ItemLevel);
             info.AddValue("Equipped", Equipped);
+            info.AddValue("ExplicitAffixes", ExplicitAffixes);
         }
 
         public Item(SerializationInfo info, StreamingContext context)
@@ -131,7 +132,7 @@ namespace Hellforge.Core.Items
                     case "Equipped":
                         Equipped = (bool)entry.Value;
                         break;
-                    case "Affixes":
+                    case "ExplicitAffixes":
                         ExplicitAffixes = (List<ItemAffix>)entry.Value;
                         break;
                 }

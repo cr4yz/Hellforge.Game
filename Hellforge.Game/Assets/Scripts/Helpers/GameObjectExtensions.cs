@@ -5,6 +5,7 @@ public static class GameObjectExtensions
 {
     public static void RebuildLayout(this GameObject root)
     {
+        LayoutRebuilder.ForceRebuildLayoutImmediate(root.GetComponent<RectTransform>());
         var layouts = root.GetComponentsInChildren<LayoutGroup>(true);
         foreach (var layout in layouts)
         {

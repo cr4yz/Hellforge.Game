@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Hellforge.Game.World;
+using Hellforge.Core.Items;
 
 namespace Hellforge.Game.UI
 {
@@ -10,6 +11,8 @@ namespace Hellforge.Game.UI
 
         [SerializeField]
         private ItemRenderer _itemRendererTemplate;
+        [SerializeField]
+        private ItemEditorRenderer _itemEditor;
         private List<ItemRenderer> _itemRenderers = new List<ItemRenderer>();
 
         private void Start()
@@ -23,6 +26,19 @@ namespace Hellforge.Game.UI
             }
         }
 
+        public void CreateNewItem()
+        {
+            _itemEditor.gameObject.SetActive(true);
+
+            var newItem = new Item("Treads", 0, 100);
+            GameWorld.Instance.Character.AddItem(newItem);
+
+            Render();
+
+            _itemEditor.gameObject.SetActive(true);
+            _itemEditor.Render(newItem);
+        }
+
         private void Render()
         {
             ClearItems();
@@ -34,6 +50,7 @@ namespace Hellforge.Game.UI
                 var clone = GameObject.Instantiate(_itemRendererTemplate, _itemRendererTemplate.transform.parent);
                 clone.Render(item);
                 clone.gameObject.SetActive(true);
+                _itemRenderers.Add(clone);
             }
         }
 

@@ -61,6 +61,17 @@ namespace Hellforge.Core.Entities
             _initialized = true;
         }
 
+        public void AddItem(Item item)
+        {
+            if (Items.Contains(item))
+            {
+                throw new Exception("item is already added");
+            }
+
+            Items.Add(item);
+            item.Initialize(this);
+        }
+
         public void Calculate()
         {
             foreach (var affix in Affixes)

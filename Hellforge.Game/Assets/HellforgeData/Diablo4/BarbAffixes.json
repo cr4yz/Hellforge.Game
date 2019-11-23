@@ -2,6 +2,7 @@
   "Affixes": [
     {
       "Name": "Swiftness",
+      "ForTalent": true,
       "Type": "AttributeModifier",
       "Attribute": "MovementSpeed",
       "Data": [
@@ -30,6 +31,7 @@
     },
     {
       "Name": "EndlessFury",
+      "ForTalent": true,
       "Type": "AttributeModifier",
       "Attribute": "ResourceGeneration",
       "Data": [
@@ -58,11 +60,13 @@
     },
     {
       "Name": "FierceBrawler",
+      "ForTalent": true,
       "Conditions": [ "WhileUsingOneHandedWeapons" ],
       "Join": [ "FierceBrawler_1", "FierceBrawler_2" ]
     },
     {
       "Name": "FierceBrawler_1",
+      "ForTalent": true,
       "Conditions": [ "WhileUsingOneHandedWeapons" ],
       "Type": "AttributeModifier",
       "Attribute": "AttackSpeed",
@@ -92,6 +96,7 @@
     },
     {
       "Name": "FierceBrawler_2",
+      "ForTalent": true,
       "Conditions": [ "WhileUsingTwoHandedWeapons" ],
       "Type": "AttributeModifier",
       "Attribute": "CriticalStrikeDamage",
@@ -121,6 +126,7 @@
     },
     {
       "Name": "DefyPain",
+      "ForTalent": true,
       "Activators": [ "AfterEvade" ],
       "Type": "AttributeModifier",
       "Attribute": "DamageReduction",
@@ -155,6 +161,7 @@
     },
     {
       "Name": "BloodThirst",
+      "ForTalent": true,
       "Activators": [ "OnCriticalStrike" ],
       "Type": "Logic",
       "Invoke": "BleedForCritDamage(#amount, #duration)",
@@ -189,6 +196,7 @@
     },
     {
       "Name": "QuickImpulses",
+      "ForTalent": true,
       "Conditions": [ "WhileMoving" ],
       "Type": "AttributeModifier",
       "Attribute": "DamageReduction",
@@ -218,6 +226,7 @@
     },
     {
       "Name": "SlayingStrike",
+      "ForTalent": true,
       "Type": "AttributeModifier",
       "Attribute": "IncreasedDamage",
       "Conditions": [ "Below30PercentLife" ],
@@ -248,6 +257,7 @@
     },
     {
       "Name": "CutToTheBone",
+      "ForTalent": true,
       "Type": "Logic",
       "Invoke": "IncreaseBleed($target, #amount)",
       "Conditions": [ "EnemyIsBleeding" ],
@@ -278,6 +288,7 @@
     },
     {
       "Name": "BattleFrenzy",
+      "ForTalent": true,
       "Type": "Logic",
       "Invoke": "GrantBerserk($activator, #duration)",
       "Activators": [ "UsedBrawlingSkill" ],
@@ -307,6 +318,7 @@
     },
     {
       "Name": "Momentum",
+      "ForTalent": true,
       "Type": "Logic",
       "Invoke": "GenerateResource(#amount)",
       "Activators": [ "OnHit" ],
@@ -336,6 +348,7 @@
     },
     {
       "Name": "GushingWounds",
+      "ForTalent": true,
       "Type": "AttributeModifier",
       "Attribute": "MoreBleedingDamage",
       "Data": [
@@ -348,6 +361,7 @@
     },
     {
       "Name": "UnstoppableForce",
+      "ForTalent": true,
       "Type": "Logic",
       "Invoke": "EnsureUnstoppableForce($entity, #amount)",
       "Conditions": [ "IsBerserking" ],
@@ -359,15 +373,5 @@
       ],
       "Description": "Berserking grants Unstoppable and #amount% increased damage."
     }
-    //,
-    //{
-    //  "Name": "",
-    //  "Type": [ "" ],
-    //  "Attribute": [ "" ],
-    //  "Conditions": [ "" ],
-    //  "Activators": [ "" ],
-    //  "Data": [ "" ],
-    //  "Description": [ "" ]
-    //}
   ]
 }

@@ -110,6 +110,8 @@ namespace Hellforge.Core
     }
 }
 
+// todo :put these in a better place
+
 public class ConditionEntry
 {
     public string Name;
@@ -139,6 +141,7 @@ public class AffixEntry
     public AffixDataEntry[] Data;
     public string[] Conditions;
     public string[] Activators;
+    public bool ForTalent;
 
     public void Inherit(AffixEntry parent)
     {
@@ -146,6 +149,7 @@ public class AffixEntry
         Attribute = Attribute ?? parent.Attribute;
         Slot = Slot ?? parent.Slot;
         Description = Description ?? parent.Description;
+        Invoke = Invoke ?? parent.Invoke;
         Data = Data ?? parent.Data;
         Conditions = Conditions ?? parent.Conditions;
         Activators = Activators ?? parent.Activators;

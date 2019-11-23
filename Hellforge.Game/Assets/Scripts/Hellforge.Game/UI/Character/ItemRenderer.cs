@@ -16,6 +16,8 @@ namespace Hellforge.Game.UI
         private Text _itemNameText;
         [SerializeField]
         private Button _editItemButton;
+        [SerializeField]
+        private ItemEditorRenderer _itemEditor;
 
         private Item _item;
 
@@ -33,8 +35,7 @@ namespace Hellforge.Game.UI
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            var label = FindObjectsOfType<ItemLabelRenderer>()[0];
-            label.gameObject.SetActive(false);
+            _itemLabelRenderer.gameObject.SetActive(false);
         }
 
         public void OnPointerDown(PointerEventData eventData)
@@ -60,6 +61,12 @@ namespace Hellforge.Game.UI
                 {
                     item.Unequip();
                 }
+            });
+
+            _editItemButton.onClick.AddListener(() =>
+            {
+                _itemEditor.gameObject.SetActive(true);
+                _itemEditor.Render(item);
             });
         }
 
