@@ -118,7 +118,7 @@
     },
     {
       "Name": "IncreasedFurySkillCost",
-      "Category": "Resource"
+      "Category": "Skills"
     },
     {
       "Name": "IncreasedLife",
