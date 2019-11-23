@@ -25,6 +25,10 @@
       "Category": "Defense"
     },
     {
+      "Name": "ResourceGeneration",
+      "Category": "Resource"
+    },
+    {
       "Name": "ResourceRegeneration",
       "Category": "Resource"
     },
