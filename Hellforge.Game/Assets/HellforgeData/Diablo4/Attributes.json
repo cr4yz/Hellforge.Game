@@ -1,45 +1,164 @@
 {
   "Attributes": [
-    "Attack",
-    "Defense",
-    "MovementSpeed",
-    "MaximumLife",
-    "MaximumResource",
-    "LifeRegeneration",
-    "ResourceRegeneration",
-    "BlockChance",
-    "DodgeChance",
-    "IncreasedExperience",
-    "LifeLeech",
-    "FireResistance",
-    "ColdResistance",
-    "PoisonResistance",
-    "LightningResistance",
-    "AttackSpeed",
-    "CriticalStrikeChance",
-    "CriticalStrikeDamage",
-    "DamageReduction",
-    "RangedDamageReduction",
-    "MeleeDamageReduction",
-    "NonPhysicalDamageReduction",
-    "LifePerSecond",
-    "CannotBeFrozen",
-    "ReducedCooldownTime",
-    "ReducedCcDuration",
-    "IncreasedPhysicalDamage",
-    "IncreasedDamage",
-    "IncreasedShoutDuration",
-    "IncreasedFurySkillDamage",
-    "IncreasedFurySkillCost",
-    "IncreasedLife",
-    "AllResistances",
-    "ToAllRanks",
-    "ToBarbRanks",
-    "ToSorcRanks",
-    "ToDruidRanks",
-    "MagicFind",
-    "GoldFind",
-    "FasterCastRate",
-    "MoreBleedingDamage"
+    {
+      "Name": "Attack",
+      "Category": "Offense"
+    },
+    {
+      "Name": "Defense",
+      "Category": "Defense"
+    },
+    {
+      "Name": "MovementSpeed",
+      "Category": "Utility"
+    },
+    {
+      "Name": "MaximumLife",
+      "Category": "Defense"
+    },
+    {
+      "Name": "MaximumResource",
+      "Category": "Resource"
+    },
+    {
+      "Name": "LifeRegeneration",
+      "Category": "Defense"
+    },
+    {
+      "Name": "ResourceRegeneration",
+      "Category": "Resource"
+    },
+    {
+      "Name": "BlockChance",
+      "Category": "Defense"
+    },
+    {
+      "Name": "DodgeChance",
+      "Category": "Defense"
+    },
+    {
+      "Name": "IncreasedExperience",
+      "Category": "Utility"
+    },
+    {
+      "Name": "LifeLeech",
+      "Category": "Defense"
+    },
+    {
+      "Name": "FireResistance",
+      "Category": "Defense"
+    },
+    {
+      "Name": "ColdResistance",
+      "Category": "Defense"
+    },
+    {
+      "Name": "PoisonResistance",
+      "Category": "Defense"
+    },
+    {
+      "Name": "LightningResistance",
+      "Category": "Defense"
+    },
+    {
+      "Name": "AttackSpeed",
+      "Category": "Offense"
+    },
+    {
+      "Name": "CriticalStrikeChance",
+      "Category": "Offense"
+    },
+    {
+      "Name": "DamageReduction",
+      "Category": "Defense"
+    },
+    {
+      "Name": "RangedDamageReduction",
+      "Category": "Defense"
+    },
+    {
+      "Name": "MeleeDamageReduction",
+      "Category": "Defense"
+    },
+    {
+      "Name": "NonPhysicalDamageReduction",
+      "Category": "Defense"
+    },
+    {
+      "Name": "LifePerSecond",
+      "Category": "Defense"
+    },
+    {
+      "Name": "CannotBeFrozen",
+      "Category": "Defense"
+    },
+    {
+      "Name": "ReducedCooldownTime",
+      "Category": "Skills"
+    },
+    {
+      "Name": "ReducedCcDuration",
+      "Category": "Defense"
+    },
+    {
+      "Name": "IncreasedPhysicalDamage",
+      "Category": "Offense"
+    },
+    {
+      "Name": "IncreasedDamage",
+      "Category": "Offense"
+    },
+    {
+      "Name": "IncreasedShoutDuration",
+      "Category": "Skills"
+    },
+    {
+      "Name": "IncreasedFurySkillDamage",
+      "Category": "Offense"
+    },
+    {
+      "Name": "IncreasedFurySkillCost",
+      "Category": "Resource"
+    },
+    {
+      "Name": "IncreasedLife",
+      "Category": "Defense"
+    },
+    {
+      "Name": "AllResistances",
+      "Category": "Defense"
+    },
+    {
+      "Name": "ToAllRanks",
+      "Category": "Skills"
+    },
+    {
+      "Name": "ToBarbRanks",
+      "Category": "Skills"
+    },
+    {
+      "Name": "ToSorcRanks",
+      "Category": "Skills"
+    },
+    {
+      "Name": "ToDruidRanks",
+      "Category": "Skills"
+    },
+    {
+      "Name": "MagicFind",
+      "Category": "Utility"
+    },
+    {
+      "Name": "GoldFind",
+      "Category": "Utility"
+    },
+    {
+      "Name": "FasterCastRate",
+      "Category": "Offense"
+    },
+    {
+      "Name": "MoreBleedingDamage",
+      "Category": "Offense"
+    }
   ]
 }

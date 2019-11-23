@@ -37,7 +37,7 @@ namespace Hellforge.Core.Entities
 
             foreach (var attribute in hellforge.GameData.Attributes)
             {
-                Attributes.Add(attribute, 0);
+                Attributes.Add(attribute.Name, 0);
             }
 
             foreach (var point in Allocations.Points)

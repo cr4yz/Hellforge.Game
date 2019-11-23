@@ -210,10 +210,16 @@ public class ItemBaseEntry
     public string Model;
 }
 
+public class AttributeEntry
+{
+    public string Name;
+    public string Category;
+}
+
 public class GameDataObject
 {
     public string[] Classes;
-    public string[] Attributes;
+    public AttributeEntry[] Attributes;
     public ConditionEntry[] Conditions;
     public AffixEntry[] Affixes;
     public TwigGraph[] SkillTrees;

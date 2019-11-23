@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Hellforge.Game.World;
 
-namespace Hellforge.Game.Inventory
+namespace Hellforge.Game.UI
 {
     public class InventoryRenderer : MonoBehaviour
     {

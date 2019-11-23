@@ -5,7 +5,7 @@ using Hellforge.Core.Entities;
 using Hellforge.Core.Twig;
 using Hellforge.Game.World;
 
-namespace Hellforge.Game.Twig
+namespace Hellforge.Game.UI
 {
     public class TwigGraphRenderer : MonoBehaviour
     {

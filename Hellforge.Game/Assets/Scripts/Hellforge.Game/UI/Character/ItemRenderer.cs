@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Hellforge.Core.Items;
 
-namespace Hellforge.Game.Inventory
+namespace Hellforge.Game.UI
 {
     public class ItemRenderer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
     {
@@ -28,6 +28,7 @@ namespace Hellforge.Game.Inventory
             _itemLabelRenderer.transform.SetParent(oldParent, true);
             _itemLabelRenderer.Render(_item);
             _itemLabelRenderer.gameObject.SetActive(true);
+            _itemLabelRenderer.gameObject.RebuildLayout();
         }
 
         public void OnPointerExit(PointerEventData eventData)

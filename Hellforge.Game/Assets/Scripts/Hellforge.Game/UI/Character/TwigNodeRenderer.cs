@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using Hellforge.Core.Entities;
 using Hellforge.Core.Twig;
 
-namespace Hellforge.Game.Twig
+namespace Hellforge.Game.UI
 {
     [RequireComponent(typeof(RectTransform))]
     public class TwigNodeRenderer : MonoBehaviour
@@ -72,13 +72,8 @@ namespace Hellforge.Game.Twig
             _nodeLabelDescription.text = affix.ParseDescription(Mathf.Max(tier - 1, 0), 100);
             SetTier(tier);
             _nodeLabel.SetParent(prevParnet, true);
-            Invoke("RebuildNodeLabelLayout", 0.1f);
             _nodeLabel.gameObject.SetActive(true);
-        }
-
-        public void RebuildNodeLabelLayout()
-        {
-            LayoutRebuilder.ForceRebuildLayoutImmediate(_nodeLabel);
+            _nodeLabel.gameObject.RebuildLayout();
         }
 
         public void OnPointerExit()

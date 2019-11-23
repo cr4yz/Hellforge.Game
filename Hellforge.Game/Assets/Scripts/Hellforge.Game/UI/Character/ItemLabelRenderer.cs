@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Hellforge.Core.Items;
 
-namespace Hellforge.Game.Inventory
+namespace Hellforge.Game.UI
 {
     public class ItemLabelRenderer : MonoBehaviour
     {

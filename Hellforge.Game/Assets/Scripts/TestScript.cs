@@ -3,7 +3,7 @@ using UnityEngine;
 using Hellforge.Core;
 using Hellforge.Core.Entities;
 using Hellforge.Core.Twig;
-using Hellforge.Game.Twig;
+using Hellforge.Game.UI;
 
 public class TestScript : MonoBehaviour
 {
