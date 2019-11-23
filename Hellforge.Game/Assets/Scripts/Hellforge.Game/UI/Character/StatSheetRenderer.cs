@@ -33,6 +33,24 @@ namespace Hellforge.Game.UI
             }
         }
 
+        private void Update()
+        {
+            var rebuild = false;
+            foreach(var catRenderer in _categoryRenderers)
+            {
+                if(catRenderer.Dirty)
+                {
+                    catRenderer.Dirty = false;
+                    rebuild = true;
+                    break;
+                }
+            }
+            if(rebuild)
+            {
+                gameObject.RebuildLayout();
+            }
+        }
+
         public void Render(Character character)
         {
             Wipe();

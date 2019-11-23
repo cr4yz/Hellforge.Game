@@ -14,7 +14,7 @@ namespace Hellforge.Game.UI
         private Text _affixAmountText;
 
         public string AffixName { get; private set; }
-        public float AffixAmount { get; private set; }
+        public float AffixAmount { get; private set; } = -1.0344f;
 
         public void Render(string affixName, float amount)
         {

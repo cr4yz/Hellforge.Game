@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,7 +15,9 @@ namespace Hellforge.Game.UI
 
         public void Render(string affixName, int tier, int roll)
         {
-            _affixNameText.text = affixName + ":" + tier + ":" + roll;
+            var desc = D4Data.Instance.Hellforge.GameData.Affixes.First(x => x.Name == affixName).ParseDescription(tier, roll);
+            //_affixNameText.text = affixName + ":" + tier + ":" + roll;
+            _affixNameText.text = desc;
         }
 
     }

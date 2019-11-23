@@ -14,6 +14,8 @@ namespace Hellforge.Game.UI
         [SerializeField]
         private AffixRenderer _affixTemplate;
 
+        public bool Dirty;
+
         private List<AffixRenderer> _affixRenderers = new List<AffixRenderer>();
 
         private void Start()
@@ -28,9 +30,20 @@ namespace Hellforge.Game.UI
                 foreach (var affixRenderer in _affixRenderers)
                 {
                     var amount = GameWorld.Instance.Character.GetAttribute(affixRenderer.AffixName);
-                    if(amount != affixRenderer.AffixAmount)
+                    if (amount != affixRenderer.AffixAmount)
                     {
                         affixRenderer.Render(affixRenderer.AffixName, amount);
+
+                        if(amount == 0)
+                        {
+                            affixRenderer.gameObject.SetActive(false);
+                            Dirty = true;
+                        }
+                        else if(!affixRenderer.gameObject.activeSelf)
+                        {
+                            affixRenderer.gameObject.SetActive(true);
+                            Dirty = true;
+                        }
                     }
                 }
             }
@@ -44,8 +57,7 @@ namespace Hellforge.Game.UI
                 var amount = character.GetAttribute(affix);
                 var clone = GameObject.Instantiate(_affixTemplate, _affixTemplate.transform.parent);
                 clone.Render(affix, amount);
-                clone.gameObject.SetActive(true);
-                clone.transform.SetAsLastSibling();
+                clone.gameObject.SetActive(amount != 0);
                 _affixRenderers.Add(clone);
             }
         }
