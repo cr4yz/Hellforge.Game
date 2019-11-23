@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Hellforge.Core.Entities;
+using Hellforge.Game.World;
 
 namespace Hellforge.Game.UI
 {
@@ -13,9 +14,26 @@ namespace Hellforge.Game.UI
         [SerializeField]
         private AffixRenderer _affixTemplate;
 
+        private List<AffixRenderer> _affixRenderers = new List<AffixRenderer>();
+
         private void Start()
         {
             _affixTemplate.gameObject.SetActive(false);
+        }
+
+        private void Update()
+        {
+            if(GameWorld.Instance.Character != null)
+            {
+                foreach (var affixRenderer in _affixRenderers)
+                {
+                    var amount = GameWorld.Instance.Character.GetAttribute(affixRenderer.AffixName);
+                    if(amount != affixRenderer.AffixAmount)
+                    {
+                        affixRenderer.Render(affixRenderer.AffixName, amount);
+                    }
+                }
+            }
         }
 
         public void Render(Character character, string category, List<string> affixes)
@@ -28,8 +46,8 @@ namespace Hellforge.Game.UI
                 clone.Render(affix, amount);
                 clone.gameObject.SetActive(true);
                 clone.transform.SetAsLastSibling();
+                _affixRenderers.Add(clone);
             }
-
         }
 
     }

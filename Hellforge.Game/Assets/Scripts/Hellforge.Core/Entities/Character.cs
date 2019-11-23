@@ -19,7 +19,7 @@ namespace Hellforge.Core.Entities
         public CharacterAllocations Allocations { get; private set; } = new CharacterAllocations();
         public List<Affix> Affixes { get; private set; } = new List<Affix>();
         public List<Item> Items { get; private set; } = new List<Item>();
-        public Dictionary<string, int> Attributes { get; } = new Dictionary<string, int>();
+        public Dictionary<string, float> Attributes { get; } = new Dictionary<string, float>();
         private bool _initialized;
 
         public Character() { }
@@ -69,11 +69,11 @@ namespace Hellforge.Core.Entities
             }
         }
 
-        public int GetAttribute(string attributeName)
+        public float GetAttribute(string attributeName)
         {
             if(Attributes.ContainsKey(attributeName))
                 return Attributes[attributeName];
-            return 0;
+            return 0f;
         }
 
         public int GetAffixTier(string affixName)

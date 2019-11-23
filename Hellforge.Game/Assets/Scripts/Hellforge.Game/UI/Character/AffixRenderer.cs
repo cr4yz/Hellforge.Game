@@ -13,10 +13,16 @@ namespace Hellforge.Game.UI
         [SerializeField]
         private Text _affixAmountText;
 
+        public string AffixName { get; private set; }
+        public float AffixAmount { get; private set; }
+
         public void Render(string affixName, float amount)
         {
             _affixNameText.text = affixName;
             _affixAmountText.text = amount.ToString();
+
+            AffixName = affixName;
+            AffixAmount = amount;
         }
 
     }

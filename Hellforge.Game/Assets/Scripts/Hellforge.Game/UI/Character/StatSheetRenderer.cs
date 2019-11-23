@@ -10,8 +10,6 @@ namespace Hellforge.Game.UI
 	{
 
         [SerializeField]
-        private Button _refreshButton;
-        [SerializeField]
         private AffixCategoryRenderer _categoryRendererTemplate;
         private Dictionary<string, List<string>> _affixCategories = new Dictionary<string, List<string>>();
         private List<AffixCategoryRenderer> _categoryRenderers = new List<AffixCategoryRenderer>();
@@ -20,11 +18,6 @@ namespace Hellforge.Game.UI
         {
             _categoryRendererTemplate.gameObject.SetActive(false);
 
-            _refreshButton.onClick.AddListener(() =>
-            {
-                Render(GameWorld.Instance.Character);
-            });
-
             foreach (var attr in D4Data.Instance.Hellforge.GameData.Attributes)
             {
                 if (!_affixCategories.ContainsKey(attr.Category))
@@ -32,6 +25,11 @@ namespace Hellforge.Game.UI
                     _affixCategories.Add(attr.Category, new List<string>());
                 }
                 _affixCategories[attr.Category].Add(attr.Name);
+            }
+
+            if(GameWorld.Instance.Character != null)
+            {
+                Render(GameWorld.Instance.Character);
             }
         }
 
