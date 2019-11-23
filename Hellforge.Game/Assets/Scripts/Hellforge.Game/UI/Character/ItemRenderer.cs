@@ -21,6 +21,15 @@ namespace Hellforge.Game.UI
 
         private Item _item;
 
+        private void Update()
+        {
+            var name = _item.ItemName ?? _item.BaseName;
+            if (_itemNameText.text != name)
+            {
+                _itemNameText.text = name;
+            }
+        }
+
         public void OnPointerEnter(PointerEventData eventData)
         {
             var rt = _itemLabelRenderer.GetComponent<RectTransform>();
@@ -49,7 +58,7 @@ namespace Hellforge.Game.UI
         public void Render(Item item)
         {
             _item = item;
-            _itemNameText.text = item.BaseName;
+            _itemNameText.text = item.ItemName ?? item.BaseName;
             _equippedToggle.isOn = item.Equipped;
             _equippedToggle.onValueChanged.AddListener((bool val) =>
             {

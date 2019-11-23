@@ -34,13 +34,18 @@ namespace Hellforge.Game.UI
         {
             Wipe();
 
-            _itemNameInput.text = "Dummy item";
+            _itemNameInput.text = item.ItemName ?? item.BaseName;
             _itemBaseDropdown.value = _itemBaseDropdown.options.FindIndex(x => x.text == item.BaseName);
 
             foreach(var affix in item.ExplicitAffixes)
             {
                 RenderAffix(item, affix);
             }
+
+            _itemNameInput.onEndEdit.AddListener((string value) =>
+            {
+                item.ItemName = value;
+            });
 
             _addAffixButton.onClick.AddListener(() =>
             {

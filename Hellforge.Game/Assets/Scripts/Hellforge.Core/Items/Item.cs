@@ -19,6 +19,7 @@ namespace Hellforge.Core.Items
     public class Item : ISerializable
     {
 
+        public string ItemName;
         public readonly string BaseName;
         public readonly int BaseRoll;
         public readonly int ItemLevel;
@@ -107,6 +108,7 @@ namespace Hellforge.Core.Items
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
+            info.AddValue("ItemName", ItemName);
             info.AddValue("BaseName", BaseName);
             info.AddValue("BaseRoll", BaseRoll);
             info.AddValue("ItemLevel", ItemLevel);
@@ -120,6 +122,9 @@ namespace Hellforge.Core.Items
             {
                 switch (entry.Name)
                 {
+                    case "ItemName":
+                        ItemName = (string)entry.Value;
+                        break;
                     case "BaseName":
                         BaseName = (string)entry.Value;
                         break;
