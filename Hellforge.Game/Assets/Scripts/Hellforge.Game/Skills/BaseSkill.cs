@@ -17,6 +17,8 @@ namespace Hellforge.Game.Skills
         protected Vector3 destination;
         public SkillStatus Status { get; protected set; }
         public bool BlocksInput { get; protected set; }
+        public float BaseRange { get; protected set; } = 1f;
+        public bool Queued { get; set; }
 
         private float _timer;
 
@@ -27,7 +29,16 @@ namespace Hellforge.Game.Skills
 
         public void Update()
         {
-            if(Status != SkillStatus.Idle)
+            if (Queued)
+            {
+                if (IsInRange(destination))
+                {
+                    Cast(target, destination);
+                    Queued = false;
+                }
+            }
+
+            if (Status != SkillStatus.Idle)
             {
                 _timer -= Time.deltaTime;
                 if(_timer <= 0)
@@ -56,15 +67,29 @@ namespace Hellforge.Game.Skills
             }
         }
 
+        private bool IsInRange(Vector3 destination)
+        {
+            var dist = Vector3.Distance(hero.Controller.transform.position, destination);
+            var range = BaseRange; // + hero.GetAttr[skillRange]...
+            return range >= dist;
+        }
+
         public bool Cast(IInteractable target, Vector3 destination)
         {
-            if(Status != SkillStatus.Idle)
+            if (Status != SkillStatus.Idle)
             {
                 return false;
             }
 
             this.target = target;
             this.destination = destination;
+
+            if (!IsInRange(destination))
+            {
+                Queued = true;
+                hero.Controller.MoveToDestination(destination);
+                return false;
+            }
 
             if (!castWithoutTarget && target == null)
             {
@@ -73,6 +98,7 @@ namespace Hellforge.Game.Skills
             }
 
             // check available resources...
+            hero.Controller.StopMoving();
             MoveToNextState();
 
             return true;

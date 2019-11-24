@@ -48,6 +48,7 @@ namespace Hellforge.Game.Player
         {
             MoveAlongPath();
             CheckSkillInput();
+            UpdateSkills();
         }
 
         public void SlotSkill(SkillSlot slot, BaseSkill skill)
@@ -76,6 +77,11 @@ namespace Hellforge.Game.Player
             }
         }
 
+        public void StopMoving()
+        {
+            IsMoving = false;
+        }
+
         public bool IsInputBlocked()
         {
             if(EventSystem.current.IsPointerOverGameObject())
@@ -98,9 +104,9 @@ namespace Hellforge.Game.Player
         {
             if (Physics.Raycast(_playerCam.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, 100))
             {
-                return hit.point;
+                return hit.point; 
             }
-            // todo: if mouse doesn't hit anything then return the nearest valid area
+            // todo: if mouse doesn't hit anything then return the nearest walkable area
             return Vector3.zero;
         }
 
@@ -110,9 +116,13 @@ namespace Hellforge.Game.Player
             if (Physics.Raycast(_playerCam.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, 100))
             {
                 interactable = hit.collider.gameObject.GetComponent<IInteractable>();
+                if(interactable != null)
+                {
+                    return hit.collider.transform.position;
+                }
                 return hit.point;
             }
-            // todo: if mouse doesn't hit anything then return the nearest valid area
+            // todo: if mouse doesn't hit anything then return the nearest walkable area
             return Vector3.zero;
         }
 
@@ -125,12 +135,26 @@ namespace Hellforge.Game.Player
 
             foreach(var kvp in _skillKeyBinds)
             {
-                if(Input.GetKey(kvp.Key)
+                if (Input.GetKey(kvp.Key)
                     && _slottedSkills.TryGetValue(kvp.Value, out BaseSkill skill))
                 {
                     var hitPoint = GetMouseHitPoint(out IInteractable interactable);
                     skill.Cast(interactable, hitPoint);
+
+                    foreach (var kvp2 in _slottedSkills)
+                    {
+                        if(kvp2.Value != skill)
+                            kvp2.Value.Queued = false;
+                    }
                 }
+            }
+        }
+
+        private void UpdateSkills()
+        {
+            foreach(var kvp in _slottedSkills)
+            {
+                kvp.Value.Update();
             }
         }
 

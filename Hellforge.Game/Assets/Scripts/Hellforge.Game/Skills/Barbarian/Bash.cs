@@ -21,7 +21,7 @@ namespace Hellforge.Game.Skills
 
         protected override void BeginCast()
         {
-            Debug.Log("CAST BASH");
+            Debug.Log("BASH");
         }
 
     }
