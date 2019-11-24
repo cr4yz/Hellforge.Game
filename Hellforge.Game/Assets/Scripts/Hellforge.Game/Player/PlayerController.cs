@@ -1,10 +1,10 @@
-﻿using System.Collections;
-using System.Linq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
 using Hellforge.Game.World;
+using Hellforge.Game.Skills;
+using Hellforge.Game.Entities;
 
 namespace Hellforge.Game.Player
 {
@@ -21,6 +21,19 @@ namespace Hellforge.Game.Player
         [SerializeField]
         private Camera _playerCam;
 
+        // todo: read these from file
+        private Dictionary<KeyCode, SkillSlot> _skillKeyBinds = new Dictionary<KeyCode, SkillSlot>()
+        {
+            { KeyCode.Mouse0, SkillSlot.Primary },
+            { KeyCode.Mouse1, SkillSlot.Secondary },
+            { KeyCode.Alpha1, SkillSlot.One },
+            { KeyCode.Alpha2, SkillSlot.Two },
+            { KeyCode.Alpha3, SkillSlot.Three },
+            { KeyCode.Alpha4, SkillSlot.Four },
+        };
+
+        private Dictionary<SkillSlot, BaseSkill> _slottedSkills = new Dictionary<SkillSlot, BaseSkill>();
+
         public bool IsMoving { get; private set; }
         public Vector3 Direction { get; private set; }
         public Vector3 Velocity { get; private set; }
@@ -33,16 +46,91 @@ namespace Hellforge.Game.Player
 
         private void Update()
         {
-            TryUpdatePath();
             MoveAlongPath();
-            SkillInput();
+            CheckSkillInput();
         }
 
-        private void SkillInput()
+        public void SlotSkill(SkillSlot slot, BaseSkill skill)
         {
-            if(Input.GetKeyDown(KeyCode.Alpha1))
+            if (_slottedSkills.ContainsKey(slot))
             {
-                // cast skill 1
+                _slottedSkills[slot] = skill;
+            }
+            else
+            {
+                _slottedSkills.Add(slot, skill);
+            }
+        }
+
+        public void MoveToDestination(Vector3 destination)
+        {
+            if (_agent.CalculatePath(destination, _path))
+            {
+                IsMoving = true;
+                _currentWaypoint = 0;
+                _waypointCount = _path.corners.Length;
+                for (int i = 0; i < _path.corners.Length; i++)
+                {
+                    _waypoints[i] = _path.corners[i];
+                }
+            }
+        }
+
+        public bool IsInputBlocked()
+        {
+            if(EventSystem.current.IsPointerOverGameObject())
+            {
+                return true;
+            }
+
+            foreach(var kvp in _slottedSkills)
+            {
+                if(kvp.Value.IsBusy() && kvp.Value.BlocksInput)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public Vector3 GetMouseHitPoint()
+        {
+            if (Physics.Raycast(_playerCam.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, 100))
+            {
+                return hit.point;
+            }
+            // todo: if mouse doesn't hit anything then return the nearest valid area
+            return Vector3.zero;
+        }
+
+        public Vector3 GetMouseHitPoint(out IInteractable interactable)
+        {
+            interactable = null;
+            if (Physics.Raycast(_playerCam.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, 100))
+            {
+                interactable = hit.collider.gameObject.GetComponent<IInteractable>();
+                return hit.point;
+            }
+            // todo: if mouse doesn't hit anything then return the nearest valid area
+            return Vector3.zero;
+        }
+
+        private void CheckSkillInput()
+        {
+            if(IsInputBlocked())
+            {
+                return;
+            }
+
+            foreach(var kvp in _skillKeyBinds)
+            {
+                if(Input.GetKey(kvp.Key)
+                    && _slottedSkills.TryGetValue(kvp.Value, out BaseSkill skill))
+                {
+                    var hitPoint = GetMouseHitPoint(out IInteractable interactable);
+                    skill.Cast(interactable, hitPoint);
+                }
             }
         }
 
@@ -71,27 +159,6 @@ namespace Hellforge.Game.Player
                 Direction = (_waypoints[_currentWaypoint] - transform.position).normalized;
                 Velocity = Direction * speed;
                 transform.Translate(Velocity * Time.deltaTime);
-            }
-        }
-
-        private void TryUpdatePath()
-        {
-            if (Input.GetMouseButton(0)
-                && !EventSystem.current.IsPointerOverGameObject())
-            {
-                if (Physics.Raycast(_playerCam.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, 100))
-                {
-                    if (_agent.CalculatePath(hit.point, _path))
-                    {
-                        IsMoving = true;
-                        _currentWaypoint = 0;
-                        _waypointCount = _path.corners.Length;
-                        for (int i = 0; i < _path.corners.Length; i++)
-                        {
-                            _waypoints[i] = _path.corners[i];
-                        }
-                    }
-                }
             }
         }
 

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Hellforge.Game.World;
+using Hellforge.Game.Entities;
 
 namespace Hellforge.Game.Skills
 {
@@ -10,10 +11,12 @@ namespace Hellforge.Game.Skills
         protected float castDuration;
         protected float recoverDuration;
         protected float cooldownDuration;
+        protected bool castWithoutTarget;
         protected D4Hero hero;
-        protected GameObject target;
+        protected IInteractable target;
         protected Vector3 destination;
         public SkillStatus Status { get; protected set; }
+        public bool BlocksInput { get; protected set; }
 
         private float _timer;
 
@@ -53,7 +56,7 @@ namespace Hellforge.Game.Skills
             }
         }
 
-        public bool Cast(GameObject target, Vector3 destination)
+        public bool Cast(IInteractable target, Vector3 destination)
         {
             if(Status != SkillStatus.Idle)
             {
@@ -62,6 +65,12 @@ namespace Hellforge.Game.Skills
 
             this.target = target;
             this.destination = destination;
+
+            if (!castWithoutTarget && target == null)
+            {
+                hero.Controller.MoveToDestination(destination);
+                return false;
+            }
 
             // check available resources...
             MoveToNextState();
