@@ -8,6 +8,7 @@ namespace Hellforge.Game.World
     {
 
         public PlayerController Controller { get; private set; }
+        //public SkillController SkillController { get; private set; }
         public Character HellforgeCharacter => GameWorld.Instance.Character;
 
         public void Spawn()
