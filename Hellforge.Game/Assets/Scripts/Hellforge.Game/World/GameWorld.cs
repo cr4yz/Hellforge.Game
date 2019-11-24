@@ -12,13 +12,14 @@ namespace Hellforge.Game.World
     {
 
         public Character Character { get; private set; }
+        public D4Hero Hero => Character.Entity as D4Hero;
         private string _loadedLevel;
 
         public void EnterWorld(string characterName)
         {
             var characterFilePath = D4Data.Instance.CharacterFiles[characterName];
             Character = CharacterSerializer.FromFile(characterFilePath);
-            Character.Initialize(D4Data.Instance.Hellforge, new D4Character());
+            Character.Initialize(D4Data.Instance.Hellforge, new D4Hero());
 
             SceneManager.LoadScene("GameWorld");
 

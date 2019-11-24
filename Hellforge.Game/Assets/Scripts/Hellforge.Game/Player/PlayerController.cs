@@ -35,6 +35,15 @@ namespace Hellforge.Game.Player
         {
             TryUpdatePath();
             MoveAlongPath();
+            SkillInput();
+        }
+
+        private void SkillInput()
+        {
+            if(Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                // cast skill 1
+            }
         }
 
         private void MoveAlongPath()

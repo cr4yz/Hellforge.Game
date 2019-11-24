@@ -10,16 +10,16 @@ namespace Hellforge.Game.Skills
         protected float castDuration;
         protected float recoverDuration;
         protected float cooldownDuration;
-        protected D4Character character;
+        protected D4Hero hero;
         protected GameObject target;
         protected Vector3 destination;
         public SkillStatus Status { get; protected set; }
 
         private float _timer;
 
-        protected BaseSkill(D4Character character)
+        protected BaseSkill(D4Hero hero)
         {
-            this.character = character;
+            this.hero = hero;
         }
 
         public void Update()

@@ -8,8 +8,8 @@ namespace Hellforge.Game.Skills
     public class Bash : BaseSkill
     {
 
-        public Bash(D4Character character)
-            : base(character)
+        public Bash(D4Hero hero)
+            : base(hero)
         {
 
         }

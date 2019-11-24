@@ -10,8 +10,7 @@ namespace Hellforge.Game.Level
 
         void Start()
         {
-            var d4c = GameWorld.Instance.Character.Entity as D4Character;
-            d4c.Spawn();
+            GameWorld.Instance.Hero.Spawn();
         }
 
     }
