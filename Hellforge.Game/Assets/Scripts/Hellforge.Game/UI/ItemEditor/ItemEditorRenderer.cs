@@ -49,14 +49,9 @@ namespace Hellforge.Game.UI
 
             _addAffixButton.onClick.AddListener(() =>
             {
-                var afx = new ItemAffix()
-                {
-                    Name = _itemAffixDropdown.options[_itemAffixDropdown.value].text,
-                    Tier = 0,
-                    Roll = 50
-                };
-                item.AddExplicitAffix(afx.Name, afx.Tier, afx.Roll);
-                RenderAffix(item, afx);
+                var affixName = _itemAffixDropdown.options[_itemAffixDropdown.value].text;
+                var affix = item.AddExplicitAffix(affixName, 0, 50);
+                RenderAffix(item, affix);
             });
         }
 
@@ -66,7 +61,10 @@ namespace Hellforge.Game.UI
             
             foreach (var itemAffixRenderer in _itemAffixRenderers)
             {
-                GameObject.Destroy(itemAffixRenderer.gameObject);
+                if(itemAffixRenderer != null)
+                {
+                    GameObject.Destroy(itemAffixRenderer.gameObject);
+                }
             }
 
             _itemAffixRenderers.Clear();

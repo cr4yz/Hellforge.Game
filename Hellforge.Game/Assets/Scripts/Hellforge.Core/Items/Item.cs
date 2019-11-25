@@ -96,14 +96,16 @@ namespace Hellforge.Core.Items
             }
         }
 
-        public void AddExplicitAffix(string name, int tier, int roll)
+        public ItemAffix AddExplicitAffix(string name, int tier, int roll)
         {
-            ExplicitAffixes.Add(new ItemAffix()
+            var affix = new ItemAffix()
             {
                 Name = name,
                 Tier = tier,
                 Roll = roll
-            });
+            };
+            ExplicitAffixes.Add(affix);
+            return affix;
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
