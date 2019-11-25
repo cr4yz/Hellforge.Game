@@ -35,7 +35,7 @@ namespace Hellforge.Game.UI
 
             _tierSlider.onValueChanged.AddListener((float value) =>
             {
-                affix.Tier = (int)value - 1;
+                affix.Tier = (int)value;
                 UpdateDescription(item, affix);
             });
 
@@ -45,12 +45,14 @@ namespace Hellforge.Game.UI
         private void UpdateDescription(Item item, ItemAffix affix)
         {
             var affixData = D4Data.Instance.Hellforge.GameData.Affixes.First(x => x.Name == affix.Name);
-            _rollSlider.minValue = 1;
+            _rollSlider.minValue = 0;
             _rollSlider.maxValue = 100;
             _rollSlider.wholeNumbers = true;
-            _tierSlider.minValue = 1;
-            _tierSlider.maxValue = affixData.Data.Length;
+            _tierSlider.minValue = 0;
+            _tierSlider.maxValue = affixData.Data.Length - 1;
             _tierSlider.wholeNumbers = true;
+            _rollSlider.value = affix.Roll;
+            _tierSlider.value = affix.Tier;
             _affixNameText.text = affixData.ParseDescription(affix.Tier, affix.Roll);
         }
 
