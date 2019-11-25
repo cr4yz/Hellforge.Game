@@ -1,0 +1,24 @@
+{
+	"Skills": [
+		{
+			"Name": "Leap",
+			"Class": "Barbarian",
+			"Archetype": "Berserker",
+			"MaxRank": 10,
+			"Group": "Brawling",
+			"Description": "Leap forward and slam downward, dealing #Min; - #Max; on impact.",
+			"Data": [
+				{
+					"Rank": 0,
+					"Min": 31,
+					"Max": 38
+				},
+				{
+					"Rank": 8,
+					"Min": 249,
+					"Max": 304
+				}
+			]
+		}
+	]
+}

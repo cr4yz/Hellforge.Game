@@ -1,0 +1,28 @@
+{
+	"Skills": [
+		{
+			"Name": "WrathOfTheBerserker",
+			"Class": "Barbarian",
+			"Archetype": "Berserker",
+			"MaxRank": 10,
+			"Group": "Ultimate",
+			"Description": "Go Berserk for #Duration; seconds.  Every #FurySpent; Fury you spend increases the effects by #IncreasedEffect;%.",
+			"Data": [
+				{
+					"Rank": 0,
+					"Duration": 8,
+					"FurySpent": 35,
+					"IncreasedEffect": 40,
+					"Cooldown": 60
+				},
+				{
+					"Rank": 8,
+					"Duration": 15,
+					"FurySpent": 20,
+					"IncreasedEffect": 65,
+					"Cooldown": 60
+				}
+			]
+		}
+	]
+}

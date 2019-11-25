@@ -1,0 +1,26 @@
+{
+	"Skills": [
+		{
+			"Name": "Upheaval",
+			"Class": "Barbarian",
+			"Archetype": "Berserker",
+			"MaxRank": 10,
+			"Group": "Fury",
+			"Description": "Tear into the ground with your weapon and fling debris forward, dealing #Min; - #Max;.\n\nRequires a two-handed weapon.",
+			"Data": [
+				{
+					"Rank": 0,
+					"Min": 56,
+					"Max": 68,
+					"Cost": 20
+				},
+				{
+					"Rank": 8,
+					"Min": 448,
+					"Max": 547,
+					"Cost": 30
+				}
+			]
+		}
+	]
+}

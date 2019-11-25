@@ -1,0 +1,19 @@
+{
+	"Skills": [
+		{
+			"Name": "CallOfTheAncients",
+			"Class": "Barbarian",
+			"Archetype": "Ancient",
+			"MaxRank": 10,
+			"Group": "Ultimate",
+			"Description": "Call upon the Ancients to aid you in battle for #Duration; seconds.",
+			"Data": [
+				{
+					"Rank": 0,
+					"Duration": 12,
+					"Cooldown": 75
+				}
+			]
+		}
+	]
+}

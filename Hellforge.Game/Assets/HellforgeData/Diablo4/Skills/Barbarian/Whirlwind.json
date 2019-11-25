@@ -1,0 +1,19 @@
+{
+	"Skills": [
+		{
+			"Name": "Whirlwind",
+			"Class": "Barbarian",
+			"MaxRank": 10,
+			"Group": "Fury",
+			"Description": "Rapidly attack nearby enemies for #Min; - #Max;.",
+			"Data": [
+				{
+					"Rank": 0,
+					"Min": 33,
+					"Max": 40,
+					"CostPerSecond": 5
+				}
+			]
+		}
+	]
+}

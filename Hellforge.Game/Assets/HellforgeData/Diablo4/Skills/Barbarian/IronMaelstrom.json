@@ -1,0 +1,20 @@
+{
+	"Skills": [
+		{
+			"Name": "IronMaelstrom",
+			"Class": "Barbarian",
+			"Archetype": "Warlord",
+			"MaxRank": 10,
+			"Group": "Ultimate",
+			"Description": "Whirl your weapon around on a chain, continually dealing #Min; - #Max;.\n\nRequires a two-handed weapon.",
+			"Data": [
+				{
+					"Rank": 0,
+					"Min": 299,
+					"Max": 365,
+					"Cooldown": 50
+				}
+			]
+		}
+	]
+}

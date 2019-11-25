@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Collections.Generic;
 using UnityEngine;
 using Hellforge.Game.World;
 
@@ -30,7 +31,28 @@ namespace Hellforge.Game.UI
                 var clone = GameObject.Instantiate(_skillGroupTemplate, _skillGroupTemplate.transform.parent);
                 clone.Render(groupName, group.ToList());
                 clone.gameObject.SetActive(true);
+                clone.transform.SetSiblingIndex(GetGroupIndex(groupName));
             }
+        }
+
+        private int GetGroupIndex(string groupName)
+        {
+            switch(groupName)
+            {
+                case "Basic":
+                    return 0;
+                case "Fury":
+                    return 1;
+                case "Defensive":
+                    return 2;
+                case "Brawling":
+                    return 3;
+                case "WeaponMastery":
+                    return 4;
+                case "Ultimate":
+                    return 5;
+            }
+            return 0;
         }
 
     }

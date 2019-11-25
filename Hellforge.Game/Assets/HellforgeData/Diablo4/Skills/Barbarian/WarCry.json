@@ -1,0 +1,20 @@
+{
+	"Skills": [
+		{
+			"Name": "WarCry",
+			"Class": "Barbarian",
+			"Archetype": "Shout",
+			"MaxRank": 10,
+			"Group": "Brawling",
+			"Description": "Bellow a mighty war cry.  You and nearby allies deal #IncreasedDamage;% increased damage per nearby enemy for #Duration; seconds, up to #IncreasedDamageMax;.",
+			"Data": [
+				{
+					"Rank": 0,
+					"IncreasedDamage": 3.6,
+					"IncreasedDamageMax": 50,
+					"Duration": 10
+				}
+			]
+		}
+	]
+}

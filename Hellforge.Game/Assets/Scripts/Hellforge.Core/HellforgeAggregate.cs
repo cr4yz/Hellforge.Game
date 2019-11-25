@@ -152,6 +152,7 @@ public class SkillEntry
     public string Group;
     public string Description;
     public string NextRank;
+    public bool Passive;
     public JArray Data;
 
     public string ParseDescription(int rank)

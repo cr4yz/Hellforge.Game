@@ -1,0 +1,20 @@
+{
+	"Skills": [
+		{
+			"Name": "PrimalAxe",
+			"Class": "Barbarian",
+			"Archetype": "Berserker",
+			"MaxRank": 10,
+			"Group": "WeaponMastery",
+			"Description": "Throw your weapon with a chain attached, dealing #Min; - #Max; and pulling in enemies.",
+			"Data": [
+				{
+					"Rank": 0,
+					"Min": 53,
+					"Max": 65,
+					"Recharge": 20
+				}
+			]
+		}
+	]
+}

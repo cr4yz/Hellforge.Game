@@ -1,0 +1,18 @@
+{
+	"Skills": [
+		{
+			"Name": "GroundStomp",
+			"Class": "Barbarian",
+			"Archetype": "Berserker",
+			"MaxRank": 10,
+			"Group": "Defensive",
+			"Description": "Smash the ground, stunning nearby enemies for #Duration; seconds.",
+			"Data": [
+				{
+					"Rank": 0,
+					"Duration": 3
+				}
+			]
+		}
+	]
+}

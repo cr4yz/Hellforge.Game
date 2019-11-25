@@ -1,0 +1,22 @@
+{
+	"Skills": [
+		{
+			"Name": "Kick",
+			"Class": "Barbarian",
+			"Archetype": "Berserker",
+			"MaxRank": 10,
+			"Group": "Brawling",
+			"Description": "Kick an enemy for #Min; - #Max; and knock them backwards.  On collision, enemies in the area take an additional #Min2; - #Max2;.",
+			"Data": [
+				{
+					"Rank": 0,
+					"Min": 38,
+					"Max": 47,
+					"Min2": 57,
+					"Max2": 70,
+					"Recharge": 20
+				}
+			]
+		}
+	]
+}

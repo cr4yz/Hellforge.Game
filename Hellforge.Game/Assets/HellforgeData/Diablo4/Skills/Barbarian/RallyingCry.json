@@ -1,0 +1,26 @@
+{
+	"Skills": [
+		{
+			"Name": "RallyingCry",
+			"Class": "Barbarian",
+			"Archetype": "Shout",
+			"MaxRank": 10,
+			"Group": "Defensive",
+			"Description": "Bellow a rallying cry, granting all allies Unstoppable, #IncreasedMovementSpeed;, and #DamageReduction; for #Duration; seconds.",
+			"Data": [
+				{
+					"Rank": 0,
+					"IncreasedMovementSpeed": 10,
+					"DamageReduction": 10,
+					"Duration": 3
+				},
+				{
+					"Rank": 8,
+					"IncreasedMovementSpeed": 23,
+					"DamageReduction": 23,
+					"Duration": 6
+				}
+			]
+		}
+	]
+}

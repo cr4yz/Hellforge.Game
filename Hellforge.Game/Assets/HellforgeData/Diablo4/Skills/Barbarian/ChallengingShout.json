@@ -1,0 +1,20 @@
+{
+	"Skills": [
+		{
+			"Name": "ChallengingShout",
+			"Class": "Barbarian",
+			"Archetype": "Shout",
+			"MaxRank": 10,
+			"Group": "Defensive",
+			"Description": "Fortify yourself for #FortifyAmount; and taunt nearby enemies for #Duration; seconds.  During this time, you generate #FuryOnHit; when hit.",
+			"Data": [
+				{
+					"Rank": 0,
+					"FortifyAmount": 38,
+					"Duration": 8,
+					"FuryOnHit": 5
+				}
+			]
+		}
+	]
+}

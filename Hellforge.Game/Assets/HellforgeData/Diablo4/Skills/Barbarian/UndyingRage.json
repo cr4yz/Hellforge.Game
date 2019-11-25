@@ -1,0 +1,21 @@
+{
+	"Skills": [
+		{
+			"Name": "UndyingRage",
+			"Class": "Barbarian",
+			"Archetype": "Warlord",
+			"Passive": true,
+			"MaxRank": 10,
+			"Group": "Defensive",
+			"Description": "When you take fatal damage, you have #Duration; seconds to fight for your life before you die.  Killing an enemy in time will revive and heal you for #HealAmount;.\n\nThis effect can only occur once every #Cooldown; minutes.",
+			"Data": [
+				{
+					"Rank": 0,
+					"Duration": 5,
+					"HealAmount": 39,
+					"Cooldown": 174
+				}
+			]
+		}
+	]
+}

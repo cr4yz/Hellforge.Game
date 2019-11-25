@@ -1,0 +1,26 @@
+{
+	"Skills": [
+		{
+			"Name": "Rupture",
+			"Class": "Barbarian",
+			"Archetype": "Berserker",
+			"MaxRank": 10,
+			"Group": "WeaponMastery",
+			"Description": "Skewer enemies in a line, inflicting #BleedDamage; over #BleedDuration; seconds.  If an enemy dies while bleeding, the cooldown is reset.\n\nRequires a two-handed slashing weapon.",
+			"Data": [
+				{
+					"Rank": 0,
+					"BleedDamage": 131,
+					"BleedDuration": 1,
+					"Cooldown": 18
+				},
+				{
+					"Rank": 8,
+					"BleedDamage": 1053,
+					"BleedDuration": 3,
+					"Cooldown": 10
+				}
+			]
+		}
+	]
+}

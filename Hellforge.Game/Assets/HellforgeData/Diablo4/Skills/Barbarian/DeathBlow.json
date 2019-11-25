@@ -1,0 +1,20 @@
+{
+	"Skills": [
+		{
+			"Name": "DeathBlow",
+			"Class": "Barbarian",
+			"Archetype": "Warlord",
+			"MaxRank": 10,
+			"Group": "WeaponMastery",
+			"Description": "Attempt a killing strike, dealing #Min; - #Max; to enemies in front of you.  If this kills an enemy, the cooldown is reset.\n\nRequires a two-handed slashing weapon.",
+			"Data": [
+				{
+					"Rank": 0,
+					"Min": 85,
+					"Max": 104,
+					"Cooldown": 15
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,19 @@
+{
+	"Skills": [
+		{
+			"Name": "HammerOfTheAncients",
+			"Class": "Barbarian",
+			"MaxRank": 10,
+			"Group": "Fury",
+			"Description": "Slam your hammer down with the fury of the Ancients, dealing #Min; - #Max; to a concentrated area.",
+			"Data": [
+				{
+					"Rank": 0,
+					"Min": 76,
+					"Max": 94,
+					"Cost": 20
+				}
+			]
+		}
+	]
+}

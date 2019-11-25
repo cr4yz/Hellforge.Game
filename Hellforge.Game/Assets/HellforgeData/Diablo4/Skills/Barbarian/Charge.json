@@ -1,0 +1,19 @@
+{
+	"Skills": [
+		{
+			"Name": "Charge",
+			"Class": "Barbarian",
+			"Archetype": "Berserker",
+			"MaxRank": 10,
+			"Group": "Brawling",
+			"Description": "Rush forward and push enemies with you, then swing through them for #Min; - #Max;.",
+			"Data": [
+				{
+					"Rank": 0,
+					"Min": 26,
+					"Max": 32
+				}
+			]
+		}
+	]
+}

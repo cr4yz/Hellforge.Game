@@ -1,0 +1,19 @@
+{
+	"Skills": [
+		{
+			"Name": "DoubleSwing",
+			"Class": "Barbarian",
+			"MaxRank": 10,
+			"Group": "Fury",
+			"Description": "Sweep your weapons from opposite directions, dealing #Min; - #Max; with each weapon.  Enemies caught in the center are hit by both.\n\nRequires dual wielded weapons.",
+			"Data": [
+				{
+					"Rank": 0,
+					"Min": 47,
+					"Max": 57,
+					"Cost": 25
+				}
+			]
+		}
+	]
+}
