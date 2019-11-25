@@ -1,0 +1,23 @@
+{
+	"Skills": [
+		{
+			"Name": "Frenzy",
+			"Class": "Barbarian",
+			"Archetype": "Berserker",
+			"MaxRank": 10,
+			"Group": "Basic",
+			"Description": "Unleash a rapid flurry of blows, dealing #Min; - #Max; with each pair of hits.  \n\nYour attack speed is increased by #IncreasedAttackSpeed;% for #IncreasedAttackSpeedDuration; seconds, up to #IncreasedAttackSpeedMaximum;%.",
+			"NextRank": "#Min; - #Max; damage, #IncreasedAttackSpeed;% attack speed for #IncreasedAttackSpeedDuration; seconds, up to #IncreasedAttackSpeedMaximum;%",
+			"Data": [
+				{
+					"Min": 133,
+					"Max": 163,
+					"IncreasedAttackSpeed": 20,
+					"IncreasedAttackSpeedDuration": 3,
+					"IncreasedAttackSpeedMaximum": 60,
+					"FuryGenerated": 5
+				}
+			]
+		}
+	]
+}

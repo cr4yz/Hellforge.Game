@@ -1,0 +1,22 @@
+{
+	"Skills": [
+		{
+			"Name": "Flay",
+			"Class": "Barbarian",
+			"Archetype": "Warlord",
+			"MaxRank": 10,
+			"Group": "Basic",
+			"Description": "Flay the enemy, dealing #Min; - #Max; and inflicting #BleedDamage; bleeding over #BleedDuration; seconds.",
+			"NextRank": "#Min; - #Max; damage, #BleedDamage; bleeding over #BleedDuration; seconds.",
+			"Data": [
+				{
+					"Min": 23,
+					"Max": 28,
+					"BleedDamage": 47,
+					"BleedDuration": 6,
+					"FuryGenerated": 9
+				}
+			]
+		}
+	]
+}

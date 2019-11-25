@@ -1,0 +1,23 @@
+{
+	"Skills": [
+		{
+			"Name": "Bash",
+			"Class": "Barbarian",
+			"Archetype": "Berserker",
+			"MaxRank": 10,
+			"Group": "Basic",
+			"Description": "Bash the enemy with your weapon, dealing #Min; - #Max;.  \n\nHas a #StunChance;% chance to stun for #StunDuration; seconds.",
+			"NextRank": "#Min; - #Max; damage, #StunChance;% chance to stun for #StunDuration; seconds.",
+			"Data": [
+				{
+					"Rank": 0,
+					"Min": 4,
+					"Max": 8,
+					"StunChance": 5,
+					"StunDuration": 0.25,
+					"FuryGenerated": 5
+				}
+			]
+		}
+	]
+}

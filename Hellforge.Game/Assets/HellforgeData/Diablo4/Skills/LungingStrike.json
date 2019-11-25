@@ -1,0 +1,18 @@
+{
+	"Skills": [
+		{
+			"Name": "LungingStrike",
+			"Class": "Barbarian",
+			"MaxRank": 10,
+			"Group": "Basic",
+			"Description": "Lunge forward and strike an enemy for #Min; - #Max;",
+			"NextRank": "#Min; - #Max; damage.",
+			"Data": [
+				{
+					"Min": 36,
+					"Max": 45
+				}
+			]
+		}
+	]
+}

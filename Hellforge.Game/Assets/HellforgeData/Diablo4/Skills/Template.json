@@ -1,0 +1,16 @@
+{
+	"Skills": [
+		{
+			"Name": "Template",
+			"Class": "Nobody",
+			"Archetype": "Berserker",
+			"MaxRank": 10,
+			"Group": "Fury",
+			"Description": "",
+			"Data": [
+				{
+				}
+			]
+		}
+	]
+}

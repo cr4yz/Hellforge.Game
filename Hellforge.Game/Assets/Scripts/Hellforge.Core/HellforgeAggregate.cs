@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Collections.Generic;
 using System.IO;
 using NLua;
 using Newtonsoft.Json.Linq;
@@ -50,7 +51,7 @@ namespace Hellforge.Core
 
             GameData = dataSource.ToObject<GameDataObject>();
 
-            foreach(var skillTree in GameData.SkillTrees)
+            foreach(var skillTree in GameData.TalentTrees)
             {
                 skillTree.Hellforge = this;
                 foreach(var node in skillTree.Nodes)
@@ -140,6 +141,52 @@ public class AffixDataEntry
     public int Maximum;
     public int Amount;
     public float Duration;
+}
+
+public class SkillEntry
+{
+    public string Name;
+    public string Archetype;
+    public int MaxRank;
+    public string Class;
+    public string Group;
+    public string Description;
+    public string NextRank;
+    public JArray Data;
+
+    public string ParseDescription(int rank)
+    {
+        if(rank > Data.Count - 1)
+        {
+            return Description;
+        }
+        return Parse(Description, Data[rank]);
+    }
+
+    public string ParseNextRankText(int rank)
+    {
+        if(NextRank == null)
+        {
+            return string.Empty;
+        }
+        if (rank > Data.Count - 1)
+        {
+            return string.Empty;
+        }
+        return Parse(NextRank, Data[rank]);
+    }
+
+    private string Parse(string input, JToken token)
+    {
+        var obj = (JObject)token;
+        foreach(var parsedProperty in obj.Properties())
+        {
+            var name = parsedProperty.Name;
+            var value = (string)parsedProperty.Value;
+            input = input.Replace('#' + name + ';', "<color=yellow>" + value + "</color>");
+        }
+        return input;
+    }
 }
 
 public class AffixEntry
@@ -239,7 +286,8 @@ public class GameDataObject
     public AttributeEntry[] Attributes;
     public ConditionEntry[] Conditions;
     public AffixEntry[] Affixes;
-    public TwigGraph[] SkillTrees;
+    public TwigGraph[] TalentTrees;
     public string[] ItemSlots;
     public ItemBaseEntry[] ItemBases;
+    public SkillEntry[] Skills;
 }

@@ -21,7 +21,7 @@ namespace Hellforge.Game.UI
 
             if (GameWorld.Instance.Character != null)
             {
-                var classTree = D4Data.Instance.Hellforge.GameData.SkillTrees.First(x => x.Class == GameWorld.Instance.Character.Class);
+                var classTree = D4Data.Instance.Hellforge.GameData.TalentTrees.First(x => x.Class == GameWorld.Instance.Character.Class);
                 Render();
             }
         }

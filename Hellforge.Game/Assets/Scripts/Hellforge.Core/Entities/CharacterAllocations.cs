@@ -23,6 +23,16 @@ namespace Hellforge.Core.Entities
     {
         public List<Allocation> Points { get; set; } = new List<Allocation>();
 
+        public int GetPoints(AllocationType type, string identifier)
+        {
+            var allocation = Points.Find(x => x.Type == type && x.Identifier == identifier);
+            if(allocation != null)
+            {
+                return allocation.Amount;
+            }
+            return 0;
+        }
+
         public void SetAllocation(AllocationType type, string identifier, int amount)
         {
             var allocation = Points.Find(x => x.Identifier == identifier);

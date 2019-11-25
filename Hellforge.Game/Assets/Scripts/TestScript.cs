@@ -18,7 +18,7 @@ public class TestScript : MonoBehaviour
         _hellforge = new HellforgeAggregate();
         _hellforge.LoadData(Application.dataPath + "/HellforgeData/Diablo4");
 
-        var barbTree = _hellforge.GameData.SkillTrees.First(x => x.Class == "Barbarian");
+        var barbTree = _hellforge.GameData.TalentTrees.First(x => x.Class == "Barbarian");
 
         if(barbTree != null)
         {

@@ -1,0 +1,24 @@
+{
+	"Skills": [
+		{
+			"Name": "Rend",
+			"Class": "Barbarian",
+			"Archetype": "Berserker",
+			"MaxRank": 10,
+			"Group": "Fury",
+			"Description": "Cleave enemies in front of you, dealing #Min; - #Max; and inflicting #BleedDamage; bleeding over #BleedDuration; seconds.",
+			"Data": [
+				{
+					"Rank": 0,
+					"Min": 26,
+					"Max": 32,
+					"BleedDamage": 104,
+					"BleedDuration": 5,
+					"Chance": 5,
+					"Duration": 0.25,
+					"Cost": 25
+				}
+			]
+		}
+	]
+}
