@@ -23,6 +23,8 @@ namespace Hellforge.Game.UI
         public void Render(SkillEntry skill)
         {
             var rank = GameWorld.Instance.Character.Allocations.GetPoints(Core.Entities.AllocationType.Skill, skill.Name);
+            rank = Mathf.Max(0, rank - 1);
+
             _nameText.text = skill.Name;
             if(skill.Archetype != null)
             {
