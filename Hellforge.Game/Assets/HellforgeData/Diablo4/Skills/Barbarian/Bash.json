@@ -67,11 +67,11 @@
 				},
 				{
 					"Rank": 7,
-					"Min": 4,
-					"Max": 8,
+					"Min": 344,
+					"Max": 512,
 					"StunChance": 20,
-					"StunDuration": 0.6,
-					"FuryGenerated": 16
+					"StunDuration": 0.65,
+					"FuryGenerated": 18
 				}
 			]
 		}

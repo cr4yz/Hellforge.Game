@@ -23,7 +23,7 @@ namespace Hellforge.Game.UI
         public void Render(SkillEntry skill)
         {
             var rank = GameWorld.Instance.Character.Allocations.GetPoints(Core.Entities.AllocationType.Skill, skill.Name);
-            rank = Mathf.Max(0, rank - 1);
+            var rankIndex = Mathf.Max(0, rank - 1);
 
             _nameText.text = skill.Name;
             if(skill.Archetype != null)
@@ -36,8 +36,8 @@ namespace Hellforge.Game.UI
                 _archetypeText.gameObject.SetActive(false);
             }
             _rankText.text = "RANK " + rank;
-            _descriptionText.text = skill.ParseDescription(rank);
-            _nextRankText.text = skill.ParseNextRankText(rank + 1);
+            _descriptionText.text = skill.ParseDescription(rankIndex);
+            _nextRankText.text = skill.ParseNextRankText(rankIndex + 1);
 
             gameObject.RebuildLayout();
         }
