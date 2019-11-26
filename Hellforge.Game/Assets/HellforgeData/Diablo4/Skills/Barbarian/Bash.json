@@ -4,7 +4,7 @@
 			"Name": "Bash",
 			"Class": "Barbarian",
 			"Archetype": "Berserker",
-			"MaxRank": 10,
+			"MaxRank": 8,
 			"Group": "Basic",
 			"Description": "Bash the enemy with your weapon, dealing #Min; - #Max;.  \n\nHas a #StunChance;% chance to stun for #StunDuration; seconds.",
 			"NextRank": "#Min; - #Max; damage, #StunChance;% chance to stun for #StunDuration; seconds.",
@@ -15,7 +15,63 @@
 					"Max": 8,
 					"StunChance": 5,
 					"StunDuration": 0.25,
-					"FuryGenerated": 5
+					"FuryGenerated": 9
+				},
+				{
+					"Rank": 1,
+					"Min": 8,
+					"Max": 16,
+					"StunChance": 7,
+					"StunDuration": 0.3,
+					"FuryGenerated": 10
+				},
+				{
+					"Rank": 2,
+					"Min": 16,
+					"Max": 32,
+					"StunChance": 9,
+					"StunDuration": 0.35,
+					"FuryGenerated": 11
+				},
+				{
+					"Rank": 3,
+					"Min": 32,
+					"Max": 56,
+					"StunChance": 11,
+					"StunDuration": 0.4,
+					"FuryGenerated": 12
+				},
+				{
+					"Rank": 4,
+					"Min": 56,
+					"Max": 102,
+					"StunChance": 13,
+					"StunDuration": 0.45,
+					"FuryGenerated": 13
+				},
+				{
+					"Rank": 5,
+					"Min": 102,
+					"Max": 201,
+					"StunChance": 15,
+					"StunDuration": 0.5,
+					"FuryGenerated": 14
+				},
+				{
+					"Rank": 6,
+					"Min": 201,
+					"Max": 344,
+					"StunChance": 17,
+					"StunDuration": 0.55,
+					"FuryGenerated": 15
+				},
+				{
+					"Rank": 7,
+					"Min": 4,
+					"Max": 8,
+					"StunChance": 20,
+					"StunDuration": 0.6,
+					"FuryGenerated": 16
 				}
 			]
 		}
