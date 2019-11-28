@@ -225,6 +225,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1395341350}
   - component: {fileID: 1395341351}
+  - component: {fileID: 1395341352}
   m_Layer: 0
   m_Name: -- LEVEL LOGIC --
   m_TagString: Untagged
@@ -256,6 +257,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5008b81b74c73364c87e35ba4a5ff8a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1395341352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395341349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 623c832edac27374faa1061655be1b3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1410263481
@@ -640,6 +653,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 13746648, guid: 8b6b9ab8b6f2cea43963ea69decb1863, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 134950, guid: 8b6b9ab8b6f2cea43963ea69decb1863, type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
