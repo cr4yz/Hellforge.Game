@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using Hellforge.Core;
 using Hellforge.Game.Entities;
+using UnityEngine;
 
 namespace Hellforge.Game.Skills
 {
@@ -21,11 +20,20 @@ namespace Hellforge.Game.Skills
 
         protected override void BeginCast()
         {
-            // temp test code
+            hero.QueueDamage(BuildDamageInfo()); 
+        }
+
+        protected override DamageInfo _BuildDamageInfo()
+        {
+            var rank = hero.Character.Allocations.GetPoints(Core.Entities.AllocationType.Skill, "Bash");
+            rank = Mathf.Max(rank - 1, 0);
+            var minDmg = GetSkillDataValue<int>("Bash", rank, "Min");
+            var maxDmg = GetSkillDataValue<int>("Bash", rank, "Max");
+            var final = Random.Range(minDmg, maxDmg + 1);
             var dmgInfo = new DamageInfo();
-            dmgInfo.AddDamage(Core.DamageTypeName.Physical, 32);
-            var idmg = (IDamageable)target;
-            idmg.Damage(dmgInfo);
+            dmgInfo.Targets.Add(target);
+            dmgInfo.AddDamage(DamageTypeName.Physical, final);
+            return dmgInfo;
         }
 
     }

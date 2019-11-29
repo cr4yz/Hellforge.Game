@@ -47,3 +47,37 @@ MonoBehaviour:
     outputPath: Scripts/Hellforge.Core/ItemBaseName.g.cs
     outputType: 0
     verboseLogging: 0
+  - jsonFile: {fileID: 4900000, guid: 733c15b4f16a4ff47a6b30444891ed8e, type: 3}
+    collectionJPath: AttackTypes[*]
+    entryNameJPath: $
+    entryValueJPath: 
+    entryCommentJPath: 
+    enumNamespace: Hellforge.Core
+    enumComment: 
+    headerMode: 0
+    indentMode: 1
+    indentSize: 1
+    newlineMode: 0
+    storageType: 0
+    curlyBracketMode: 0
+    autoGenerate: 1
+    outputPath: Scripts/Hellforge.Core/AttackTypeName.g.cs
+    outputType: 0
+    verboseLogging: 0
+  - jsonFile: {fileID: 4900000, guid: 733c15b4f16a4ff47a6b30444891ed8e, type: 3}
+    collectionJPath: DamageTypes[*]
+    entryNameJPath: $
+    entryValueJPath: 
+    entryCommentJPath: 
+    enumNamespace: Hellforge.Core
+    enumComment: 
+    headerMode: 0
+    indentMode: 1
+    indentSize: 1
+    newlineMode: 0
+    storageType: 0
+    curlyBracketMode: 0
+    autoGenerate: 1
+    outputPath: Scripts/Hellforge.Core/DamageTypeName.g.cs
+    outputType: 0
+    verboseLogging: 0

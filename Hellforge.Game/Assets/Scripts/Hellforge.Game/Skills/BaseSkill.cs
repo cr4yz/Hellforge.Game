@@ -1,6 +1,7 @@
-﻿using UnityEngine;
-using Hellforge.Game.World;
+﻿using System.Linq;
+using UnityEngine;
 using Hellforge.Game.Entities;
+using Newtonsoft.Json.Linq;
 
 namespace Hellforge.Game.Skills
 {
@@ -125,6 +126,16 @@ namespace Hellforge.Game.Skills
             return false;
         }
 
+        public DamageInfo BuildDamageInfo(bool excludeTargets = true)
+        {
+            var result = _BuildDamageInfo();
+            if (excludeTargets)
+            {
+                result.Targets.Clear();
+            }
+            return result;
+        }
+
         protected virtual void UpdateIdle() { }
         protected virtual void UpdateSwinging() { }
         protected virtual void UpdateCasting() { }
@@ -132,6 +143,7 @@ namespace Hellforge.Game.Skills
         protected virtual void UpdateCooldown() { }
         protected virtual void BeginCast() { }
         protected virtual void OnStatusChanged(SkillStatus prevStatus, SkillStatus newStatus) { }
+        protected virtual DamageInfo _BuildDamageInfo() { return new DamageInfo(); }
 
         private void MoveToNextState()
         {
@@ -163,6 +175,23 @@ namespace Hellforge.Game.Skills
             }
 
             OnStatusChanged(oldStatus, Status);
+        }
+
+        public T GetSkillDataValue<T>(string skillName, int rank, string dataKey)
+        {
+            var skillEntry = hero.Character.Hellforge.GameData.Skills.First(x => x.Name == skillName);
+            if(skillEntry == null)
+            {
+                return default;
+            }
+
+            var rankObj = (JObject)skillEntry.Data[rank];
+            if(rankObj.TryGetValue(dataKey, System.StringComparison.InvariantCultureIgnoreCase, out JToken value))
+            {
+                return value.Value<T>();
+            }
+
+            return default;
         }
 
     }

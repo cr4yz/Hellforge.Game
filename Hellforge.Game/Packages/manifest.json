@@ -45,13 +45,13 @@
     "com.unity.modules.xr": "1.0.0"
   },
   "lock": {
-    "com.cakeslice.outline-effect": {
-      "revision": "HEAD",
-      "hash": "2f1c911450e120f739953a4879d10a0802d4932f"
-    },
     "com.bastianblokland.enumgenerator": {
       "revision": "v1.6.1",
       "hash": "5c141ecfac59c389090a07540f44c8ac5d07a729"
+    },
+    "com.cakeslice.outline-effect": {
+      "revision": "HEAD",
+      "hash": "2f1c911450e120f739953a4879d10a0802d4932f"
     }
   }
 }

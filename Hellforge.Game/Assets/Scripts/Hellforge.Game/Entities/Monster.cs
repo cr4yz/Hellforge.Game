@@ -15,7 +15,7 @@ namespace Hellforge.Game.Entities
         {
             var defense = GenerateDefense();
             var finalDamage = defense.ProcessDamage(dmgInfo);
-            Debug.Log("Damage me for:" + finalDamage.CalculateTotal());
+            Console.print("Damage me for:" + finalDamage.CalculateTotal());
         }
 
         private Defense GenerateDefense()

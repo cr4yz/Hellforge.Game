@@ -27,6 +27,19 @@
         }
       ],
       "Description": "#roll to Defense while using one handed weapons."
+    },
+    {
+      "Name": "ConditionTest_PhysicalDamage",
+      "Type": "AttributeModifier",
+      "Attribute": "IncreasedPhysicalDamage",
+      "Data": [
+        {
+          "Tier": 0,
+          "Minimum": 100,
+          "Maximum": 200
+        }
+      ],
+      "Description": "#roll% increased physical damage."
     }
   ]
 }
