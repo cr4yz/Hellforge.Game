@@ -14,7 +14,7 @@ namespace Hellforge.Core.Entities
         public string Name;
         public string Class;
         public int Level;
-        public IHellforgeEntity Entity { get; private set; }
+        public IHellforgeEntity Entity { get; set; }
         public HellforgeAggregate Hellforge { get; private set; }
         public CharacterAllocations Allocations { get; private set; } = new CharacterAllocations();
         public List<Affix> Affixes { get; private set; } = new List<Affix>();
@@ -24,7 +24,7 @@ namespace Hellforge.Core.Entities
 
         public Character() { }
 
-        public void Initialize(HellforgeAggregate hellforge, IHellforgeEntity entity)
+        public void Initialize(HellforgeAggregate hellforge, IHellforgeEntity entity = null)
         {
             // todo :This init shit is dumb.. isnt' it
             if(_initialized)

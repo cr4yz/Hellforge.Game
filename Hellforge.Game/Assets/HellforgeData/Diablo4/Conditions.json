@@ -3,7 +3,7 @@
     {
       "Name": "WhileUsingOneHandedWeapons",
       "Type": "Persister",
-      "Condition": "IsUsingOneHander($character)"
+      "Condition": "IsUsingOneHander($hero)"
     },
     {
       "Name": "IsBerserking",
@@ -13,7 +13,7 @@
     {
       "Name": "WhileMoving",
       "Type": "Persister",
-      "Condition": "IsMoving($character)"
+      "Condition": "IsMoving($hero)"
     },
     {
       "Name": "Below30PercentLife",

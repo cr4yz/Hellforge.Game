@@ -10,7 +10,7 @@ namespace Hellforge.Game.Level
 
         void Start()
         {
-            GameWorld.Instance.Hero.Spawn();
+            GameWorld.Instance.SpawnHero();
         }
 
     }

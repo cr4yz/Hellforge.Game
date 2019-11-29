@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Hellforge.Core.Entities;
 using Hellforge.Core.Serialization;
+using Hellforge.Game.Entities;
 
 namespace Hellforge.Game.World
 {
@@ -14,6 +15,25 @@ namespace Hellforge.Game.World
         public Character Character { get; private set; }
         public D4Hero Hero => Character.Entity as D4Hero;
         private string _loadedLevel;
+
+        public void SpawnHero()
+        {
+            var spawnPos = GameObject.Find("SPAWN").transform.position;
+            var playerPrefab = GameObject.Instantiate(Resources.Load("Diablo4/Prefabs/Player")) as GameObject;
+            if(playerPrefab.TryGetComponent<D4Hero>(out D4Hero hero))
+            {
+                Character.Entity = hero;
+            }
+            else
+            {
+                Character.Entity = playerPrefab.AddComponent<D4Hero>();
+            }
+            
+            playerPrefab.transform.position = spawnPos;
+
+            // temporary code to give hero a skill to use
+            Hero.Controller.SlotSkill(Skills.SkillSlot.Primary, new Skills.Bash(Hero));
+        }
 
         public void EnterWorld(string characterName)
         {

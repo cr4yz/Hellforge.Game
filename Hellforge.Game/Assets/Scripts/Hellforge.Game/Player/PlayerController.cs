@@ -110,13 +110,13 @@ namespace Hellforge.Game.Player
             return Vector3.zero;
         }
 
-        public Vector3 GetMouseHitPoint(out IInteractable interactable)
+        public Vector3 GetMouseHitPoint(out BaseEntity targetEntity)
         {
-            interactable = null;
+            targetEntity = null;
             if (Physics.Raycast(_playerCam.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, 100))
             {
-                interactable = hit.collider.gameObject.GetComponent<IInteractable>();
-                if(interactable != null)
+                targetEntity = hit.collider.gameObject.GetComponent<BaseEntity>();
+                if(targetEntity != null)
                 {
                     return hit.collider.transform.position;
                 }
@@ -138,8 +138,8 @@ namespace Hellforge.Game.Player
                 if (Input.GetKey(kvp.Key)
                     && _slottedSkills.TryGetValue(kvp.Value, out BaseSkill skill))
                 {
-                    var hitPoint = GetMouseHitPoint(out IInteractable interactable);
-                    skill.Cast(interactable, hitPoint);
+                    var hitPoint = GetMouseHitPoint(out BaseEntity targetEntity);
+                    skill.Cast(targetEntity, hitPoint);
 
                     foreach (var kvp2 in _slottedSkills)
                     {

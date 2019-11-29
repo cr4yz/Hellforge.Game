@@ -13,7 +13,7 @@ namespace Hellforge.Game.Skills
         protected float cooldownDuration;
         protected bool castWithoutTarget;
         protected D4Hero hero;
-        protected IInteractable target;
+        protected BaseEntity target;
         protected Vector3 destination;
         public SkillStatus Status { get; protected set; }
         public bool BlocksInput { get; protected set; }
@@ -67,14 +67,14 @@ namespace Hellforge.Game.Skills
             }
         }
 
-        private bool IsInRange(Vector3 destination)
+        private bool IsInRange(Vector3 destination, bool interactableRange = false)
         {
             var dist = Vector3.Distance(hero.Controller.transform.position, destination);
-            var range = BaseRange; // + hero.GetAttr[skillRange]...
+            var range = interactableRange ? 2f : BaseRange; // + hero.GetAttr[skillRange]...
             return range >= dist;
         }
 
-        public bool Cast(IInteractable target, Vector3 destination)
+        public bool Cast(BaseEntity target, Vector3 destination)
         {
             if (Status != SkillStatus.Idle)
             {
@@ -99,9 +99,19 @@ namespace Hellforge.Game.Skills
 
             // check available resources...
             hero.Controller.StopMoving();
-            MoveToNextState();
 
-            return true;
+            if (target is IDamageable)
+            {
+                MoveToNextState();
+                return true;
+            }
+            else if(target is IInteractable ii)
+            {
+                ii.Interact();
+                return false;
+            }
+
+            return false;
         }
 
         public bool IsBusy()

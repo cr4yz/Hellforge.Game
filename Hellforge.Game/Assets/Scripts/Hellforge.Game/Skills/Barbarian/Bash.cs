@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Hellforge.Game.World;
+using Hellforge.Game.Entities;
 
 namespace Hellforge.Game.Skills
 {

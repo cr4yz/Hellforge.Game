@@ -1,31 +1,23 @@
-﻿using UnityEngine;
-using Hellforge.Core.Entities;
+﻿using Hellforge.Core.Entities;
 using Hellforge.Game.Player;
-using Hellforge.Game.Skills;
 
-namespace Hellforge.Game.World
+namespace Hellforge.Game.Entities
 {
-    public class D4Hero : IHellforgeEntity
+    public class D4Hero : BaseEntity, IHellforgeEntity
     {
 
         public PlayerController Controller { get; private set; }
 
-        public void Spawn()
+        void Awake()
         {
-            var spawnPos = GameObject.Find("SPAWN").transform.position;
-            var playerPrefab = GameObject.Instantiate(Resources.Load("Diablo4/Prefabs/Player")) as GameObject;
-            Controller = playerPrefab.GetComponent<PlayerController>();
-            playerPrefab.transform.position = spawnPos;
-
-            // todo: save/load skill assignments
-            Controller.SlotSkill(SkillSlot.Primary, new Bash(this));
+            Controller = GetComponent<PlayerController>();
         }
 
         public object GetContext(string name)
         {
             switch(name)
             {
-                case "$character":
+                case "$hero":
                     return this;
             }
             return null;
