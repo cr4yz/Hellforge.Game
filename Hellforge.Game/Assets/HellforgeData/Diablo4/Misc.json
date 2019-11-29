@@ -1,0 +1,15 @@
+{
+  "AttackTypes": [
+    "Melee",
+    "Ranged",
+    "Spell"
+  ],
+  "DamageTypes": [
+    "Physical",
+    "Fire",
+    "Cold",
+    "Lightning",
+    "Poison",
+    "Bleeding"
+  ]
+}

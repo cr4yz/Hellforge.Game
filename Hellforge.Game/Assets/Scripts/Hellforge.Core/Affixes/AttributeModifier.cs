@@ -1,9 +1,10 @@
-﻿
+﻿using System;
+
 namespace Hellforge.Core.Affixes
 {
     public class AttributeModifier : AffixNode
     {
-        private readonly string _attribute;
+        private readonly AttributeName _attribute;
         private readonly int _amount;
 
         public AttributeModifier(Affix affix)
@@ -19,7 +20,7 @@ namespace Hellforge.Core.Affixes
             }
 
             _amount = amount;
-            _attribute = Affix.AffixData.Attribute;
+            Enum.TryParse(Affix.AffixData.Attribute, out _attribute);
         }
 
         public override void Enable()

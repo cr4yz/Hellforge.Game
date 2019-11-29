@@ -13,8 +13,17 @@ namespace Hellforge.Game.Entities
 
         public void Damage(DamageInfo dmgInfo)
         {
-            Debug.Log("DAMAGE FOR: " + dmgInfo.Amount);
+            var defense = GenerateDefense();
+            var finalDamage = defense.ProcessDamage(dmgInfo);
+            Debug.Log("Damage me for:" + finalDamage.CalculateTotal());
         }
+
+        private Defense GenerateDefense()
+        {
+            var result = new Defense();
+            result.AddDefense(Core.DamageTypeName.Physical, 10);
+            return result;
+        }
+
     }
 }
-

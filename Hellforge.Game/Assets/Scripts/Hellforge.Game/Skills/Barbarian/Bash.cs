@@ -21,7 +21,11 @@ namespace Hellforge.Game.Skills
 
         protected override void BeginCast()
         {
-            Debug.Log("BASH");
+            // temp test code
+            var dmgInfo = new DamageInfo();
+            dmgInfo.AddDamage(Core.DamageTypeName.Physical, 32);
+            var idmg = (IDamageable)target;
+            idmg.Damage(dmgInfo);
         }
 
     }

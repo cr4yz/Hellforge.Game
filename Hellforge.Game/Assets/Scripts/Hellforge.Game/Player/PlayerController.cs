@@ -173,7 +173,7 @@ namespace Hellforge.Game.Player
                 }
 
                 var speed = BaseMoveSpeed;
-                var incSpeed = GameWorld.Instance.Character.GetAttribute("MovementSpeed");
+                var incSpeed = GameWorld.Instance.Character.GetAttribute(Core.AttributeName.MovementSpeed);
 
                 if(incSpeed != 0)
                 {

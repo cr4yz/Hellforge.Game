@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.bastianblokland.enumgenerator": "https://github.com/BastianBlokland/enum-generator-unity.git#v1.6.1",
     "com.cakeslice.outline-effect": "https://github.com/cakeslice/Outline-Effect.git",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.collab-proxy": "1.2.16",
@@ -47,6 +48,10 @@
     "com.cakeslice.outline-effect": {
       "revision": "HEAD",
       "hash": "2f1c911450e120f739953a4879d10a0802d4932f"
+    },
+    "com.bastianblokland.enumgenerator": {
+      "revision": "v1.6.1",
+      "hash": "5c141ecfac59c389090a07540f44c8ac5d07a729"
     }
   }
 }

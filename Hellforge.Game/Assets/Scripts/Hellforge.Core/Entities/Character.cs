@@ -19,7 +19,7 @@ namespace Hellforge.Core.Entities
         public CharacterAllocations Allocations { get; private set; } = new CharacterAllocations();
         public List<Affix> Affixes { get; private set; } = new List<Affix>();
         public List<Item> Items { get; private set; } = new List<Item>();
-        public Dictionary<string, float> Attributes { get; } = new Dictionary<string, float>();
+        public Dictionary<AttributeName, float> Attributes { get; } = new Dictionary<AttributeName, float>();
         private bool _initialized;
 
         public Character() { }
@@ -35,9 +35,9 @@ namespace Hellforge.Core.Entities
             Hellforge = hellforge;
             Entity = entity;
 
-            foreach (var attribute in hellforge.GameData.Attributes)
+            foreach(AttributeName attr in Enum.GetValues(typeof(AttributeName)))
             {
-                Attributes.Add(attribute.Name, 0);
+                Attributes.Add(attr, 0);
             }
 
             foreach (var point in Allocations.Points)
@@ -81,6 +81,15 @@ namespace Hellforge.Core.Entities
         }
 
         public float GetAttribute(string attributeName)
+        {
+            if(Enum.TryParse(attributeName, out AttributeName attrName))
+            {
+                return GetAttribute(attrName);
+            }
+            return 0;
+        }
+
+        public float GetAttribute(AttributeName attributeName)
         {
             if(Attributes.ContainsKey(attributeName))
                 return Attributes[attributeName];
