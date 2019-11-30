@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 157767279649428172}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: Player
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -185,9 +185,9 @@ MonoBehaviour:
   scaleWithScreenSize: 1
   alphaCutoff: 0.56
   flipY: 0
-  sourceCamera: {fileID: 0}
+  sourceCamera: {fileID: 4099775708545504521}
   autoEnableOutlines: 1
-  outlineCamera: {fileID: 0}
+  outlineCamera: {fileID: 6700452429671225084}
   outlineShaderMaterial: {fileID: 0}
   renderTexture: {fileID: 0}
   extraRenderTexture: {fileID: 0}
@@ -287,10 +287,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ToonRTS_demo_Knight
       objectReference: {fileID: 0}
-    - target: {fileID: 9500000, guid: ba24e610e0a338545b447ff44a3cf1cc, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: fe3dc6fc71d2b9c4f9a69f108522a6c0, type: 2}
     - target: {fileID: 400050, guid: ba24e610e0a338545b447ff44a3cf1cc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -335,6 +331,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: ba24e610e0a338545b447ff44a3cf1cc, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: fe3dc6fc71d2b9c4f9a69f108522a6c0, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba24e610e0a338545b447ff44a3cf1cc, type: 3}
 --- !u!4 &4099775708409362163 stripped
