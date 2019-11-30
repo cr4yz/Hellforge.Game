@@ -83,11 +83,11 @@ namespace Hellforge.Core.Entities
             foreach (var affix in Affixes)
             {
                 affix.Update();
-                if(Dirty)
-                {
-                    Dirty = false;
-                    OnChanged?.Invoke();
-                }
+            }
+            if (Dirty)
+            {
+                Dirty = false;
+                OnChanged?.Invoke();
             }
         }
 
