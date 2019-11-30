@@ -6,6 +6,8 @@ namespace Hellforge.Game.Entities
     public class BaseEntity : MonoBehaviour
     {
 
+        public string DisplayName = "Base Entity";
+
         [SerializeField]
         protected bool selectable;
         private Outline _outlineComponent;

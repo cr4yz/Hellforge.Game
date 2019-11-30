@@ -128,7 +128,7 @@ namespace Hellforge.Game.Skills
             return false;
         }
 
-        public DamageInfo BuildDamageInfo(bool excludeTargets = true)
+        public DamageInfo BuildDamageInfo(bool excludeTargets = false)
         {
             var result = _BuildDamageInfo();
             if (excludeTargets)

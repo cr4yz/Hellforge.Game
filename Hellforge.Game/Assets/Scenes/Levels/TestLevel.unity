@@ -609,7 +609,7 @@ MonoBehaviour:
   m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 1
+  m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1372950423
@@ -909,6 +909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df39083c9123c24c8f1561fa139d3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DisplayName: Base Entity
   selectable: 1
 --- !u!136 &1685551276
 CapsuleCollider:
@@ -937,6 +938,7 @@ GameObject:
   - component: {fileID: 1885752503}
   - component: {fileID: 1885752502}
   - component: {fileID: 1885752505}
+  - component: {fileID: 1885752506}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1038,6 +1040,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Camera: {fileID: 0}
+--- !u!114 &1885752506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885752500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e1973293ff25a4428ee6bc994c31b97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _entityNameText: {fileID: 414057258}
+  _healthBarImage: {fileID: 1372950422}
 --- !u!1 &2021397452
 GameObject:
   m_ObjectHideFlags: 0

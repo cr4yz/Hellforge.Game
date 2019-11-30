@@ -26,7 +26,7 @@ namespace Hellforge.Game.Entities
             {
                 var dmgInfo = _damageQueue.Dequeue();
                 PostProcessDamage(dmgInfo);
-                foreach(IDamageable target in dmgInfo.Targets)
+                foreach (IDamageable target in dmgInfo.Targets)
                 {
                     target.Damage(dmgInfo);
                 }
