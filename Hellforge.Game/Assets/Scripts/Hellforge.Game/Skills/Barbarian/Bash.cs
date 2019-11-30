@@ -8,7 +8,7 @@ namespace Hellforge.Game.Skills
     {
 
         public Bash(D4Hero hero)
-            : base(hero)
+            : base(hero, "Bash")
         {
             swingDuration = 0.25f;
             castDuration = 0.1f;
@@ -32,7 +32,7 @@ namespace Hellforge.Game.Skills
             var final = Random.Range(minDmg, maxDmg + 1);
             var dmgInfo = new DamageInfo();
             dmgInfo.Targets.Add(target);
-            dmgInfo.AddDamage(DamageTypeName.Physical, final);
+            dmgInfo.AddDamage(DamageTypeName.Physical, final, minDmg, maxDmg);
             return dmgInfo;
         }
 

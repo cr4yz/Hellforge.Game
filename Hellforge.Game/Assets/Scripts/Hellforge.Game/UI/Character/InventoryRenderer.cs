@@ -15,7 +15,7 @@ namespace Hellforge.Game.UI
         private ItemEditorRenderer _itemEditor;
         private List<ItemRenderer> _itemRenderers = new List<ItemRenderer>();
 
-        private void Start()
+        private void Awake()
         {
             _itemRendererTemplate.gameObject.SetActive(false);
 

@@ -18,7 +18,7 @@ namespace Hellforge.Game.UI
 
         private List<AffixRenderer> _affixRenderers = new List<AffixRenderer>();
 
-        private void Start()
+        private void Awake()
         {
             _affixTemplate.gameObject.SetActive(false);
         }

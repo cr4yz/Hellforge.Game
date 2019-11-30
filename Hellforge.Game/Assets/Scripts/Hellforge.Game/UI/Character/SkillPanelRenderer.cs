@@ -11,7 +11,7 @@ namespace Hellforge.Game.UI
         [SerializeField]
         private SkillGroupRenderer _skillGroupTemplate;
 
-        private void Start()
+        private void Awake()
         {
             _skillGroupTemplate.gameObject.SetActive(false);
 

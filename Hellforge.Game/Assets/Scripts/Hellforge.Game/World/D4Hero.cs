@@ -57,6 +57,8 @@ namespace Hellforge.Game.Entities
                     case DamageTypeName.Physical:
                         var incPhys = Character.GetAttribute(AttributeName.IncreasedPhysicalDamage);
                         dmg.Amount += dmg.Amount * (incPhys / 100f);
+                        dmg.Min += dmg.Min * (incPhys / 100f);
+                        dmg.Max += dmg.Max * (incPhys / 100f);
                         break;
                 }
             }

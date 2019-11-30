@@ -20,12 +20,14 @@ namespace Hellforge.Game.Skills
         public bool BlocksInput { get; protected set; }
         public float BaseRange { get; protected set; } = 1f;
         public bool Queued { get; set; }
+        public readonly string SkillName;
 
         private float _timer;
 
-        protected BaseSkill(D4Hero hero)
+        protected BaseSkill(D4Hero hero, string skillName)
         {
             this.hero = hero;
+            SkillName = skillName;
         }
 
         public void Update()

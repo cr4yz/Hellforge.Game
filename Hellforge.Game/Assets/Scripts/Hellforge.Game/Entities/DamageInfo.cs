@@ -6,6 +6,8 @@ namespace Hellforge.Game.Entities
     public class Damage
     {
         public DamageTypeName DamageType;
+        public float Min;
+        public float Max;
         public float Amount;
     }
 
@@ -16,11 +18,13 @@ namespace Hellforge.Game.Entities
         public List<Damage> Damages { get; private set; } = new List<Damage>();
         public List<BaseEntity> Targets { get; private set; } = new List<BaseEntity>();
 
-        public void AddDamage(DamageTypeName damageType, float amount)
+        public void AddDamage(DamageTypeName damageType, float amount, float min = 0, float max = 0)
         {
             var existing = Damages.Find(x => x.DamageType == damageType);
             if (existing != null)
             {
+                existing.Min += min;
+                existing.Max += max;
                 existing.Amount += amount;
             }
             else
@@ -28,7 +32,9 @@ namespace Hellforge.Game.Entities
                 Damages.Add(new Damage()
                 {
                     DamageType = damageType,
-                    Amount = amount
+                    Amount = amount,
+                    Min = min,
+                    Max = max
                 });
             }
         }

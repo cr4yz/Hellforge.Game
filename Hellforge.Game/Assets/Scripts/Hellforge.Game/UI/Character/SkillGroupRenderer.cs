@@ -13,7 +13,7 @@ namespace Hellforge.Game.UI
         [SerializeField]
         private SkillIconRenderer _skillIconTemplate;
 
-        private void Start()
+        private void Awake()
         {
             _skillIconTemplate.gameObject.SetActive(false);
         }

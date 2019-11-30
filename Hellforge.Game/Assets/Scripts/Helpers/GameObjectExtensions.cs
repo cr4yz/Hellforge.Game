@@ -7,9 +7,9 @@ public static class GameObjectExtensions
     {
         LayoutRebuilder.ForceRebuildLayoutImmediate(root.GetComponent<RectTransform>());
         var layouts = root.GetComponentsInChildren<LayoutGroup>(true);
-        foreach (var layout in layouts)
+        for(int i = layouts.Length - 1; i >= 0; i--)
         {
-            LayoutRebuilder.ForceRebuildLayoutImmediate(layout.GetComponent<RectTransform>());
+            LayoutRebuilder.ForceRebuildLayoutImmediate(layouts[i].GetComponent<RectTransform>());
         }
     }
 }

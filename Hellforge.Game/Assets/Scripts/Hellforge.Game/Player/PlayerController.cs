@@ -32,7 +32,7 @@ namespace Hellforge.Game.Player
             { KeyCode.Alpha4, SkillSlot.Four },
         };
 
-        private Dictionary<SkillSlot, BaseSkill> _slottedSkills = new Dictionary<SkillSlot, BaseSkill>();
+        public Dictionary<SkillSlot, BaseSkill> SlottedSkills { get; private set; } = new Dictionary<SkillSlot, BaseSkill>();
 
         public bool IsMoving { get; private set; }
         public Vector3 Direction { get; private set; }
@@ -53,13 +53,13 @@ namespace Hellforge.Game.Player
 
         public void SlotSkill(SkillSlot slot, BaseSkill skill)
         {
-            if (_slottedSkills.ContainsKey(slot))
+            if (SlottedSkills.ContainsKey(slot))
             {
-                _slottedSkills[slot] = skill;
+                SlottedSkills[slot] = skill;
             }
             else
             {
-                _slottedSkills.Add(slot, skill);
+                SlottedSkills.Add(slot, skill);
             }
         }
 
@@ -89,7 +89,7 @@ namespace Hellforge.Game.Player
                 return true;
             }
 
-            foreach(var kvp in _slottedSkills)
+            foreach(var kvp in SlottedSkills)
             {
                 if(kvp.Value.IsBusy() && kvp.Value.BlocksInput)
                 {
@@ -136,12 +136,12 @@ namespace Hellforge.Game.Player
             foreach(var kvp in _skillKeyBinds)
             {
                 if (Input.GetKey(kvp.Key)
-                    && _slottedSkills.TryGetValue(kvp.Value, out BaseSkill skill))
+                    && SlottedSkills.TryGetValue(kvp.Value, out BaseSkill skill))
                 {
                     var hitPoint = GetMouseHitPoint(out BaseEntity targetEntity);
                     skill.Cast(targetEntity, hitPoint);
 
-                    foreach (var kvp2 in _slottedSkills)
+                    foreach (var kvp2 in SlottedSkills)
                     {
                         if(kvp2.Value != skill)
                             kvp2.Value.Queued = false;
@@ -152,7 +152,7 @@ namespace Hellforge.Game.Player
 
         private void UpdateSkills()
         {
-            foreach(var kvp in _slottedSkills)
+            foreach(var kvp in SlottedSkills)
             {
                 kvp.Value.Update();
             }
