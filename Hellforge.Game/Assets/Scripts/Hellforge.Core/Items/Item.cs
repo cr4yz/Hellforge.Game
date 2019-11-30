@@ -73,6 +73,8 @@ namespace Hellforge.Core.Items
             {
                 _equippedAffixes.Add(Character.AddAffix(explict.Name, explict.Tier, explict.Roll));
             }
+
+            Character.Dirty = true;
         }
 
         public void Unequip()
@@ -94,6 +96,8 @@ namespace Hellforge.Core.Items
             {
                 Character.RemoveAffix(affix);
             }
+
+            Character.Dirty = true;
         }
 
         public ItemAffix AddExplicitAffix(string name, int tier, int roll)
@@ -105,6 +109,7 @@ namespace Hellforge.Core.Items
                 Roll = roll
             };
             ExplicitAffixes.Add(affix);
+            Character.Dirty = true;
             return affix;
         }
 

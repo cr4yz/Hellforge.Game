@@ -7,22 +7,27 @@ using Hellforge.Core.Items;
 
 namespace Hellforge.Core.Entities
 {
+    public delegate void EmptyEventHandler();
+
     [Serializable]
     public class Character : ISerializable
     {
+
+        public event EmptyEventHandler OnChanged;
 
         public string Name;
         public string Class;
         public int Level;
         public IHellforgeEntity Entity { get; set; }
         public HellforgeAggregate Hellforge { get; private set; }
-        public CharacterAllocations Allocations { get; private set; } = new CharacterAllocations();
+        public CharacterAllocations Allocations { get; private set; }
         public List<Affix> Affixes { get; private set; } = new List<Affix>();
         public List<Item> Items { get; private set; } = new List<Item>();
         public Dictionary<AttributeName, float> Attributes { get; } = new Dictionary<AttributeName, float>();
+        public bool Dirty;
         private bool _initialized;
 
-        public Character() { }
+        public Character() { Allocations = new CharacterAllocations(this); }
 
         public void Initialize(HellforgeAggregate hellforge, IHellforgeEntity entity = null)
         {
@@ -70,13 +75,19 @@ namespace Hellforge.Core.Entities
 
             Items.Add(item);
             item.Initialize(this);
+            Dirty = true;
         }
 
-        public void Calculate()
+        public void Update()
         {
             foreach (var affix in Affixes)
             {
                 affix.Update();
+                if(Dirty)
+                {
+                    Dirty = false;
+                    OnChanged?.Invoke();
+                }
             }
         }
 
@@ -116,6 +127,8 @@ namespace Hellforge.Core.Entities
             var affix = Hellforge.GenerateAffix(this, affixName, tier, roll);
             Affixes.Add(affix);
 
+            Dirty = true;
+
             return affix;
         }
 
@@ -125,8 +138,10 @@ namespace Hellforge.Core.Entities
             {
                 return;
             }
+
             affix.Disable();
             Affixes.Remove(affix);
+            Dirty = true;
         }
 
         public Affix UpdateAffix(string affixName, int tier)
@@ -136,7 +151,10 @@ namespace Hellforge.Core.Entities
             {
                 throw new Exception("Don't use string identifier for common affixes sharing a name");
             }
+
             RemoveAffix(affixName);
+            Dirty = true;
+
             return AddAffix(affixName, tier);
         }
 
@@ -153,8 +171,10 @@ namespace Hellforge.Core.Entities
             {
                 return;
             }
+
             affix.Disable();
             Affixes.Remove(affix);
+            Dirty = true;
         }
 
         public void Activate(string eventName)
@@ -177,6 +197,8 @@ namespace Hellforge.Core.Entities
 
         public Character(SerializationInfo info, StreamingContext context)
         {
+            Allocations = new CharacterAllocations(this);
+
             foreach(SerializationEntry entry in info)
             {
                 switch(entry.Name)

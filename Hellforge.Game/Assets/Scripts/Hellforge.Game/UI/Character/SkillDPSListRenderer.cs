@@ -15,6 +15,14 @@ namespace Hellforge.Game.UI
 
         private List<SkillDPSRenderer> _skillDpsRenderers = new List<SkillDPSRenderer>();
 
+        void Awake()
+        {
+            GameWorld.Instance.Character.OnChanged += () =>
+            {
+                Render(GameWorld.Instance.Hero);
+            };
+        }
+
         void OnEnable()
         {
             _skillDpsTemplate.gameObject.SetActive(false);

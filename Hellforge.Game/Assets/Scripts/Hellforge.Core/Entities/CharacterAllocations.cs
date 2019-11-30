@@ -23,6 +23,13 @@ namespace Hellforge.Core.Entities
     {
         public List<Allocation> Points { get; set; } = new List<Allocation>();
 
+        private Character _character;
+
+        public CharacterAllocations(Character character)
+        {
+            _character = character;
+        }
+
         public int GetPoints(AllocationType type, string identifier)
         {
             var allocation = Points.Find(x => x.Type == type && x.Identifier == identifier);
@@ -49,6 +56,8 @@ namespace Hellforge.Core.Entities
                     Amount = amount
                 });
             }
+
+            _character.Dirty = true;
         }
 
         public void IncrementAllocation(AllocationType type, string identifier, int amount)
@@ -67,6 +76,8 @@ namespace Hellforge.Core.Entities
                     Amount = amount
                 });
             }
+
+            _character.Dirty = true;
         }
 
         public void RemoveAllocation(string identifier)
@@ -76,6 +87,8 @@ namespace Hellforge.Core.Entities
             {
                 Points.Remove(allocation);
             }
+
+            _character.Dirty = true;
         }
     }
 }

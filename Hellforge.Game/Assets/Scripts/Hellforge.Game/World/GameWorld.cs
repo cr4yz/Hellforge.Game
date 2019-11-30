@@ -81,7 +81,7 @@ namespace Hellforge.Game.World
 
         private void Update()
         {
-            Character?.Calculate();
+            Character?.Update();
         }
 
         private List<string> GetScenesInBuild()
