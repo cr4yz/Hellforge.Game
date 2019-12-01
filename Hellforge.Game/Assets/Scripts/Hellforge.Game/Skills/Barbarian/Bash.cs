@@ -35,8 +35,8 @@ namespace Hellforge.Game.Skills
         {
             var rank = hero.Character.Allocations.GetPoints(Core.Entities.AllocationType.Skill, "Bash");
             rank = Mathf.Max(rank - 1, 0);
-            var minDmg = GetSkillDataValue<int>("Bash", rank, "Min");
-            var maxDmg = GetSkillDataValue<int>("Bash", rank, "Max");
+            var minDmg = GetSkillDataValue<int>(rank, "Min");
+            var maxDmg = GetSkillDataValue<int>(rank, "Max");
             var final = Random.Range(minDmg, maxDmg + 1);
             var dmgInfo = new DamageInfo();
             dmgInfo.Targets.Add(target);

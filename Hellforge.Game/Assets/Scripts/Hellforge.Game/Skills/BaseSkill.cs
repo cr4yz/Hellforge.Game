@@ -180,9 +180,9 @@ namespace Hellforge.Game.Skills
             OnStatusChanged(oldStatus, Status);
         }
 
-        public T GetSkillDataValue<T>(string skillName, int rank, string dataKey)
+        public T GetSkillDataValue<T>(int rank, string dataKey)
         {
-            var skillEntry = hero.Character.Hellforge.GameData.Skills.First(x => x.Name == skillName);
+            var skillEntry = hero.Character.Hellforge.GameData.Skills.First(x => x.Name == SkillName);
             if(skillEntry == null)
             {
                 return default;
