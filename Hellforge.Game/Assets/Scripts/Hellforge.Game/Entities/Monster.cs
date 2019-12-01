@@ -55,7 +55,11 @@ namespace Hellforge.Game.Entities
             var defense = Defense.FromAttributes(Attributes);
             var finalDamage = defense.ProcessDamage(dmgInfo);
             Health -= (int)finalDamage.CalculateTotal();
-            Console.print("Damage me for:" + finalDamage.CalculateTotal());
+
+            if(Health <= 0)
+            {
+                GameObject.Destroy(gameObject);
+            }
         }
 
         public static Monster Spawn(string monsterName, Vector3 position)
