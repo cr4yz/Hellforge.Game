@@ -102,6 +102,7 @@ namespace Hellforge.Game.UI
             _renderedAffix.Conditions = LsvToArr(_conditionsInput.text);
             _renderedAffix.Activators = LsvToArr(_conditionsInput.text);
             _renderedAffix.Data = TextToTiers(_tierDataInput.text);
+            _renderedAffix.ForTalent = _forTalentToggle.isOn;
         }
 
         private string ArrToLsv(string[] input)
