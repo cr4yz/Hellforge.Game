@@ -23,19 +23,21 @@ namespace Hellforge.Game.UI
         {
             _deleteButton.onClick.AddListener(() =>
             {
-                item.ExplicitAffixes.Remove(affix);
+                item.RemoveExplicitAffix(affix);
                 GameObject.Destroy(gameObject);
             });
 
             _rollSlider.onValueChanged.AddListener((float value) =>
             {
                 affix.Roll = (int)value;
+                item.Dirty = true;
                 UpdateDescription(item, affix);
             });
 
             _tierSlider.onValueChanged.AddListener((float value) =>
             {
                 affix.Tier = (int)value;
+                item.Dirty = true;
                 UpdateDescription(item, affix);
             });
 

@@ -80,10 +80,20 @@ namespace Hellforge.Core.Entities
 
         public void Update()
         {
+            foreach(var item in Items)
+            {
+                if(item.Dirty && item.Equipped)
+                {
+                    item.Unequip();
+                    item.Equip();
+                }
+            }
+
             foreach (var affix in Affixes)
             {
                 affix.Update();
             }
+
             if (Dirty)
             {
                 Dirty = false;

@@ -26,6 +26,7 @@ namespace Hellforge.Core.Items
         public bool Equipped { get; private set; }
         public Character Character { get; private set; }
         public List<ItemAffix> ExplicitAffixes { get; private set; } = new List<ItemAffix>();
+        public bool Dirty { get; set; }
         private List<Affix> _equippedAffixes = new List<Affix>();
         private bool _equipApplied;
 
@@ -60,9 +61,6 @@ namespace Hellforge.Core.Items
                 throw new Exception("That item isn't initialized yet");
             }
 
-            Equipped = true;
-            _equipApplied = true;
-
             var itemData = Character.Hellforge.GameData.ItemBases.FirstOrDefault(x => x.Name == BaseName);
             foreach(var implict in itemData.ImplicitAffixes)
             {
@@ -74,7 +72,10 @@ namespace Hellforge.Core.Items
                 _equippedAffixes.Add(Character.AddAffix(explict.Name, explict.Tier, explict.Roll));
             }
 
+            Dirty = false;
             Character.Dirty = true;
+            Equipped = true;
+            _equipApplied = true;
         }
 
         public void Unequip()
@@ -110,7 +111,14 @@ namespace Hellforge.Core.Items
             };
             ExplicitAffixes.Add(affix);
             Character.Dirty = true;
+            Dirty = true;
             return affix;
+        }
+
+        public void RemoveExplicitAffix(ItemAffix affix)
+        {
+            ExplicitAffixes.Remove(affix);
+            Dirty = true;
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
