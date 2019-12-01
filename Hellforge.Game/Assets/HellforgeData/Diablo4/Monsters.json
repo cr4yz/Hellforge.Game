@@ -1,0 +1,15 @@
+{
+  "Monsters": [
+    {
+      "Name": "Cyclops",
+      "Health": 500,
+      "Attributes": {
+        "PhysicalDamageReduction": 45,
+        "FireResistance": 45,
+        "ColdResistance": 25,
+        "PoisonResistance": 50,
+        "AttackSpeed": 25
+      }
+    }
+  ]
+}

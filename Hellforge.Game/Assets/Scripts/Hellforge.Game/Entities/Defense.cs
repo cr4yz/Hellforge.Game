@@ -75,6 +75,37 @@ namespace Hellforge.Game.Entities
             return result;
         }
 
+        public static Defense FromAttributes(Dictionary<AttributeName, float> attributes)
+        {
+            var result = new Defense();
+
+            foreach (var attr in attributes)
+            {
+                switch (attr.Key)
+                {
+                    case AttributeName.PhysicalDamageReduction:
+                        result.AddDefense(DamageTypeName.Physical, attr.Value);
+                        break;
+                    case AttributeName.ColdResistance:
+                        result.AddDefense(DamageTypeName.Cold, attr.Value);
+                        break;
+                    case AttributeName.LightningResistance:
+                        result.AddDefense(DamageTypeName.Lightning, attr.Value);
+                        break;
+                    case AttributeName.FireResistance:
+                        result.AddDefense(DamageTypeName.Fire, attr.Value);
+                        break;
+                    case AttributeName.NonPhysicalDamageReduction:
+                        result.AddDefense(DamageTypeName.Cold, attr.Value);
+                        result.AddDefense(DamageTypeName.Lightning, attr.Value);
+                        result.AddDefense(DamageTypeName.Fire, attr.Value);
+                        break;
+                }
+            }
+
+            return result;
+        }
+
     }
 }
 

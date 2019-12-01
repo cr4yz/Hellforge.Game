@@ -73,6 +73,10 @@
       "Category": "Offense"
     },
     {
+      "Name": "PhysicalDamageReduction",
+      "Category": "Defense"
+    },
+    {
       "Name": "DamageReduction",
       "Category": "Defense"
     },

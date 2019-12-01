@@ -281,6 +281,13 @@ public class AttributeEntry
     public string Category;
 }
 
+public class MonsterEntry
+{
+    public string Name;
+    public int Health;
+    public Dictionary<string, int> Attributes;
+}
+
 public class GameDataObject
 {
     public string[] Classes;
@@ -291,4 +298,5 @@ public class GameDataObject
     public string[] ItemSlots;
     public ItemBaseEntry[] ItemBases;
     public SkillEntry[] Skills;
+    public MonsterEntry[] Monsters;
 }
