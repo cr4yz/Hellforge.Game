@@ -17,6 +17,8 @@ namespace Hellforge.Game.UI
         [SerializeField]
         private Dropdown _typeDropdown;
         [SerializeField]
+        private Toggle _forTalentToggle;
+        [SerializeField]
         private Dropdown _attributeDropdown;
         [SerializeField]
         private InputField _invokeInput;
@@ -53,6 +55,7 @@ namespace Hellforge.Game.UI
             _conditionsInput.text = ArrToLsv(affix.Conditions);
             _activatorsInput.text = ArrToLsv(affix.Activators);
             _tierDataInput.text = TiersToText(affix.Data);
+            _forTalentToggle.isOn = affix.ForTalent;
 
             _saveButton.onClick.RemoveAllListeners();
             _deleteButton.onClick.RemoveAllListeners();
