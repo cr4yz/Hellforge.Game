@@ -80,6 +80,12 @@ namespace Hellforge.Game.Skills
 
         public bool Cast(BaseEntity target, Vector3 destination)
         {
+            if (!castWithoutTarget && target == null)
+            {
+                hero.Controller.MoveToDestination(destination);
+                return false;
+            }
+
             if (Status != SkillStatus.Idle)
             {
                 return false;
@@ -91,12 +97,6 @@ namespace Hellforge.Game.Skills
             if (!IsInRange(destination))
             {
                 Queued = true;
-                hero.Controller.MoveToDestination(destination);
-                return false;
-            }
-
-            if (!castWithoutTarget && target == null)
-            {
                 hero.Controller.MoveToDestination(destination);
                 return false;
             }
@@ -121,11 +121,16 @@ namespace Hellforge.Game.Skills
         public bool IsBusy()
         {
             if(Status == SkillStatus.Swinging 
-                || Status == SkillStatus.Casting 
-                || Status == SkillStatus.Recovering)
+                || Status == SkillStatus.Casting)
             {
                 return true;
             }
+            // improve character responsiveness
+            if (Status == SkillStatus.Recovering && _timer <= recoverDuration / 2f)
+            {
+                return false;
+            }
+
             return false;
         }
 

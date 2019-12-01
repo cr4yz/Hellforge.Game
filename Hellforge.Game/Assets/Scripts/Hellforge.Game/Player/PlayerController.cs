@@ -93,7 +93,7 @@ namespace Hellforge.Game.Player
 
             foreach(var kvp in SlottedSkills)
             {
-                if(kvp.Value.IsBusy() && kvp.Value.BlocksInput)
+                if(kvp.Value.BlocksInput && kvp.Value.IsBusy())
                 {
                     return true;
                 }
