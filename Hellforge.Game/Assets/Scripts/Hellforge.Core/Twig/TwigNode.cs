@@ -1,8 +1,10 @@
-﻿
+﻿using Newtonsoft.Json;
+
 namespace Hellforge.Core.Twig
 {
     public class TwigNode
     {
+        [JsonIgnore]
         public TwigGraph Graph;
         public int Id;
         public float X;

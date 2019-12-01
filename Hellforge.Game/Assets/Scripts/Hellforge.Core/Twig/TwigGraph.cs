@@ -4,6 +4,7 @@ namespace Hellforge.Core.Twig
 {
     public class TwigGraph 
     {
+        [JsonIgnore]
         public HellforgeAggregate Hellforge;
         public string Class;
         public int Width;

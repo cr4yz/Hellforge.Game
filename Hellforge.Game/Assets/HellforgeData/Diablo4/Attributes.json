@@ -17,7 +17,7 @@
       "Category": "Defense"
     },
     {
-      "Name": "MaximumResource",
+      "Name": "MaximumMana",
       "Category": "Resource"
     },
     {
@@ -30,6 +30,10 @@
     },
     {
       "Name": "ResourceRegeneration",
+      "Category": "Resource"
+    },
+    {
+      "Name": "ReducedManaCost",
       "Category": "Resource"
     },
     {

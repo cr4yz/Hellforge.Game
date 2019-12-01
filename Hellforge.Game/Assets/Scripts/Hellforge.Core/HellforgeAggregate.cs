@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.IO;
 using NLua;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Hellforge.Core.Affixes;
 using Hellforge.Core.Entities;
@@ -27,7 +28,7 @@ namespace Hellforge.Core
             LoadData(_dataDirectory);
         }
 
-        public void LoadData(string dataDirectory)
+        public void LoadData(string dataDirectory, bool defaultToCompiled = true)
         {
             _dataDirectory = dataDirectory;
 
@@ -35,14 +36,29 @@ namespace Hellforge.Core
             LuaContext = new Lua();
             var dataSource = new JObject();
 
-            foreach (string file in Directory.EnumerateFiles(dataDirectory, "*.*", SearchOption.AllDirectories))
+            var files = Directory.GetFiles(dataDirectory, "*.*", SearchOption.AllDirectories);
+            var jsonFinished = false;
+
+            if (defaultToCompiled)
+            {
+                var compiledFile = files.FirstOrDefault(x => x.EndsWith("compiled.json"));
+
+                if (compiledFile != null)
+                {
+                    var source = File.ReadAllText(compiledFile);
+                    dataSource.Merge(JObject.Parse(source));
+                    jsonFinished = true;
+                }
+            }
+
+            foreach (string file in files)
             {
                 var ext = Path.GetExtension(file);
                 if(ext == ".lua")
                 {
                     LuaContext.DoFile(file);
                 }
-                else if(ext == ".json")
+                else if(!jsonFinished && ext == ".json")
                 {
                     var text = File.ReadAllText(file);
                     dataSource.Merge(JObject.Parse(text));
@@ -59,6 +75,12 @@ namespace Hellforge.Core
                     node.Graph = skillTree;
                 }
             }
+        }
+
+        public void CompileToSingleFile()
+        {
+            var filePath = _dataDirectory + "\\compiled.json";
+            File.WriteAllText(filePath, JsonConvert.SerializeObject(GameData));
         }
 
         public int GetAffixTierCount(string affix)
@@ -192,11 +214,12 @@ public class SkillEntry
 
 public class AffixEntry
 {
-    public string Name;
+    public string Name = "New Affix";
     public string Inherits;
-    public string Type;
-    public string Attribute;
-    public string Slot;
+    public string Type = "AttributeModifier";
+    public string Attribute = "Attack";
+    public string Slot = "Prefix";
+    public string ItemSlot = "Ring";
     public string Description;
     public string Invoke;
     public AffixDataEntry[] Data;

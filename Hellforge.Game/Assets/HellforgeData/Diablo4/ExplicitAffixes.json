@@ -1,0 +1,50 @@
+{
+  "Affixes": [
+    {
+      "Name": "RingReducedManaCost",
+      "Type": "AttributeModifier",
+      "Attribute": "ReducedManaCost",
+      "ItemSlot": "Ring",
+      "Slot": "Prefix",
+      "Data": [
+        {
+          "Tier": 0,
+          "Minimum": 1,
+          "Maximum": 4
+        }
+      ],
+      "Description": "#roll% reduced mana cost for skills (Sorcerer Only)"
+    },
+    {
+      "Name": "RingMaximumMana",
+      "Type": "AttributeModifier",
+      "Attribute": "MaximumMana",
+      "ItemSlot": "Ring",
+      "Slot": "Prefix",
+      "Data": [
+        {
+          "Tier": 0,
+          "Minimum": 6,
+          "Maximum": 12
+        }
+      ],
+      "Description": "+#roll Maximum Mana (Sorcerer Only)"
+    },
+    {
+      "Name": "RingCriticalStrikeDamage",
+      "Type": "AttributeModifier",
+      "Attribute": "CriticalStrikeDamage",
+      "ItemSlot": "Ring",
+      "Slot": "Prefix",
+      "DisplayName": "Malicious",
+      "Data": [
+        {
+          "Tier": 0,
+          "Minimum": 6,
+          "Maximum": 12
+        }
+      ],
+      "Description": "#roll% Critical Strike Damage"
+    }
+  ]
+}
