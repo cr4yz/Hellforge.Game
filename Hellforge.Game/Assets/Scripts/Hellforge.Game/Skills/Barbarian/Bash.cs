@@ -18,6 +18,14 @@ namespace Hellforge.Game.Skills
             BlocksInput = true;
         }
 
+        protected override void OnStatusChanged(SkillStatus prevStatus, SkillStatus newStatus)
+        {
+            if(newStatus == SkillStatus.Swinging)
+            {
+                hero.Controller.Animator.PlayState("BasicSwing", AnimationTime, true);
+            }
+        }
+
         protected override void BeginCast()
         {
             hero.QueueDamage(BuildDamageInfo()); 

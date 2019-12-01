@@ -33,6 +33,7 @@ namespace Hellforge.Game.Player
         };
 
         public Dictionary<SkillSlot, BaseSkill> SlottedSkills { get; private set; } = new Dictionary<SkillSlot, BaseSkill>();
+        public PlayerAnimator Animator { get; private set; }
 
         public bool IsMoving { get; private set; }
         public Vector3 Direction { get; private set; }
@@ -40,6 +41,7 @@ namespace Hellforge.Game.Player
 
         private void Start()
         {
+            Animator = GetComponent<PlayerAnimator>();
             _agent = GetComponent<NavMeshAgent>();
             _path = new NavMeshPath();
         }

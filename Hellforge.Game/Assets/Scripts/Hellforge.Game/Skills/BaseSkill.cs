@@ -19,6 +19,7 @@ namespace Hellforge.Game.Skills
         public SkillStatus Status { get; protected set; }
         public bool BlocksInput { get; protected set; }
         public float BaseRange { get; protected set; } = 1f;
+        public float AnimationTime => swingDuration + recoverDuration + castDuration;
         public bool Queued { get; set; }
         public readonly string SkillName;
 
@@ -167,11 +168,11 @@ namespace Hellforge.Game.Skills
                     Status = SkillStatus.Recovering;
                     break;
                 case SkillStatus.Recovering:
-                    _timer = cooldownDuration;
+                    _timer = recoverDuration;
                     Status = SkillStatus.Cooldown;
                     break;
                 case SkillStatus.Cooldown:
-                    _timer = 0;
+                    _timer = cooldownDuration;
                     Status = SkillStatus.Idle;
                     break;
             }
