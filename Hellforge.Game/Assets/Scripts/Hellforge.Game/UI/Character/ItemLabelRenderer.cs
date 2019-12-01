@@ -22,18 +22,34 @@ namespace Hellforge.Game.UI
             _slotText.text = data.Slot;
 
             var affixText = string.Empty;
-
+            // todo : this should be done in 1 loop..
             foreach(var afx in data.ImplicitAffixes)
             {
-                var affix = item.Character.Hellforge.GameData.Affixes.First(x => x.Name == afx.Name);
-                var desc = affix.ParseDescription(afx.Tier, item.BaseRoll);
+                string desc;
+                var affix = item.Character.Hellforge.GameData.Affixes.FirstOrDefault(x => x.Name == afx.Name);
+                if (affix == null)
+                {
+                    desc = "AFFIX DATA MISSING!";
+                }
+                else
+                {
+                    desc = affix.ParseDescription(afx.Tier, item.BaseRoll);
+                }
                 affixText += desc + "\n";
             }
 
             foreach(var afx in item.ExplicitAffixes)
             {
-                var affix = item.Character.Hellforge.GameData.Affixes.First(x => x.Name == afx.Name);
-                var desc = affix.ParseDescription(afx.Tier, afx.Roll);
+                string desc;
+                var affix = item.Character.Hellforge.GameData.Affixes.FirstOrDefault(x => x.Name == afx.Name);
+                if (affix == null)
+                {
+                    desc = "AFFIX DATA MISSING!";
+                }
+                else
+                {
+                    desc = affix.ParseDescription(afx.Tier, item.BaseRoll);
+                }
                 affixText += desc + "\n";
             }
 

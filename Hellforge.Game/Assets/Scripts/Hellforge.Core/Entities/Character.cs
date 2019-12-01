@@ -125,6 +125,11 @@ namespace Hellforge.Core.Entities
         public Affix AddAffix(string affixName, int tier = 0, int roll = 0)
         {
             var affix = Hellforge.GenerateAffix(this, affixName, tier, roll);
+            if(affix == null)
+            {
+                return null;
+            }
+
             Affixes.Add(affix);
 
             Dirty = true;

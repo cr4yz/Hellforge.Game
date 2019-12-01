@@ -44,7 +44,14 @@ namespace Hellforge.Game.UI
 
         private void UpdateDescription(Item item, ItemAffix affix)
         {
-            var affixData = D4Data.Instance.Hellforge.GameData.Affixes.First(x => x.Name == affix.Name);
+            var affixData = D4Data.Instance.Hellforge.GameData.Affixes.FirstOrDefault(x => x.Name == affix.Name);
+            if(affixData == null)
+            {
+                _affixNameText.text = "AFFIX DATA MISSING!";
+                _rollSlider.enabled = false;
+                _tierSlider.enabled = false;
+                return;
+            }
             _rollSlider.minValue = 0;
             _rollSlider.maxValue = 100;
             _rollSlider.wholeNumbers = true;

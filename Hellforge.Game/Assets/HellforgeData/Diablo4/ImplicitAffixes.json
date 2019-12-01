@@ -27,34 +27,6 @@
         }
       ],
       "Description": "#roll to Defense"
-    },
-    {
-      "Name": "ImplicitBootsMovementSpeed",
-      "Type": "AttributeModifier",
-      "Attribute": "MovementSpeed",
-      "Data": [
-        {
-          "Tier": 0,
-          "Minimum": 4,
-          "Maximum": 8
-        },
-        {
-          "Tier": 1,
-          "Minimum": 9,
-          "Maximum": 14
-        },
-        {
-          "Tier": 2,
-          "Minimum": 15,
-          "Maximum": 22
-        },
-        {
-          "Tier": 3,
-          "Minimum": 23,
-          "Maximum": 30
-        }
-      ],
-      "Description": "#roll% increased Movement Speed"
     }
   ]
 }

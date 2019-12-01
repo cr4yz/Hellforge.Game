@@ -73,7 +73,7 @@ namespace Hellforge.Core
 
         public Affix GenerateAffix(Character character, string name, int tier = 0, int roll = 0)
         {
-            var affixData = GameData.Affixes.First(x => x.Name == name);
+            var affixData = GameData.Affixes.FirstOrDefault(x => x.Name == name);
 
             if(affixData == null)
             {
