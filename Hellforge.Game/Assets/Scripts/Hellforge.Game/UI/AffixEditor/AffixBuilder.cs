@@ -100,7 +100,7 @@ namespace Hellforge.Game.UI
             _renderedAffix.Slot = _affixSlotDropdown.options[_affixSlotDropdown.value].text;
             _renderedAffix.Description = _descriptionInput.text;
             _renderedAffix.Conditions = LsvToArr(_conditionsInput.text);
-            _renderedAffix.Activators = LsvToArr(_conditionsInput.text);
+            _renderedAffix.Activators = LsvToArr(_activatorsInput.text);
             _renderedAffix.Data = TextToTiers(_tierDataInput.text);
             _renderedAffix.ForTalent = _forTalentToggle.isOn;
         }
@@ -136,11 +136,19 @@ namespace Hellforge.Game.UI
 
         private string[] LsvToArr(string input)
         {
+            if(string.IsNullOrEmpty(input))
+            {
+                return null;
+            }
             return input.Split('\n');
         }
 
         private AffixDataEntry[] TextToTiers(string input)
         {
+            if(string.IsNullOrEmpty(input))
+            {
+                return null;
+            }
             var result = new List<AffixDataEntry>();
             var regex = new Regex(@"([^=|^,|^\W]+)=([^,|^\*]+)");
             var lines = input.Split('\n');

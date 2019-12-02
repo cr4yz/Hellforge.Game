@@ -10,10 +10,11 @@ namespace Hellforge.Game.UI
     public class ItemBaseDropdown : MonoBehaviour
     {
 
-        void Start()
+        void Awake()
         {
             if(D4Data.Instance == null)
             {
+                Debug.LogError("Hellforge not loaded yet..");
                 return;
             }
 
