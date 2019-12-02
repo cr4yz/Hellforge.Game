@@ -102,7 +102,7 @@ namespace Hellforge.Core
                 return null;
             }
 
-            if(affixData.Inherits != null)
+            if(!string.IsNullOrEmpty(affixData.Inherits))
             {
                 var parent = GameData.Affixes.First(x => x.Name == affixData.Inherits);
                 if(parent != null)
