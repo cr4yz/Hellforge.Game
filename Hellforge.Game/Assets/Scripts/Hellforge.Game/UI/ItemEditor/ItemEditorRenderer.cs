@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Hellforge.Core.Items;
@@ -36,11 +37,18 @@ namespace Hellforge.Game.UI
 
             _itemNameInput.text = item.ItemName ?? item.BaseName;
             _itemBaseDropdown.value = _itemBaseDropdown.options.FindIndex(x => x.text == item.BaseName);
+            SetAffixDropdownOptions(item.BaseName);
 
             foreach(var affix in item.ExplicitAffixes)
             {
                 RenderAffix(item, affix);
             }
+
+            _itemBaseDropdown.onValueChanged.AddListener((int value) =>
+            {
+                var itemBaseName = _itemBaseDropdown.options[value].text;
+                SetAffixDropdownOptions(itemBaseName);
+            });
 
             _itemNameInput.onEndEdit.AddListener((string value) =>
             {
@@ -55,10 +63,18 @@ namespace Hellforge.Game.UI
             });
         }
 
+        private void SetAffixDropdownOptions(string itemBaseName)
+        {
+            var itemBase = D4Data.Instance.Hellforge.GameData.ItemBases.First(x => x.Name == itemBaseName);
+            _itemAffixDropdown.GetComponent<ItemAffixDropdown>().ItemSlotAffixes(itemBase.Slot);
+        }
+
         private void Wipe()
         {
             _addAffixButton.onClick.RemoveAllListeners();
-            
+            _itemNameInput.onEndEdit.RemoveAllListeners();
+            _itemBaseDropdown.onValueChanged.RemoveAllListeners();
+
             foreach (var itemAffixRenderer in _itemAffixRenderers)
             {
                 if(itemAffixRenderer != null)

@@ -32,6 +32,22 @@ namespace Hellforge.Game.UI
             dropdown.AddOptions(affixes);
         }
 
+        public void ItemSlotAffixes(string itemSlot)
+        {
+            var dropdown = GetComponent<Dropdown>();
+            var affixes = new List<string>();
+            foreach (var affix in D4Data.Instance.Hellforge.GameData.Affixes)
+            {
+                if (affix.ForTalent || affix.ItemSlot != itemSlot)
+                {
+                    continue;
+                }
+                affixes.Add(affix.Name);
+            }
+            dropdown.ClearOptions();
+            dropdown.AddOptions(affixes);
+        }
+
     }
 }
 
