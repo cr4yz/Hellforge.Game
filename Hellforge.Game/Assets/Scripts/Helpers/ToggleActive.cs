@@ -31,6 +31,10 @@ public class ToggleActive : MonoBehaviour
 
     public void Toggle()
     {
+        if(Target == null)
+        {
+            Target = gameObject;
+        }
         Target.SetActive(!Target.activeSelf);
     }
 }
