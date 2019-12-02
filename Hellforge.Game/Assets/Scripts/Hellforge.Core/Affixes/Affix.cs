@@ -27,7 +27,8 @@ namespace Hellforge.Core.Affixes
         public readonly int TierCount;
         public readonly AffixEntry AffixData;
         private AffixStatus _status;
-        public int TierDataIndex => Math.Max(Tier - 1, 0);
+        //public int TierDataIndex => Math.Max(Tier - 1, 0);
+        public int TierDataIndex => Tier;
 
         public Affix(Character character, AffixEntry affixData, int tier = 0, int roll = 100)
         {

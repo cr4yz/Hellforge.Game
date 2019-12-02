@@ -48,7 +48,7 @@ namespace Hellforge.Game.UI
                 }
                 else
                 {
-                    desc = affix.ParseDescription(afx.Tier, item.BaseRoll);
+                    desc = affix.ParseDescription(afx.Tier, afx.Roll);
                 }
                 affixText += desc + "\n";
             }

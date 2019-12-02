@@ -11,7 +11,7 @@ namespace Hellforge.Core.Affixes
             : base(affix)
         {
             var amount = Affix.AffixData.Data[Affix.TierDataIndex].Amount;
-
+            
             if(amount == 0)
             {
                 var minRoll = Affix.AffixData.Data[Affix.TierDataIndex].Minimum;
