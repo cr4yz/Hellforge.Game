@@ -77,6 +77,10 @@
       "Category": "Offense"
     },
     {
+      "Name": "CriticalStrikeDamage",
+      "Category": "Offense"
+    },
+    {
       "Name": "PhysicalDamageReduction",
       "Category": "Defense"
     },
