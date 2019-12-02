@@ -46,13 +46,6 @@ namespace Hellforge.Game.UI
 
         public void Render(AffixEntry affix)
         {
-            StartCoroutine(RenderNextFrame(affix));
-        }
-
-        private IEnumerator RenderNextFrame(AffixEntry affix)
-        {
-            yield return 0;
-
             _renderedAffix = affix;
             _identifierInput.text = affix.Name;
             _inheritsInput.text = affix.Inherits;
