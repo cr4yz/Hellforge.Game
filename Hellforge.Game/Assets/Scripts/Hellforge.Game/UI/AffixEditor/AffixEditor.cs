@@ -128,8 +128,8 @@ namespace Hellforge.Game.UI
                 clone.GetComponentInChildren<Text>().text = affix.Name;
                 clone.onClick.AddListener(delegate ()
                 {
-                    _affixBuilder.Render(affix);
                     _affixBuilder.gameObject.SetActive(true);
+                    _affixBuilder.Render(affix);
                 });
                 clone.gameObject.SetActive(true);
                 _affixBtns.Add(clone.gameObject);

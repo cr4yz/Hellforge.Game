@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
@@ -45,6 +46,13 @@ namespace Hellforge.Game.UI
 
         public void Render(AffixEntry affix)
         {
+            StartCoroutine(RenderNextFrame(affix));
+        }
+
+        private IEnumerator RenderNextFrame(AffixEntry affix)
+        {
+            yield return 0;
+
             _renderedAffix = affix;
             _identifierInput.text = affix.Name;
             _inheritsInput.text = affix.Inherits;
