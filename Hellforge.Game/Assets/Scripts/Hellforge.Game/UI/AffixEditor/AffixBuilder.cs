@@ -38,6 +38,8 @@ namespace Hellforge.Game.UI
         private Button _saveButton;
         [SerializeField]
         private Button _deleteButton;
+        [SerializeField]
+        private Button _duplicateButton;
 
         private AffixEntry _renderedAffix;
 
@@ -59,6 +61,7 @@ namespace Hellforge.Game.UI
 
             _saveButton.onClick.RemoveAllListeners();
             _deleteButton.onClick.RemoveAllListeners();
+            _duplicateButton.onClick.RemoveAllListeners();
 
             _saveButton.onClick.AddListener(delegate ()
             {
@@ -73,24 +76,18 @@ namespace Hellforge.Game.UI
                 _renderedAffix = null;
                 gameObject.SetActive(false);
             });
+
+            _duplicateButton.onClick.AddListener(delegate ()
+            {
+                var duplicate = InputToAffixEntry();
+                duplicate.Name += "(DUPLICATE)";
+                _affixEditor.AddAffix(duplicate);
+                Render(duplicate);
+            });
         }
 
         private void UpdateRenderedAffix()
         {
-            //return new AffixEntry()
-            //{
-            //    Name = _identifierInput.text,
-            //    Inherits = _inheritsInput.text,
-            //    Type = _typeDropdown.options[_typeDropdown.value].text,
-            //    Attribute = _attributeDropdown.options[_attributeDropdown.value].text,
-            //    Invoke = _invokeInput.text,
-            //    ItemSlot = _itemSlotDropdown.options[_itemSlotDropdown.value].text,
-            //    Slot = _affixSlotDropdown.options[_affixSlotDropdown.value].text,
-            //    Description = _descriptionInput.text,
-            //    Conditions = LsvToArr(_conditionsInput.text),
-            //    Activators = LsvToArr(_conditionsInput.text),
-            //    Data = TextToTiers(_tierDataInput.text)
-            //};
             _renderedAffix.Name = _identifierInput.text;
             _renderedAffix.Inherits = _inheritsInput.text;
             _renderedAffix.Type = _typeDropdown.options[_typeDropdown.value].text;
@@ -103,6 +100,25 @@ namespace Hellforge.Game.UI
             _renderedAffix.Activators = LsvToArr(_activatorsInput.text);
             _renderedAffix.Data = TextToTiers(_tierDataInput.text);
             _renderedAffix.ForTalent = _forTalentToggle.isOn;
+        }
+
+        private AffixEntry InputToAffixEntry()
+        {
+            return new AffixEntry()
+            {
+                Name = _identifierInput.text,
+                Inherits = _inheritsInput.text,
+                Type = _typeDropdown.options[_typeDropdown.value].text,
+                Attribute = _attributeDropdown.options[_attributeDropdown.value].text,
+                Invoke = _invokeInput.text,
+                ItemSlot = _itemSlotDropdown.options[_itemSlotDropdown.value].text,
+                Slot = _affixSlotDropdown.options[_affixSlotDropdown.value].text,
+                Description = _descriptionInput.text,
+                Conditions = LsvToArr(_conditionsInput.text),
+                Activators = LsvToArr(_conditionsInput.text),
+                Data = TextToTiers(_tierDataInput.text),
+                ForTalent = _forTalentToggle.isOn
+            };
         }
 
         private string ArrToLsv(string[] input)
