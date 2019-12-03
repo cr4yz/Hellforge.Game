@@ -18960,7 +18960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7694d54bcab1d9844b4111b62c7231d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _affixEditor: {fileID: 0}
+  _affixEditor: {fileID: 1664890808}
   _identifierInput: {fileID: 7080611543474261000}
   _inheritsInput: {fileID: 7080611543727690855}
   _typeDropdown: {fileID: 7080611544732800046}
