@@ -17,7 +17,7 @@ namespace Hellforge.Game.Entities
         public AttackTypeName AttackType;
         public List<Damage> Damages { get; private set; } = new List<Damage>();
         public List<BaseEntity> Targets { get; private set; } = new List<BaseEntity>();
-        public int AttackAttribute;
+        public int AttackAttribute = 1;
 
         public void AddDamage(DamageTypeName damageType, float amount, float min = 0, float max = 0)
         {

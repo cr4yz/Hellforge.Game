@@ -13,7 +13,7 @@ namespace Hellforge.Game.Entities
         }
 
         private List<DamageReduction> _damageReductions = new List<DamageReduction>();
-        public int DefenseAttribute;
+        public int DefenseAttribute = 1;
 
         public void ClearDefenses()
         {
@@ -41,16 +41,13 @@ namespace Hellforge.Game.Entities
         public DamageInfo ProcessDamage(DamageInfo dmgInfo)
         {
             var result = new DamageInfo();
-            float modifier = 1f;
-
-            if(DefenseAttribute != 0)
-            {
-                modifier = dmgInfo.AttackAttribute / DefenseAttribute;
-            }
+            var def = System.Math.Max(DefenseAttribute, 1);
+            var atk = System.Math.Max(dmgInfo.AttackAttribute, 1);
+            var modifier = (float)atk / def;
 
             foreach(var dmg in dmgInfo.Damages)
             {
-                result.AddDamage(dmg.DamageType, ReduceDamage(dmg));
+                result.AddDamage(dmg.DamageType, ReduceDamage(dmg, modifier));
             }
 
             return result;
