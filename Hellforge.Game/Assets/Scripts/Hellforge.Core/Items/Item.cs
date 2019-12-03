@@ -20,7 +20,7 @@ namespace Hellforge.Core.Items
     {
 
         public string ItemName;
-        public readonly string BaseName;
+        public string BaseName;
         public readonly int BaseRoll;
         public readonly int ItemLevel;
         public bool Equipped { get; private set; }
@@ -62,9 +62,13 @@ namespace Hellforge.Core.Items
             }
 
             var itemData = Character.Hellforge.GameData.ItemBases.FirstOrDefault(x => x.Name == BaseName);
-            foreach(var implict in itemData.ImplicitAffixes)
+
+            if(itemData.ImplicitAffixes != null)
             {
-                _equippedAffixes.Add(Character.AddAffix(implict.Name, implict.Tier, BaseRoll));
+                foreach (var implict in itemData.ImplicitAffixes)
+                {
+                    _equippedAffixes.Add(Character.AddAffix(implict.Name, implict.Tier, BaseRoll));
+                }
             }
 
             foreach(var explict in ExplicitAffixes)

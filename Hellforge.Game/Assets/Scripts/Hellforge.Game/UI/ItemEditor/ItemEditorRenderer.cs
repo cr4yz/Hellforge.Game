@@ -47,6 +47,7 @@ namespace Hellforge.Game.UI
             _itemBaseDropdown.onValueChanged.AddListener((int value) =>
             {
                 var itemBaseName = _itemBaseDropdown.options[value].text;
+                item.BaseName = itemBaseName;
                 SetAffixDropdownOptions(itemBaseName);
             });
 

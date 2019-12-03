@@ -75,6 +75,18 @@ namespace Hellforge.Core
                     node.Graph = skillTree;
                 }
             }
+
+            foreach(var affix in GameData.Affixes)
+            {
+                if (!string.IsNullOrEmpty(affix.Inherits))
+                {
+                    var parent = GameData.Affixes.First(x => x.Name == affix.Inherits);
+                    if (parent != null)
+                    {
+                        affix.Inherit(parent);
+                    }
+                }
+            }
         }
 
         public void CompileToSingleFile()
@@ -100,15 +112,6 @@ namespace Hellforge.Core
             if(affixData == null)
             {
                 return null;
-            }
-
-            if(!string.IsNullOrEmpty(affixData.Inherits))
-            {
-                var parent = GameData.Affixes.First(x => x.Name == affixData.Inherits);
-                if(parent != null)
-                {
-                    affixData.Inherit(parent);
-                }
             }
 
             roll = Math.Max(roll, 1);
@@ -229,11 +232,11 @@ public class AffixEntry
 
     public void Inherit(AffixEntry parent)
     {
-        Type = Type ?? parent.Type;
-        Attribute = Attribute ?? parent.Attribute;
-        Slot = Slot ?? parent.Slot;
-        Description = Description ?? parent.Description;
-        Invoke = Invoke ?? parent.Invoke;
+        Type = string.IsNullOrEmpty(Type) ? parent.Type : Type;
+        Attribute = string.IsNullOrEmpty(Attribute) ? parent.Attribute : Attribute;
+        Slot = string.IsNullOrEmpty(Slot) ? parent.Slot : Slot;
+        Description = string.IsNullOrEmpty(Description) ? parent.Description : Description;
+        Invoke = string.IsNullOrEmpty(Invoke) ? parent.Invoke : Invoke;
         Data = Data ?? parent.Data;
         Conditions = Conditions ?? parent.Conditions;
         Activators = Activators ?? parent.Activators;

@@ -49,6 +49,7 @@ namespace Hellforge.Game.UI
             _compileButton.onClick.AddListener(delegate ()
             {
                 D4Data.Instance.Hellforge.CompileToSingleFile();
+                D4Data.Instance.Hellforge.ReloadData();
             });
 
             _reloadButton.onClick.AddListener(delegate ()
