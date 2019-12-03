@@ -26,6 +26,12 @@ namespace Hellforge.Game.UI
             }
         }
 
+        public void DeleteItem(Item item)
+        {
+            GameWorld.Instance.Character.RemoveItem(item);
+            Render();
+        }
+
         public void CreateNewItem()
         {
             _itemEditor.gameObject.SetActive(true);

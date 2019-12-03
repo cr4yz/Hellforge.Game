@@ -9,6 +9,8 @@ namespace Hellforge.Game.UI
     {
 
         [SerializeField]
+        private InventoryRenderer _inventoryRenderer;
+        [SerializeField]
         private ItemLabelRenderer _itemLabelRenderer;
         [SerializeField]
         private Toggle _equippedToggle;
@@ -17,9 +19,12 @@ namespace Hellforge.Game.UI
         [SerializeField]
         private Button _editItemButton;
         [SerializeField]
+        private Button _deleteItemButton;
+        [SerializeField]
         private ItemEditorRenderer _itemEditor;
 
         private Item _item;
+        private bool _hovered;
 
         private void Update()
         {
@@ -27,6 +32,14 @@ namespace Hellforge.Game.UI
             if (_itemNameText.text != name)
             {
                 _itemNameText.text = name;
+            }
+        }
+
+        private void OnDisable()
+        {
+            if(_hovered)
+            {
+                _itemLabelRenderer.gameObject.SetActive(false);
             }
         }
 
@@ -40,11 +53,13 @@ namespace Hellforge.Game.UI
             _itemLabelRenderer.Render(_item);
             _itemLabelRenderer.gameObject.SetActive(true);
             _itemLabelRenderer.gameObject.RebuildLayout();
+            _hovered = true;
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
             _itemLabelRenderer.gameObject.SetActive(false);
+            _hovered = false;
         }
 
         public void OnPointerDown(PointerEventData eventData)
@@ -57,6 +72,10 @@ namespace Hellforge.Game.UI
 
         public void Render(Item item)
         {
+            _editItemButton.onClick.RemoveAllListeners();
+            _deleteItemButton.onClick.RemoveAllListeners();
+            _equippedToggle.onValueChanged.RemoveAllListeners();
+
             _item = item;
             _itemNameText.text = item.ItemName ?? item.BaseName;
             _equippedToggle.isOn = item.Equipped;
@@ -76,6 +95,11 @@ namespace Hellforge.Game.UI
             {
                 _itemEditor.gameObject.SetActive(true);
                 _itemEditor.Render(item);
+            });
+
+            _deleteItemButton.onClick.AddListener(() =>
+            {
+                _inventoryRenderer.DeleteItem(item);
             });
         }
 

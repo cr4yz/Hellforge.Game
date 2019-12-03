@@ -78,6 +78,22 @@ namespace Hellforge.Core.Entities
             Dirty = true;
         }
 
+        public void RemoveItem(Item item)
+        {
+
+            if(!Items.Contains(item))
+            {
+                throw new Exception("item doesn't exist in that character's inventory");
+            }
+
+            if (item.Equipped)
+            {
+                item.Unequip();
+            }
+            Items.Remove(item);
+            Dirty = true;
+        }
+
         public void Update()
         {
             foreach(var item in Items)
