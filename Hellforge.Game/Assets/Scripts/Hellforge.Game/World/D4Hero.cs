@@ -50,6 +50,8 @@ namespace Hellforge.Game.Entities
 
         public void PostProcessDamage(DamageInfo dmgInfo)
         {
+            dmgInfo.AttackAttribute = (int)Character.GetAttribute(AttributeName.Attack);
+
             foreach(var dmg in dmgInfo.Damages)
             {
                 switch(dmg.DamageType)

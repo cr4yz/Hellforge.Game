@@ -13,6 +13,7 @@ namespace Hellforge.Game.Entities
         }
 
         private List<DamageReduction> _damageReductions = new List<DamageReduction>();
+        public int DefenseAttribute;
 
         public void ClearDefenses()
         {
@@ -40,6 +41,12 @@ namespace Hellforge.Game.Entities
         public DamageInfo ProcessDamage(DamageInfo dmgInfo)
         {
             var result = new DamageInfo();
+            float modifier = 1f;
+
+            if(DefenseAttribute != 0)
+            {
+                modifier = dmgInfo.AttackAttribute / DefenseAttribute;
+            }
 
             foreach(var dmg in dmgInfo.Damages)
             {
@@ -49,7 +56,7 @@ namespace Hellforge.Game.Entities
             return result;
         }
 
-        private float ReduceDamage(Damage dmg)
+        private float ReduceDamage(Damage dmg, float modifier = 1)
         {
             // todo :this can be better..
             var reduceFlat = 0.0f;
@@ -72,7 +79,7 @@ namespace Hellforge.Game.Entities
                 result -= dmg.Amount / (100f / reducePercent);
             }
 
-            return result;
+            return result *= modifier;
         }
 
         public static Defense FromAttributes(Dictionary<AttributeName, float> attributes)
@@ -83,6 +90,9 @@ namespace Hellforge.Game.Entities
             {
                 switch (attr.Key)
                 {
+                    case AttributeName.Defense:
+                        result.DefenseAttribute = (int)attr.Value;
+                        break;
                     case AttributeName.PhysicalDamageReduction:
                         result.AddDefense(DamageTypeName.Physical, attr.Value);
                         break;
