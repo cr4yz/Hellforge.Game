@@ -81,7 +81,7 @@ namespace Hellforge.Game.UI
             _duplicateButton.onClick.AddListener(delegate ()
             {
                 var duplicate = InputToAffixEntry();
-                duplicate.Name += "(DUPLICATE)";
+                duplicate.Name += " (DUPLICATE)";
                 _affixEditor.AddAffix(duplicate);
                 Render(duplicate);
             });
