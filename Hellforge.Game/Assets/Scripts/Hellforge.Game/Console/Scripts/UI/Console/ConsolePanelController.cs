@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,10 +20,10 @@ namespace Hellforge.Game.UI
 
         [Header("Text template")]
         [SerializeField]
-        private TMP_Text textOutput;
+        private Text textOutput;
         [Header("General panel elements")]
         [SerializeField]
-        private TMP_InputField consoleInput;
+        private InputField consoleInput;
         [SerializeField]
         private ConsoleAutoCompletionManager autoCompletionManager;
         [SerializeField]
@@ -190,7 +188,7 @@ namespace Hellforge.Game.UI
         {
             yield return new WaitForEndOfFrame();
 
-            consoleInput.MoveToEndOfLine(false, false);
+            //consoleInput.(false, false);
         }
 
         private void LateUpdate()

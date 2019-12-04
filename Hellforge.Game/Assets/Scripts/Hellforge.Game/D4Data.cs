@@ -16,14 +16,13 @@ namespace Hellforge.Game
             get { return Application.persistentDataPath + "/Characters/Diablo4"; }
         }
 
-        public override void Setup()
+        private void Awake()
         {
-            base.Setup();
-
             GameObject.DontDestroyOnLoad(this);
 
+            var dataPath = Application.streamingAssetsPath + "/HellforgeData/Diablo4";
             Hellforge = new HellforgeAggregate();
-            Hellforge.LoadData(Application.dataPath + "/HellforgeData/Diablo4");
+            Hellforge.LoadData(dataPath);
             Hellforge.LuaContext.RegisterFunction("print", typeof(D4Data).GetMethod("Print"));
 
             RefreshCharacterList();

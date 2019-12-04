@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,9 +12,9 @@ namespace Hellforge.Game.UI
     {
         private Image image;
         [SerializeField]
-        private TMP_Text commandName;
+        private Text commandName;
         [SerializeField]
-        private TMP_Text commandDescription;
+        private Text commandDescription;
 
         private ConObject command;
 

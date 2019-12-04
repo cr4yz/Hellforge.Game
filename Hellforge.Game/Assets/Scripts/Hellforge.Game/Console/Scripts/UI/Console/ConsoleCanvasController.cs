@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
-#pragma warning disable CS0414 //disable warnings about private members not being used
-#pragma warning disable CS0649 //disable warnings about private members not being used
 
 namespace Hellforge.Game.UI
 {
     public class ConsoleCanvasController : MonoBehaviour
     {
-        private static ConsoleCanvasController Singleton;
+
+        public static ConsoleCanvasController Instance; 
 
         /// <summary>
         /// You can reference this in your own scripts to decide if to pause the game, block player movement, or whatever
@@ -22,11 +17,11 @@ namespace Hellforge.Game.UI
         /// <returns></returns>
         public static bool IsVisible()
         {
-            return Singleton.isVisible;
+            return Instance.isVisible;
         }
         
         [SerializeField]
-        private TMP_InputField consoleInput;
+        private InputField consoleInput;
         [SerializeField]
         private ConsolePanelController consolePanelController;
 
@@ -40,13 +35,8 @@ namespace Hellforge.Game.UI
 
         private void Awake()
         {
-            if (Singleton != null)
-            {
-                Destroy(gameObject);
-                return;
-            }
+            Instance = this;
 
-            Singleton = this;
             DontDestroyOnLoad(gameObject);
 
             canvas = GetComponent<Canvas>();
@@ -67,7 +57,7 @@ namespace Hellforge.Game.UI
         {
             Console.RefreshCommands();
             
-            Hide();
+            //Hide();
         }
 
         private void Update()
