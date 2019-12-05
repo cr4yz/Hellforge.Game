@@ -38,7 +38,7 @@ namespace Hellforge.Game.UI
             var affixes = new List<string>();
             foreach (var affix in D4Data.Instance.Hellforge.GameData.Affixes)
             {
-                if (affix.ForTalent || affix.ItemSlot != itemSlot)
+                if ((affix.ForTalent || affix.ItemSlot != itemSlot) && affix.ItemSlot != "All")
                 {
                     continue;
                 }

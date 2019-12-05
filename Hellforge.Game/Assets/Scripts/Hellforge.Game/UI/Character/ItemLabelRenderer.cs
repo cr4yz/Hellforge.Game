@@ -31,7 +31,7 @@ namespace Hellforge.Game.UI
                     var affix = item.Character.Hellforge.GameData.Affixes.FirstOrDefault(x => x.Name == afx.Name);
                     if (affix == null)
                     {
-                        desc = "AFFIX DATA MISSING!";
+                        desc = $"!{afx.Name}";
                     }
                     else
                     {
@@ -47,7 +47,7 @@ namespace Hellforge.Game.UI
                 var affix = item.Character.Hellforge.GameData.Affixes.FirstOrDefault(x => x.Name == afx.Name);
                 if (affix == null)
                 {
-                    desc = "AFFIX DATA MISSING!";
+                    desc = $"!{afx.Name}";
                 }
                 else
                 {

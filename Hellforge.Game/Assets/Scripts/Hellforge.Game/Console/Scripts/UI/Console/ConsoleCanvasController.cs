@@ -57,7 +57,7 @@ namespace Hellforge.Game.UI
         {
             Console.RefreshCommands();
             
-            //Hide();
+            Hide();
         }
 
         private void Update()
