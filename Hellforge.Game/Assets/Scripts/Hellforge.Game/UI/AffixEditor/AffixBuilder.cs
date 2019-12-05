@@ -122,20 +122,6 @@ namespace Hellforge.Game.UI
             };
         }
 
-        private string ArrToLsv(string[] input)
-        {
-            var result = string.Empty;
-            if(input == null)
-            {
-                return result;
-            }
-            foreach(var x in input)
-            {
-                result += x + '\n';
-            }
-            return result.TrimEnd('\n');
-        }
-
         private string TiersToText(AffixDataEntry[] data)
         {
             var result = string.Empty;
@@ -151,7 +137,21 @@ namespace Hellforge.Game.UI
             return result.TrimEnd('\n');
         }
 
-        private string[] LsvToArr(string input)
+        public static string ArrToLsv(string[] input)
+        {
+            var result = string.Empty;
+            if (input == null)
+            {
+                return result;
+            }
+            foreach (var x in input)
+            {
+                result += x + '\n';
+            }
+            return result.TrimEnd('\n');
+        }
+
+        public static string[] LsvToArr(string input)
         {
             if(string.IsNullOrEmpty(input))
             {

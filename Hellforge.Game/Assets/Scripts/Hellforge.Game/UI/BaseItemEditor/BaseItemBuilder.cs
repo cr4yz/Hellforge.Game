@@ -28,6 +28,8 @@ namespace Hellforge.Game.UI
         private InputField _gridWidthInput;
         [SerializeField]
         private InputField _gridHeightInput;
+        [SerializeField]
+        private InputField _inplicitsText;
 
 
         public void Render(ItemBaseEntry baseItem)
@@ -71,6 +73,7 @@ namespace Hellforge.Game.UI
             _modelPathInput.text = baseItem.Model;
             _gridWidthInput.text = baseItem.InventoryWidth.ToString();
             _gridHeightInput.text = baseItem.InventoryHeight.ToString();
+            //_inplicitsText.text = AffixBuilder.ArrToLsv(baseItem.ImplicitAffixes);
         }
 
         public void Save(ItemBaseEntry itemEntry)
