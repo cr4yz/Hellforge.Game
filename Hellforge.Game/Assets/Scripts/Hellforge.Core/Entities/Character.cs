@@ -49,7 +49,7 @@ namespace Hellforge.Core.Entities
             {
                 if(point.Type == AllocationType.Talent)
                 {
-                    AddAffix(point.Identifier, point.Amount, 100);
+                    AddAffix(point.Identifier, point.Amount - 1, 100);
                 }
             }
 
@@ -140,7 +140,7 @@ namespace Hellforge.Core.Entities
             {
                 return affix.Tier;
             }
-            return 0;
+            return -1;
         }
 
         public Affix GetAffix(string affixName)

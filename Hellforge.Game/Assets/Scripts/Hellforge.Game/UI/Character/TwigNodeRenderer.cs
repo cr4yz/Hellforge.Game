@@ -34,13 +34,13 @@ namespace Hellforge.Game.UI
             _character = character;
             Node = node;
 
-            var currentTier = character?.GetAffixTier(Node.Affix) ?? 0;
-
-            SetTier(currentTier);
+            SetTier(character.GetAffixTier(Node.Affix));
         }
 
         public void SetTier(int tier)
         {
+            tier++;
+
             var maxTiers = Node.Graph.Hellforge.GetAffixTierCount(Node.Affix);
             var str = $"{tier}/{maxTiers}";
             _nodeLabelRank.text = str;
@@ -63,13 +63,13 @@ namespace Hellforge.Game.UI
                 return;
             }
 
-            var tier = _character?.GetAffixTier(Node.Affix) ?? 0;
+            var tier = _character.GetAffixTier(Node.Affix);
             var prevParnet = _nodeLabel.parent;
             _nodeLabel.SetParent(transform, false);
             _nodeLabel.localScale = Vector3.one;
             _nodeLabel.anchoredPosition = Vector3.zero;
             _nodeLabelTitle.text = affix.Name;
-            _nodeLabelDescription.text = affix.ParseDescription(Mathf.Max(tier - 1, 0), 100);
+            _nodeLabelDescription.text = affix.ParseDescription(Mathf.Max(tier, 0), 100);
             SetTier(tier);
             _nodeLabel.SetParent(prevParnet, true);
             _nodeLabel.gameObject.SetActive(true);
@@ -90,8 +90,8 @@ namespace Hellforge.Game.UI
             {
                 if (pointerData.button == PointerEventData.InputButton.Left)
                 {
-                    affix = _character.AddAffix(Node.Affix, 1, 100);
-                    SetTier(1);
+                    affix = _character.AddAffix(Node.Affix, 0, 100);
+                    SetTier(0);
                 }
             }
             else 
@@ -107,24 +107,24 @@ namespace Hellforge.Game.UI
                     newTier--;
                 }
 
-                newTier = Mathf.Clamp(newTier, 0, affix.TierCount);
+                newTier = Mathf.Clamp(newTier, -1, affix.TierCount - 1);
 
-                if(newTier == affix.Tier)
+                if (newTier == affix.Tier)
                 {
                     return;
                 }
-                else if(newTier == 0)
+                else if(newTier == -1)
                 {
                     _character.RemoveAffix(Node.Affix);
                     _character.Allocations.RemoveAllocation(Node.Affix);
-                    SetTier(0);
                 }
                 else
                 {
-                    var newAffix = _character.UpdateAffix(Node.Affix, newTier);
-                    SetTier(newTier);
-                    _character.Allocations.SetAllocation(AllocationType.Talent, Node.Affix, newTier);
+                    _character.UpdateAffix(Node.Affix, newTier);
+                    _character.Allocations.SetAllocation(AllocationType.Talent, Node.Affix, newTier + 1);
                 }
+
+                SetTier(newTier);
 
                 OnPointerEnter();
             }
