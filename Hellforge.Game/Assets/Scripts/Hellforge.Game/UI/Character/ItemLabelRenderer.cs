@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using Hellforge.Core.Affixes;
 using Hellforge.Core.Items;
 
 namespace Hellforge.Game.UI
@@ -53,6 +54,20 @@ namespace Hellforge.Game.UI
                 {
                     desc = affix.ParseDescription(afx.Tier, afx.Roll);
                 }
+
+                if(affix.Conditions != null)
+                {
+                    var FUCK = D4Data.Instance.Hellforge.GenerateAffix(item.Character, afx.Name, afx.Tier, afx.Roll);
+                    foreach(var node in FUCK.Nodes)
+                    {
+                        if(node is ScriptedCondition cond)
+                        {
+                            var color = cond.Passes() ? "#95FF00" : "red";
+                            desc += $"\n    <color={color}>{cond.GetDescription()}</color>";
+                        }
+                    }
+                }
+
                 affixText += desc + "\n";
             }
 

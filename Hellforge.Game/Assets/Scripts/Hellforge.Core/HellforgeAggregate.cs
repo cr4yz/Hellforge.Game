@@ -167,6 +167,7 @@ public class ConditionEntry
     public string Name;
     public string Type;
     public string Condition;
+    public string Description;
 }
 
 public class AffixDataEntry

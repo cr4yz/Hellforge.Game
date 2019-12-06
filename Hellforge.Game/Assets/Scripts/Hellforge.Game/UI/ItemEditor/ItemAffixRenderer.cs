@@ -62,7 +62,20 @@ namespace Hellforge.Game.UI
             _tierSlider.wholeNumbers = true;
             _rollSlider.value = affix.Roll;
             _tierSlider.value = affix.Tier;
-            _affixNameText.text = affixData.ParseDescription(affix.Tier, affix.Roll);
+
+            var desc = affixData.ParseDescription(affix.Tier, affix.Roll);
+            var dumbAfx = item.Character.Hellforge.GenerateAffix(item.Character, affix.Name, affix.Tier, affix.Roll);
+
+            foreach (var node in dumbAfx.Nodes)
+            {
+                if(node is ScriptedCondition cond)
+                {
+                    var color = cond.Passes() ? "#95FF00" : "red";
+                    desc += $"\n<color={color}>{cond.GetDescription()}</color>";
+                }
+            }
+
+            _affixNameText.text = desc;
         }
 
     }

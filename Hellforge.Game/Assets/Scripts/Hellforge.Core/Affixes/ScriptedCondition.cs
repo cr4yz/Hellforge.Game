@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using NLua;
-using Hellforge.Core.Entities;
 
 namespace Hellforge.Core.Affixes
 {
@@ -46,26 +46,7 @@ namespace Hellforge.Core.Affixes
                 callParams.Add(Affix.Character.Entity.GetContext(part));
             }
 
-            if(PostParams != null)
-            {
-                foreach(var pp in PostParams)
-                {
-                    if (pp[0] == '#')
-                    {
-                        var tierData = Affix.AffixData.Data[Affix.Tier];
-                        var key = pp.Replace("#", null);
-                        if (tierData.Variables != null
-                            && tierData.Variables.ContainsKey(key))
-                        {
-                            callParams.Add(tierData.Variables[key]);
-                        }
-                    }
-                    else
-                    {
-                        callParams.Add(pp);
-                    }
-                }
-            }
+            callParams.AddRange(GetPostParams());
 
             if (_getLuaContext()[funcName] is LuaFunction func)
             {
@@ -77,6 +58,70 @@ namespace Hellforge.Core.Affixes
             }
 
             return false;
+        }
+
+        public string GetDescription()
+        {
+            var parenthesisIdx = Condition.IndexOf('(');
+            var condName = Condition;
+            if(parenthesisIdx != -1)
+            {
+                condName = Condition.Substring(0, parenthesisIdx);
+            }
+
+            var condEntry = Affix.Character.Hellforge.GameData.Conditions.First(x => x.Name == condName);
+            if (condEntry.Description == null)
+            {
+                return "!MISSING DESCRIPTION!";
+            }
+
+            var pp = GetPostParams();
+            if (pp == null)
+            {
+                return condEntry.Description;
+            }
+
+            var result = condEntry.Description;
+
+            for (int i = 0; i < pp.Count; i++)
+            {
+                result = result.Replace("$pp" + (i + 1), pp[i].ToString());
+            }
+
+            return result;
+        }
+
+        private List<object> GetPostParams()
+        {
+            if(PostParams == null)
+            {
+                return null;
+            }
+
+            var result = new List<object>();
+
+            if (PostParams != null)
+            {
+                foreach (var pp in PostParams)
+                {
+                    if (pp[0] == '#')
+                    {
+                        var tierData = Affix.AffixData.Data[Affix.Tier];
+                        var key = pp.Replace("#", null);
+                        if (tierData.Variables != null
+                            && tierData.Variables.ContainsKey(key))
+                        {
+                            result.Add(tierData.Variables[key]);
+                        }
+                    }
+                    else
+                    {
+                        result.Add(pp);
+                    }
+                }
+            }
+
+            return result;
         }
 
     }
