@@ -89,10 +89,11 @@ namespace Hellforge.Core
             }
         }
 
-        public void CompileToSingleFile()
+        public string CompileToSingleFile()
         {
             var filePath = _dataDirectory + "\\compiled.json";
             File.WriteAllText(filePath, JsonConvert.SerializeObject(GameData));
+            return filePath;
         }
 
         public int GetAffixTierCount(string affix)

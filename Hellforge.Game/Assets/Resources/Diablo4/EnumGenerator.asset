@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2507fa642e52a4c2db1a79faf672d617, type: 3}
+  m_Script: {fileID: 11500000, guid: 8bb161b9682890843b9a38c9c416de70, type: 3}
   m_Name: EnumGenerator
   m_EditorClassIdentifier: 
   enums:
-  - jsonFile: {fileID: 4900000, guid: a027eca98d88b9143a42916d1e61995a, type: 3}
+  - jsonFile: {fileID: 4900000, guid: 3c4aa142c4041ff4f975ed9a2da2ef6a, type: 3}
     collectionJPath: Attributes[*]
     entryNameJPath: Name
     entryValueJPath: 
@@ -30,7 +30,7 @@ MonoBehaviour:
     outputPath: Scripts/Hellforge.Core/AttributeName.g.cs
     outputType: 0
     verboseLogging: 0
-  - jsonFile: {fileID: 4900000, guid: 4a56dca5bd9cd4146bd747131da00ff2, type: 3}
+  - jsonFile: {fileID: 4900000, guid: 3c4aa142c4041ff4f975ed9a2da2ef6a, type: 3}
     collectionJPath: ItemSlots[*]
     entryNameJPath: $
     entryValueJPath: 
@@ -47,7 +47,7 @@ MonoBehaviour:
     outputPath: Scripts/Hellforge.Core/ItemBaseName.g.cs
     outputType: 0
     verboseLogging: 0
-  - jsonFile: {fileID: 4900000, guid: 733c15b4f16a4ff47a6b30444891ed8e, type: 3}
+  - jsonFile: {fileID: 4900000, guid: 3c4aa142c4041ff4f975ed9a2da2ef6a, type: 3}
     collectionJPath: AttackTypes[*]
     entryNameJPath: $
     entryValueJPath: 
@@ -64,7 +64,7 @@ MonoBehaviour:
     outputPath: Scripts/Hellforge.Core/AttackTypeName.g.cs
     outputType: 0
     verboseLogging: 0
-  - jsonFile: {fileID: 4900000, guid: 733c15b4f16a4ff47a6b30444891ed8e, type: 3}
+  - jsonFile: {fileID: 4900000, guid: 3c4aa142c4041ff4f975ed9a2da2ef6a, type: 3}
     collectionJPath: DamageTypes[*]
     entryNameJPath: $
     entryValueJPath: 

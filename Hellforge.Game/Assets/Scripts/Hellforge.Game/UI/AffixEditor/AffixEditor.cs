@@ -48,7 +48,12 @@ namespace Hellforge.Game.UI
 
             _compileButton.onClick.AddListener(delegate ()
             {
-                D4Data.Instance.Hellforge.CompileToSingleFile();
+                var filePath = D4Data.Instance.Hellforge.CompileToSingleFile();
+#if UNITY_EDITOR
+                var fileName = System.IO.Path.GetFileName(filePath);
+                UnityEditor.FileUtil.CopyFileOrDirectory(filePath, Application.dataPath + "\\" + fileName);
+                UnityEditor.AssetDatabase.Refresh();
+#endif
                 D4Data.Instance.Hellforge.ReloadData();
             });
 
