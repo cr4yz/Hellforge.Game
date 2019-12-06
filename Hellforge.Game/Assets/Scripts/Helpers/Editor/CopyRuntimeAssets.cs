@@ -10,7 +10,6 @@ class CopyRuntimeAssets : IPostprocessBuildWithReport
 
     public void OnPostprocessBuild(BuildReport report)
     {
-        Debug.Log(Application.productName);
         var sourceFolder = Application.dataPath + "/RuntimeAssets";
         var targetFolder = Path.GetDirectoryName(report.summary.outputPath) + "\\" + Application.productName + "_Data\\RuntimeAssets";
         FileUtil.CopyFileOrDirectory(sourceFolder, targetFolder);
