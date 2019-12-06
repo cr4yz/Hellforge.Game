@@ -9,14 +9,13 @@ namespace Hellforge.Game.Entities
     public class D4Hero : BaseEntity, IHellforgeEntity
     {
 
-        public Character Character { get; set; }
+        public Character Character => GameWorld.Instance.Character;
         public PlayerController Controller { get; private set; }
 
         private Queue<DamageInfo> _damageQueue = new Queue<DamageInfo>();
 
         void Awake()
         {
-            Character = GameWorld.Instance.Character;
             Controller = GetComponent<PlayerController>();
         }
 
