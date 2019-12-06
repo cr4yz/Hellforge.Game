@@ -18,12 +18,14 @@ namespace Hellforge.Core.Affixes
 
         public readonly ConditionType ConditionType;
         public readonly string Condition;
+        public readonly string[] PostParams;
 
-        public ScriptedCondition(Affix affix, ConditionType type, Func<Lua> getLuaContext, string condition)
+        public ScriptedCondition(Affix affix, ConditionType type, Func<Lua> getLuaContext, string condition, string[] postParams = null)
             : base(affix, getLuaContext)
         {
             ConditionType = type;
             Condition = condition;
+            PostParams = postParams;
         }
 
         public override void Update()
@@ -42,6 +44,27 @@ namespace Hellforge.Core.Affixes
             foreach (var part in parts)
             {
                 callParams.Add(Affix.Character.Entity.GetContext(part));
+            }
+
+            if(PostParams != null)
+            {
+                foreach(var pp in PostParams)
+                {
+                    if (pp[0] == '#')
+                    {
+                        var tierData = Affix.AffixData.Data[Affix.Tier];
+                        var key = pp.Replace("#", null);
+                        if (tierData.Variables != null
+                            && tierData.Variables.ContainsKey(key))
+                        {
+                            callParams.Add(tierData.Variables[key]);
+                        }
+                    }
+                    else
+                    {
+                        callParams.Add(pp);
+                    }
+                }
             }
 
             if (_getLuaContext()[funcName] is LuaFunction func)

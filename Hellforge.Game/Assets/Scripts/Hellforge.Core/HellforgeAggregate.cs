@@ -119,14 +119,24 @@ namespace Hellforge.Core
 
             if(affixData.Conditions != null)
             {
-                foreach(var condName in affixData.Conditions)
+                foreach(var conditionLine in affixData.Conditions)
                 {
+                    string[] postParams = null;
+                    var parenthesisIdx = conditionLine.IndexOf('(');
+                    var condName = conditionLine;
+                    if(parenthesisIdx != -1)
+                    {
+                        condName = conditionLine.Substring(0, parenthesisIdx);
+                        var parameterList = conditionLine.Substring(parenthesisIdx + 1, conditionLine.IndexOf(')') - parenthesisIdx - 1);
+                        postParams = Array.ConvertAll(parameterList.Split(','), p => p.Trim());
+                    }
+
                     var condData = GameData.Conditions.First(x => x.Name == condName);
                     if(condData != null)
                     {
                         var condType = (ConditionType)Enum.Parse(typeof(ConditionType), condData.Type);
                         var condition = condData.Condition;
-                        affix.AddNode(new ScriptedCondition(affix, condType, () => LuaContext, condition));
+                        affix.AddNode(new ScriptedCondition(affix, condType, () => LuaContext, condition, postParams));
                         break;
                     }
                 }
@@ -166,6 +176,7 @@ public class AffixDataEntry
     public int Maximum;
     public int Amount;
     public float Duration;
+    public Dictionary<string,string> Variables;
 }
 
 public class SkillEntry

@@ -49,6 +49,11 @@
       "Name": "IsLightningTalent",
       "Type": "TalentFilter",
       "Condition": "IsTalentArchetype($talent, Lightning)"
-    }
+    },
+	  {
+		  "Name": "HasMinimumAttribute",
+		  "Type": "Persister",
+		  "Condition": "HasMinimumAttribute($hero)"
+	  }
   ]
 }

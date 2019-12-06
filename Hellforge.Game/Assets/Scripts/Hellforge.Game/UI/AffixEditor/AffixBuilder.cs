@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
+using Newtonsoft.Json.Linq;
 
 namespace Hellforge.Game.UI
 {
@@ -122,21 +122,6 @@ namespace Hellforge.Game.UI
             };
         }
 
-        private string TiersToText(AffixDataEntry[] data)
-        {
-            var result = string.Empty;
-            if (data == null)
-            {
-                return result;
-            }
-            foreach (var tier in data)
-            {
-                //result += $"(name:{tier.Name}) (roll:{tier.Minimum}-{tier.Maximum}) (duration:{tier.Duration}) (amount:{tier.Amount})\n";
-                result += $"name={tier.Name},roll={tier.Minimum}-{tier.Maximum},duration={tier.Duration},amount={tier.Amount}\n";
-            }
-            return result.TrimEnd('\n');
-        }
-
         public static string ArrToLsv(string[] input)
         {
             var result = string.Empty;
@@ -158,6 +143,29 @@ namespace Hellforge.Game.UI
                 return null;
             }
             return input.Split('\n');
+        }
+
+        private string TiersToText(AffixDataEntry[] data)
+        {
+            var result = string.Empty;
+            if (data == null)
+            {
+                return result;
+            }
+            foreach (var tier in data)
+            {
+                //result += $"(name:{tier.Name}) (roll:{tier.Minimum}-{tier.Maximum}) (duration:{tier.Duration}) (amount:{tier.Amount})\n";
+                result += $"name={tier.Name},roll={tier.Minimum}-{tier.Maximum},duration={tier.Duration},amount={tier.Amount}";
+                if(tier.Variables != null)
+                {
+                    foreach(var kvp in tier.Variables)
+                    {
+                        result += $",{kvp.Key}={kvp.Value}";
+                    }
+                }
+                result += '\n';
+            }
+            return result.TrimEnd('\n', ',');
         }
 
         private AffixDataEntry[] TextToTiers(string input)
@@ -191,6 +199,21 @@ namespace Hellforge.Game.UI
                             break;
                         case "duration":
                             entry.Duration = float.Parse(value);
+                            break;
+                        default:
+                            if(entry.Variables == null)
+                            {
+                                entry.Variables = new Dictionary<string, string>();
+                            }
+
+                            if(entry.Variables.ContainsKey(key))
+                            {
+                                entry.Variables[key] = value;
+                            }
+                            else
+                            {
+                                entry.Variables.Add(key, value);
+                            }
                             break;
                     }
                 }

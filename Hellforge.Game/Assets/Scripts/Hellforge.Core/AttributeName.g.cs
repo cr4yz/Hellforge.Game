@@ -55,5 +55,8 @@ namespace Hellforge.Core
 		GoldFind = 41,
 		FasterCastRate = 42,
 		MoreBleedingDamage = 43,
+        DemonicPower = 44,
+        AngelicPower = 45,
+        AncestralPower = 46
 	}
 }
