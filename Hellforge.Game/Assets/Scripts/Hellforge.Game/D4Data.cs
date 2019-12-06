@@ -20,7 +20,7 @@ namespace Hellforge.Game
         {
             GameObject.DontDestroyOnLoad(this);
 
-            var dataPath = Application.streamingAssetsPath + "/HellforgeData/Diablo4";
+            var dataPath = Application.dataPath + "/RuntimeAssets/HellforgeData/Diablo4";
             Hellforge = new HellforgeAggregate();
             Hellforge.LoadData(dataPath);
             Hellforge.LuaContext.RegisterFunction("print", typeof(D4Data).GetMethod("Print"));
