@@ -338,4 +338,6 @@ public class GameDataObject
     public ItemBaseEntry[] ItemBases;
     public SkillEntry[] Skills;
     public MonsterEntry[] Monsters;
+    public string[] DamageTypes;
+    public string[] AttackTypes;
 }
