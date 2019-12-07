@@ -38,6 +38,7 @@ namespace Hellforge.Game.World
             {
                 foreach (var kvp in Character.Meta)
                 {
+                    // note : this is pretty dirty way to store data, maybe come up with something better later.
                     if (kvp.Key.StartsWith(Player.PlayerController.SkillMetaPrefix))
                     {
                         var skillSlotName = kvp.Key.Replace(Player.PlayerController.SkillMetaPrefix, string.Empty);
