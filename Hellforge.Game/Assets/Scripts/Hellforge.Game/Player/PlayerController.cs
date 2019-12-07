@@ -21,6 +21,8 @@ namespace Hellforge.Game.Player
         [SerializeField]
         private Camera _playerCam;
 
+        public const string SkillMetaPrefix = "SkillSlot_";
+
         // todo: read these from file
         private Dictionary<KeyCode, SkillSlot> _skillKeyBinds = new Dictionary<KeyCode, SkillSlot>()
         {
@@ -33,6 +35,7 @@ namespace Hellforge.Game.Player
         };
 
         public Dictionary<SkillSlot, BaseSkill> SlottedSkills { get; private set; } = new Dictionary<SkillSlot, BaseSkill>();
+
         public PlayerAnimator Animator { get; private set; }
 
         public bool IsMoving { get; private set; }
@@ -53,16 +56,16 @@ namespace Hellforge.Game.Player
             UpdateSkills();
         }
 
-        public void SlotSkill(SkillSlot slot, BaseSkill skill)
+        public void SlotSkill(SkillSlot slot, string skillName)
         {
-            if (SlottedSkills.ContainsKey(slot))
+            var baseSkill = GetBaseSkill(skillName);
+            if(baseSkill == null)
             {
-                SlottedSkills[slot] = skill;
+                Debug.LogError("Missing skill " + skillName);
+                return;
             }
-            else
-            {
-                SlottedSkills.Add(slot, skill);
-            }
+
+            SlottedSkills[slot] = baseSkill;
         }
 
         public void MoveToDestination(Vector3 destination)
@@ -128,6 +131,22 @@ namespace Hellforge.Game.Player
             return Vector3.zero;
         }
 
+        // todo : maybe this can be done via reflection.
+        private BaseSkill GetBaseSkill(string skillName)
+        {
+            switch(skillName)
+            {
+                case "BasicAttack":
+                    return new BasicAttack(GameWorld.Instance.Hero);
+                case "BasicMove":
+                    return new BasicMove(GameWorld.Instance.Hero);
+                case "Bash":
+                    return new Bash(GameWorld.Instance.Hero);
+                default:
+                    return null;
+            }
+        }
+
         private void CheckSkillInput()
         {
             if(IsInputBlocked())
@@ -137,16 +156,18 @@ namespace Hellforge.Game.Player
 
             foreach(var kvp in _skillKeyBinds)
             {
-                if (Input.GetKey(kvp.Key)
-                    && SlottedSkills.TryGetValue(kvp.Value, out BaseSkill skill))
+                if (Input.GetKey(kvp.Key))
                 {
-                    var hitPoint = GetMouseHitPoint(out BaseEntity targetEntity);
-                    skill.Cast(targetEntity, hitPoint);
-
-                    foreach (var kvp2 in SlottedSkills)
+                    if (SlottedSkills.TryGetValue(kvp.Value, out BaseSkill skill))
                     {
-                        if(kvp2.Value != skill)
-                            kvp2.Value.Queued = false;
+                        var hitPoint = GetMouseHitPoint(out BaseEntity targetEntity);
+                        skill.Cast(targetEntity, hitPoint);
+
+                        foreach (var kvp2 in SlottedSkills)
+                        {
+                            if (kvp2.Value != skill)
+                                kvp2.Value.Queued = false;
+                        }
                     }
                 }
             }

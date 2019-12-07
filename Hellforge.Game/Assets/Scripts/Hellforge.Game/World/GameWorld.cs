@@ -28,11 +28,25 @@ namespace Hellforge.Game.World
             {
                 Character.Entity = playerPrefab.AddComponent<D4Hero>();
             }
-            
+
             playerPrefab.transform.position = spawnPos;
 
-            // temporary code to give hero a skill to use
-            Hero.Controller.SlotSkill(Skills.SkillSlot.Primary, new Skills.Bash(Hero));
+            Character.Allocations.SetAllocation(AllocationType.Skill, "BasicMove", 1);
+            Character.Allocations.SetAllocation(AllocationType.Skill, "BasicAttack", 1);
+
+            if (Character.Meta != null)
+            {
+                foreach (var kvp in Character.Meta)
+                {
+                    if (kvp.Key.StartsWith(Player.PlayerController.SkillMetaPrefix))
+                    {
+                        var skillSlotName = kvp.Key.Replace(Player.PlayerController.SkillMetaPrefix, string.Empty);
+                        var skillSlot = (Skills.SkillSlot)Enum.Parse(typeof(Skills.SkillSlot), skillSlotName);
+                        var skillName = kvp.Value;
+                        Hero.Controller.SlotSkill(skillSlot, skillName);
+                    }
+                }
+            }
         }
 
         public void EnterWorld(string characterName)

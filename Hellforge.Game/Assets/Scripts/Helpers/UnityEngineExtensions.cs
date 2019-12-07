@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public static class GameObjectExtensions
+public static class UnityEngineExtensions
 {
     public static void RebuildLayout(this GameObject root)
     {
@@ -11,5 +11,13 @@ public static class GameObjectExtensions
             LayoutRebuilder.ForceRebuildLayoutImmediate(layouts[i].GetComponent<RectTransform>());
         }
         LayoutRebuilder.ForceRebuildLayoutImmediate(root.GetComponent<RectTransform>());
+    }
+    public static void PositionTo(this RectTransform self, RectTransform target)
+    {
+        var prevParent = self.parent;
+        self.SetParent(target, false);
+        self.localScale = Vector3.one;
+        self.anchoredPosition = Vector3.zero;
+        self.SetParent(prevParent, true);
     }
 }

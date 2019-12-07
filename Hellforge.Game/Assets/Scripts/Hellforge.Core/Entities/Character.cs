@@ -24,6 +24,7 @@ namespace Hellforge.Core.Entities
         public List<Affix> Affixes { get; private set; } = new List<Affix>();
         public List<Item> Items { get; private set; } = new List<Item>();
         public Dictionary<AttributeName, float> Attributes { get; } = new Dictionary<AttributeName, float>();
+        public Dictionary<string, string> Meta { get; set; } = new Dictionary<string, string>();
         public bool Dirty;
         private bool _initialized;
 
@@ -224,6 +225,7 @@ namespace Hellforge.Core.Entities
             info.AddValue("Level", Level);
             info.AddValue("Allocations", Allocations.Points);
             info.AddValue("Items", Items);
+            info.AddValue("Meta", Meta);
         }
 
         public Character(SerializationInfo info, StreamingContext context)
@@ -248,6 +250,9 @@ namespace Hellforge.Core.Entities
                         break;
                     case "Items":
                         Items = (List<Item>)entry.Value;
+                        break;
+                    case "Meta":
+                        Meta = (Dictionary<string, string>)entry.Value;
                         break;
                 }
             }

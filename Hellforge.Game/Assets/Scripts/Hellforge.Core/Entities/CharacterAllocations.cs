@@ -43,6 +43,13 @@ namespace Hellforge.Core.Entities
         public void SetAllocation(AllocationType type, string identifier, int amount)
         {
             var allocation = Points.Find(x => x.Identifier == identifier);
+
+            if (amount == 0)
+            {
+                RemoveAllocation(identifier);
+                return;
+            }
+
             if (allocation != null)
             {
                 allocation.Amount = amount;
@@ -66,6 +73,12 @@ namespace Hellforge.Core.Entities
             if(allocation != null)
             {
                 allocation.Amount += amount;
+
+                if(allocation.Amount == 0)
+                {
+                    RemoveAllocation(identifier);
+                    return;
+                }
             }
             else
             {
