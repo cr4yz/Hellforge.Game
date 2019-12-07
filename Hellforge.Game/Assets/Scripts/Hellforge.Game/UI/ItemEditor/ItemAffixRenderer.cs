@@ -49,7 +49,7 @@ namespace Hellforge.Game.UI
             var affixData = D4Data.Instance.Hellforge.GameData.Affixes.FirstOrDefault(x => x.Name == affix.Name);
             if(affixData == null)
             {
-                _affixNameText.text = "AFFIX DATA MISSING!";
+                _affixNameText.text = $"!{affix.Name}";
                 _rollSlider.enabled = false;
                 _tierSlider.enabled = false;
                 return;
