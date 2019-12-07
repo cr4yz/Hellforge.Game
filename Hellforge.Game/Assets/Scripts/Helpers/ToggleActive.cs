@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class ToggleActive : MonoBehaviour
 {
@@ -23,6 +25,11 @@ public class ToggleActive : MonoBehaviour
 
     private void Update()
     {
+        var focusedObj = EventSystem.current.currentSelectedGameObject;
+        if(focusedObj != null && focusedObj.GetComponent<InputField>() != null)
+        {
+            return;
+        }
         if(Input.GetKeyDown(ToggleKey))
         {
             Toggle();
