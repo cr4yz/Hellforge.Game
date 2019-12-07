@@ -89,7 +89,7 @@ namespace Hellforge.Game.UI
             testCanvas = GetComponentInParent<Canvas>();
             canvasScaler = GetComponentInParent<CanvasScaler>();
 
-            textOutput.lineSpacing = -textOutput.fontSize;
+            //textOutput.lineSpacing = -textOutput.fontSize;
 
             StartCoroutine(GetStartupSize());
             StartCoroutine(ProcessPreInitialPrints());
@@ -188,6 +188,8 @@ namespace Hellforge.Game.UI
         {
             yield return new WaitForEndOfFrame();
 
+            consoleInput.caretPosition = consoleInput.text.Length;
+            consoleInput.ForceLabelUpdate();
             //consoleInput.(false, false);
         }
 
