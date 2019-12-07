@@ -16,6 +16,16 @@ namespace Hellforge.Game.UI
         private SkillLabelRenderer _skillLabel;
         private string _skillName;
 
+        private bool _hasSkillLabel;
+
+        private void OnDisable()
+        {
+            if(_hasSkillLabel)
+            {
+                _skillLabel.gameObject.SetActive(false);
+            }
+        }
+
         public void Render(SkillEntry skill)
         {
             var currentRank = GameWorld.Instance.Character.Allocations.GetPoints(AllocationType.Skill, skill.Name);
@@ -25,11 +35,13 @@ namespace Hellforge.Game.UI
 
         public void OnPointerEnter(PointerEventData eventData)
         {
+            _hasSkillLabel = true;
             UpdateSkillLabel();
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
+            _hasSkillLabel = false;
             _skillLabel.gameObject.SetActive(false);
         }
 

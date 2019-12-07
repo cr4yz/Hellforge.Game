@@ -26,6 +26,16 @@ namespace Hellforge.Game.UI
 
         public TwigNode Node { get; private set; }
 
+        private bool _hasNodeLabel;
+
+        private void OnDisable()
+        {
+            if(_hasNodeLabel)
+            {
+                _nodeLabel.gameObject.SetActive(false);
+            }
+        }
+
         public void Render(TwigNode node, Character character)
         {
             _nodeLabel.gameObject.SetActive(false);
@@ -74,11 +84,14 @@ namespace Hellforge.Game.UI
             _nodeLabel.SetParent(prevParnet, true);
             _nodeLabel.gameObject.SetActive(true);
             _nodeLabel.gameObject.RebuildLayout();
+
+            _hasNodeLabel = true;
         }
 
         public void OnPointerExit()
         {
             _nodeLabel.gameObject.SetActive(false);
+            _hasNodeLabel = false;
         }
 
         public void OnPointerDown(BaseEventData data)
