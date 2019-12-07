@@ -66,5 +66,11 @@ namespace Hellforge.Core
 		AngelicPower = 52,
 		DemonicPower = 53,
 		AncestralPower = 54,
+		ManaRegeneration = 55,
+		SpiritRegeneration = 56,
+		FuryRegeneration = 57,
+		FuryGeneration = 58,
+		ManaGeneration = 59,
+		SpiritGeneration = 60,
 	}
 }
