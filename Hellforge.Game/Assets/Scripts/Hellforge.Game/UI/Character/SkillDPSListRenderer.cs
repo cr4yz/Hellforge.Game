@@ -38,7 +38,12 @@ namespace Hellforge.Game.UI
 
             foreach(var skill in hero.Controller.SlottedSkills)
             {
-                var skillData = D4Data.Instance.Hellforge.GameData.Skills.First(x => x.Name == skill.Value.SkillName);
+                var skillData = D4Data.Instance.Hellforge.GameData.Skills.FirstOrDefault(x => x.Name == skill.Value.SkillName);
+                if(skillData == null)
+                {
+                    Debug.Log("No skill data: " + skill.Value.SkillName);
+                    continue;
+                }
                 var skillRank = hero.Character.Allocations.GetPoints(AllocationType.Skill, skill.Value.SkillName);
                 var clone = GameObject.Instantiate(_skillDpsTemplate, _skillDpsTemplate.transform.parent);
                 var dmgInfo = skill.Value.BuildDamageInfo(true);

@@ -13,6 +13,8 @@ namespace Hellforge.Game.UI
         public Action<string> OnSkillChosen;
 
         [SerializeField]
+        private Button _noneButton;
+        [SerializeField]
         private Button _skillBtnTemplate;
         private List<GameObject> _clones = new List<GameObject>();
 
@@ -24,6 +26,12 @@ namespace Hellforge.Game.UI
         public void Render()
         {
             Wipe();
+
+            _noneButton.onClick.AddListener(delegate ()
+            {
+                OnSkillChosen?.Invoke(null);
+                gameObject.SetActive(false);
+            });
 
             var allocatedSkills = GameWorld.Instance.Character.Allocations.Points.FindAll(x => x.Type == AllocationType.Skill);
             foreach(var skill in allocatedSkills)
@@ -42,6 +50,8 @@ namespace Hellforge.Game.UI
 
         public void Wipe()
         {
+            _noneButton.onClick.RemoveAllListeners();
+
             foreach(var obj in _clones)
             {
                 GameObject.Destroy(obj);

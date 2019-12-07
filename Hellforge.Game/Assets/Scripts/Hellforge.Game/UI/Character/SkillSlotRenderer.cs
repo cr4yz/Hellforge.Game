@@ -45,6 +45,13 @@ namespace Hellforge.Game.UI
             _skillSelection.Render();
             _skillSelection.OnSkillChosen = delegate (string skillName)
             {
+                if(skillName == null)
+                {
+                    Render(string.Empty);
+                    GameWorld.Instance.Hero.Controller.UnslotSkill(_skillSlot);
+                    GameWorld.Instance.Character.Meta.Remove(_metaIdentifier);
+                    return;
+                }
                 Render(skillName);
                 GameWorld.Instance.Hero.Controller.SlotSkill(_skillSlot, skillName);
                 GameWorld.Instance.Character.Meta[_metaIdentifier] = skillName;

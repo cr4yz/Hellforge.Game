@@ -56,6 +56,11 @@ namespace Hellforge.Game.Player
             UpdateSkills();
         }
 
+        public void UnslotSkill(SkillSlot slot)
+        {
+            SlottedSkills.Remove(slot);
+        }
+
         public void SlotSkill(SkillSlot slot, string skillName)
         {
             var baseSkill = GetBaseSkill(skillName);
