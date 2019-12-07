@@ -10267,6 +10267,8 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Skills
       m_Image: {fileID: 0}
+    - m_Text: Resource
+      m_Image: {fileID: 0}
     - m_Text: Alignment
       m_Image: {fileID: 0}
   m_OnValueChanged:
