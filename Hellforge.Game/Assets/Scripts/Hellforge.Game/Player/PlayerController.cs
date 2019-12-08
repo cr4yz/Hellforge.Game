@@ -20,6 +20,9 @@ namespace Hellforge.Game.Player
         private int _currentWaypoint;
         [SerializeField]
         private Camera _playerCam;
+        private bool _animatingToDestination;
+        private Vector3 _animateDestination;
+        private float _animateDestinationSpeed;
 
         public const string SkillMetaPrefix = "SkillSlot_";
 
@@ -51,6 +54,12 @@ namespace Hellforge.Game.Player
 
         private void Update()
         {
+            if(_animatingToDestination)
+            {
+                AnimateAlongPath();
+                return;
+            }
+
             MoveAlongPath();
             CheckSkillInput();
             UpdateSkills();
@@ -71,6 +80,15 @@ namespace Hellforge.Game.Player
             }
 
             SlottedSkills[slot] = baseSkill;
+        }
+
+        public void AnimateToDestination(Vector3 destination, float speed)
+        {
+            Direction = (destination - transform.position).normalized;
+            IsMoving = true;
+            _animatingToDestination = true;
+            _animateDestination = destination;
+            _animateDestinationSpeed = speed;
         }
 
         public void MoveToDestination(Vector3 destination)
@@ -151,6 +169,8 @@ namespace Hellforge.Game.Player
                     return new Flay(GameWorld.Instance.Hero);
                 case "Frenzy":
                     return new Frenzy(GameWorld.Instance.Hero);
+                case "LungingStrike":
+                    return new LungingStrike(GameWorld.Instance.Hero);
                 default:
                     return null;
             }
@@ -207,7 +227,7 @@ namespace Hellforge.Game.Player
                 var speed = BaseMoveSpeed;
                 var incSpeed = GameWorld.Instance.Character.GetAttribute(Core.AttributeName.MovementSpeed);
 
-                if(incSpeed != 0)
+                if (incSpeed != 0)
                 {
                     speed += incSpeed / 100f * BaseMoveSpeed;
                 }
@@ -216,6 +236,20 @@ namespace Hellforge.Game.Player
                 Velocity = Direction * speed;
                 transform.Translate(Velocity * Time.deltaTime);
             }
+        }
+
+        private void AnimateAlongPath()
+        {
+            if(Vector3.Distance(transform.position, _animateDestination) <= 0.1f)
+            {
+                _animatingToDestination = false;
+                IsMoving = false;
+                return;
+            }
+
+            Direction = (_animateDestination - transform.position).normalized;
+            Velocity = Direction * _animateDestinationSpeed;
+            transform.Translate(Velocity * Time.deltaTime);
         }
 
     }

@@ -136,9 +136,9 @@ namespace Hellforge.Game.Skills
                 return true;
             }
             // improve character responsiveness
-            if (Status == SkillStatus.Recovering && _timer <= recoverDuration / 2f)
+            if (Status == SkillStatus.Recovering)
             {
-                return false;
+                return _timer >= recoverDuration / 2f;
             }
 
             return false;
@@ -152,6 +152,11 @@ namespace Hellforge.Game.Skills
                 result.Targets.Clear();
             }
             return result;
+        }
+
+        protected void ForceStateChange()
+        {
+            _timer = 0;
         }
 
         protected virtual void UpdateIdle() { }
