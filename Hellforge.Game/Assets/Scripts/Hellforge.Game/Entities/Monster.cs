@@ -13,13 +13,15 @@ namespace Hellforge.Game.Entities
         private GameObject _monsterPrefab;
         [SerializeField]
         private string _monsterName;
-        public int Health { get; private set; } = 50;
-        public int MaxHealth { get; private set; } = 50;
+        public float Health { get; private set; } = 50f;
+        public float MaxHealth { get; private set; } = 50f;
         public int MonsterLevel { get; private set; }
         public Dictionary<AttributeName, float> Attributes { get; } = new Dictionary<AttributeName, float>();
 
         protected override void _Start()
         {
+            gameObject.GetOrAddComponent<BuffController>();
+
             selectable = true;
 
             if(_monsterName != null)
@@ -69,7 +71,7 @@ namespace Hellforge.Game.Entities
         {
             var defense = Defense.FromAttributes(Attributes);
             var finalDamage = defense.ProcessDamage(dmgInfo);
-            Health -= (int)finalDamage.CalculateTotal();
+            Health -= finalDamage.CalculateTotal();
 
             if(Health <= 0)
             {

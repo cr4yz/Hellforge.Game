@@ -12,6 +12,7 @@ public static class UnityEngineExtensions
         }
         LayoutRebuilder.ForceRebuildLayoutImmediate(root.GetComponent<RectTransform>());
     }
+
     public static void PositionTo(this RectTransform self, RectTransform target)
     {
         var prevParent = self.parent;
@@ -19,5 +20,16 @@ public static class UnityEngineExtensions
         self.localScale = Vector3.one;
         self.anchoredPosition = Vector3.zero;
         self.SetParent(prevParent, true);
+    }
+
+    public static T GetOrAddComponent<T>(this GameObject obj)
+        where T : MonoBehaviour
+    {
+        var result = obj.GetComponent<T>();
+        if(result == null)
+        {
+            result = obj.AddComponent<T>();
+        }
+        return result;
     }
 }

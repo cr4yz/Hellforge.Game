@@ -147,6 +147,8 @@ namespace Hellforge.Game.Player
                     return new BasicMove(GameWorld.Instance.Hero);
                 case "Bash":
                     return new Bash(GameWorld.Instance.Hero);
+                case "Flay":
+                    return new Flay(GameWorld.Instance.Hero);
                 default:
                     return null;
             }

@@ -61,6 +61,12 @@ namespace Hellforge.Game.Entities
                         dmg.Min += dmg.Min * (incPhys / 100f);
                         dmg.Max += dmg.Max * (incPhys / 100f);
                         break;
+                    case DamageTypeName.Bleeding:
+                        var incBleed = Character.GetAttribute(AttributeName.MoreBleedingDamage);
+                        dmg.Amount += dmg.Amount * (incBleed / 100f);
+                        dmg.Min += dmg.Min * (incBleed / 100f);
+                        dmg.Max += dmg.Max * (incBleed / 100f);
+                        break;
                 }
             }
         }
