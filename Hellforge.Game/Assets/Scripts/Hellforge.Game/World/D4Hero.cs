@@ -16,6 +16,7 @@ namespace Hellforge.Game.Entities
 
         void Awake()
         {
+            gameObject.GetOrAddComponent<BuffController>();
             Controller = GetComponent<PlayerController>();
         }
 

@@ -46,8 +46,7 @@ namespace Hellforge.Game.Skills
 
         protected override DamageInfo _BuildDamageInfo()
         {
-            var rank = hero.Character.Allocations.GetPoints(Core.Entities.AllocationType.Skill, "Flay");
-            rank = Mathf.Max(rank - 1, 0);
+            var rank = GetSkillRank();
             var minDmg = GetSkillDataValue<int>(rank, "Min");
             var maxDmg = GetSkillDataValue<int>(rank, "Max");
             var final = Random.Range(minDmg, maxDmg + 1);

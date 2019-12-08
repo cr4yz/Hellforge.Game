@@ -53,6 +53,19 @@ namespace Hellforge.Core.Affixes
             }
         }
 
+        public void Enable()
+        {
+            if(_status == AffixStatus.Enabled)
+            {
+                return;
+            }
+            foreach (var node in Nodes)
+            {
+                node.Enable();
+            }
+            _status = AffixStatus.Enabled;
+        }
+
         public void Disable()
         {
             if(_status == AffixStatus.Disabled)
@@ -63,6 +76,7 @@ namespace Hellforge.Core.Affixes
             {
                 node.Disable();
             }
+            _status = AffixStatus.Disabled;
         }
 
         public void SetTier(int value)
@@ -90,11 +104,7 @@ namespace Hellforge.Core.Affixes
                 {
                     if(_status == AffixStatus.Enabled)
                     {
-                        foreach(var node in Nodes)
-                        {
-                            node.Disable();
-                        }
-                        _status = AffixStatus.Disabled;
+                        Disable();
                     }
                     return;
                 }
@@ -102,11 +112,7 @@ namespace Hellforge.Core.Affixes
 
             if(_status == AffixStatus.Disabled)
             {
-                foreach(var node in Nodes)
-                {
-                    node.Enable();
-                }
-                _status = AffixStatus.Enabled;
+                Enable();
             }
 
             foreach(var node in Nodes)

@@ -103,7 +103,7 @@ namespace Hellforge.Game.Player
             {
                 if(kvp.Value.BlocksInput && kvp.Value.IsBusy())
                 {
-                    return true;
+                     return true;
                 }
             }
 
@@ -149,6 +149,8 @@ namespace Hellforge.Game.Player
                     return new Bash(GameWorld.Instance.Hero);
                 case "Flay":
                     return new Flay(GameWorld.Instance.Hero);
+                case "Frenzy":
+                    return new Frenzy(GameWorld.Instance.Hero);
                 default:
                     return null;
             }

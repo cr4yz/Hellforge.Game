@@ -1,49 +1,79 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Hellforge.Game.Entities;
+﻿using UnityEngine;
 
 namespace Hellforge.Game.Entities
 {
     public abstract class BaseBuff
     {
 
+        public enum BuffState
+        {
+            Idle,
+            Active,
+            Expired
+        }
+
         public BaseBuff(BaseEntity entity, float timer = 0f)
         {
             this.entity = entity;
-            _timer = timer;
+            this.timer = timer;
+            _originalTimer = timer;
         }
 
+        public BuffState State { get; private set; }
         protected BaseEntity entity;
-        public bool Expired { get; private set; }
-        private float _timer;
-        private bool _enabled;
+        protected float timer;
+        private float _originalTimer;
 
         public void Update()
         {
-            if(Expired)
+            if(State != BuffState.Active)
             {
                 return;
             }
 
-            if(!_enabled)
+            if(timer > 0)
             {
-                _OnEnable();
-                _enabled = true;
-            }
-
-            if(_timer > 0)
-            {
-                _timer -= Time.deltaTime;
-                if(_timer <= 0)
+                timer -= Time.deltaTime;
+                if(timer <= 0)
                 {
-                    Expired = true;
-                    _OnDisable();
+                    Stop();
                     return;
                 }
             }
 
             _OnUpdate();
+        }
+
+        public void Reset()
+        {
+            if(State == BuffState.Active)
+            {
+                Stop();
+            }
+            State = BuffState.Idle;
+            timer = _originalTimer;
+        }
+
+        public void Start()
+        {
+            if(State != BuffState.Idle)
+            {
+                return;
+            }
+
+            State = BuffState.Active;
+            _OnEnable();
+        }
+
+        public void Stop()
+        {
+            if(State != BuffState.Active)
+            {
+                return;
+            }
+
+            State = BuffState.Expired;
+            _OnDisable();
         }
 
         protected virtual void _OnUpdate() { }

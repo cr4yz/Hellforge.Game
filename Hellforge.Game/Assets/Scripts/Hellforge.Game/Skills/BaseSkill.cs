@@ -19,9 +19,13 @@ namespace Hellforge.Game.Skills
         public SkillStatus Status { get; protected set; }
         public bool BlocksInput { get; protected set; }
         public float BaseRange { get; protected set; } = 1f;
-        public float AnimationTime => swingDuration + recoverDuration + castDuration;
+        public float AnimationTime => BuffedSwingDuration + recoverDuration + castDuration;
         public bool Queued { get; set; }
         public readonly string SkillName;
+
+        protected float BuffedSwingDuration => ApplyAttackSpeed(swingDuration);
+        protected float BuffedCastDuration => ApplyAttackSpeed(castDuration);
+        protected float BuffedRecoverDuration => ApplyAttackSpeed(recoverDuration);
 
         private float _timer;
 
@@ -69,6 +73,12 @@ namespace Hellforge.Game.Skills
                     UpdateCooldown();
                     break;
             }
+        }
+
+        private float ApplyAttackSpeed(float amount)
+        {
+            var attackSpeed = hero.Character.Attributes[Core.AttributeName.AttackSpeed];
+            return amount - amount * (attackSpeed / 100f);
         }
 
         private bool IsInRange(Vector3 destination, bool interactableRange = false)
@@ -160,7 +170,7 @@ namespace Hellforge.Game.Skills
             switch(Status)
             {
                 case SkillStatus.Idle:
-                    _timer = swingDuration;
+                    _timer = BuffedSwingDuration;
                     Status = SkillStatus.Swinging;
                     break;
                 case SkillStatus.Swinging:
@@ -173,11 +183,11 @@ namespace Hellforge.Game.Skills
                     Status = SkillStatus.Recovering;
                     break;
                 case SkillStatus.Recovering:
-                    _timer = recoverDuration;
+                    _timer = cooldownDuration;
                     Status = SkillStatus.Cooldown;
                     break;
                 case SkillStatus.Cooldown:
-                    _timer = cooldownDuration;
+                    _timer = 0;
                     Status = SkillStatus.Idle;
                     break;
             }
@@ -200,6 +210,12 @@ namespace Hellforge.Game.Skills
             }
 
             return default;
+        }
+
+        public int GetSkillRank()
+        {
+            var rank = hero.Character.Allocations.GetPoints(Core.Entities.AllocationType.Skill, SkillName);
+            return Mathf.Max(rank - 1, 0);
         }
 
     }
