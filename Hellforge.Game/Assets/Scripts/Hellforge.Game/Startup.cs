@@ -7,7 +7,7 @@ namespace Hellforge.Game
     {
         void Start()
         {
-            SceneManager.LoadScene("CharacterSelection");
+            SceneManager.LoadScene("CharacterSelection"); 
         }
     }
 }
