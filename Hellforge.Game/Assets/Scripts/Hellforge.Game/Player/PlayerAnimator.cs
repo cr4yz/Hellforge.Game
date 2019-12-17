@@ -14,6 +14,8 @@ namespace Hellforge.Game.Player
         [SerializeField]
         private Transform _body;
 
+        public Quaternion Rotation => _body.rotation;
+
         private void Start()
         {
             _controller = GetComponent<PlayerController>();

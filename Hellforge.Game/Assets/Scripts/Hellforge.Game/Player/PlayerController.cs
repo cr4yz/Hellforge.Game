@@ -171,6 +171,8 @@ namespace Hellforge.Game.Player
                     return new Frenzy(GameWorld.Instance.Hero);
                 case "LungingStrike":
                     return new LungingStrike(GameWorld.Instance.Hero);
+                case "DoubleSwing":
+                    return new DoubleSwing(GameWorld.Instance.Hero);
                 default:
                     return null;
             }

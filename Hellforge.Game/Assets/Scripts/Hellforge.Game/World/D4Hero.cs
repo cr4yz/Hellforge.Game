@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 using Hellforge.Core;
 using Hellforge.Core.Entities;
 using Hellforge.Game.Player;
@@ -11,6 +12,9 @@ namespace Hellforge.Game.Entities
 
         public Character Character => GameWorld.Instance.Character;
         public PlayerController Controller { get; private set; }
+
+        public Vector3 Position => transform.position;
+        public Quaternion Rotation => GetComponent<PlayerAnimator>().Rotation;
 
         private Queue<DamageInfo> _damageQueue = new Queue<DamageInfo>();
 
